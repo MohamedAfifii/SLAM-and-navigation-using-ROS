@@ -24,8 +24,8 @@ void loop()
         String s = Serial.readStringUntil('\n');
         targetSpeed = s.toInt();
     }
-    m1.setSpeed(targetSpeed);
-    m2.setSpeed(targetSpeed);
+    m1.setTargetSpeed(targetSpeed);
+    m2.setTargetSpeed(targetSpeed);
     
     while(millis()-oldt < T){}
     oldt = millis();

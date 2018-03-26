@@ -5,9 +5,10 @@
 #include <math.h>
 
 #define MAXPWM 130
-#define MINSPEED 3
+#define MINSPEED 2
 #define TPR (128.0*75.0)  //Ticks per rev.
-#define KP 5
+#define KP 5.0
+#define R                 // TODO: The radius of the wheels in cm
  
 struct Motor
 {
@@ -39,16 +40,31 @@ struct Motor
         digitalWrite(pin2, 0);
     }
 
-    void setSpeed(double targetSpeed)
+
+    // Sets the desired angular velocity of the motor in rad/sec
+    void setTargetSpeed(double targetSpeed)
     {
         if(abs(targetSpeed) < MINSPEED)  targetSpeed = 0;
         this->targetSpeed = targetSpeed;
     }
 
+    // Returns the current target speed in rad/sec
+    double getTargetSpeed()
+    {
+        return targetSpeed;  
+    }
 
+    // Returns the speed measured during the last call to the update function
+    double getSpeed()
+    {
+        return speed;
+    }
+
+
+    // Computes the current speed.
     // Modifies the PWM value to track the target speed.
-    // Returns the number of ticks since the last call.
-    int update()
+    // Returns the distance covered by the wheel since the last call in (cm).
+    double update()
     {
         long newPos = encoder.read();
         long t = millis()-oldt;
@@ -77,7 +93,7 @@ struct Motor
         digitalWrite(gndPin, 0);
         analogWrite(pwmPin, abs(pwm));
 
-        return ticks;
+        return 2*M_PI*R*(ticks/TPR);
     }
 };
 
