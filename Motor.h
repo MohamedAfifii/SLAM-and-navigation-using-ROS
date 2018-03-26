@@ -7,7 +7,7 @@
 #define MAXPWM 130
 #define MINSPEED 3
 #define TPR (128.0*75.0)  //Ticks per rev.
-#define KP = 5;
+#define KP 5
  
 struct Motor
 {

@@ -30,8 +30,8 @@ void loop()
     while(millis()-oldt < T){}
     oldt = millis();
     
-    m1.PID();
-    m2.PID();
+    m1.update();
+    m2.update();
     
     Serial.print(m1.speed);
     Serial.print("   ");
