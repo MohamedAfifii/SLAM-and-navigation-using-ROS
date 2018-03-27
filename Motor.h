@@ -4,11 +4,19 @@
 #include <Encoder.h>
 #include <math.h>
 
-#define MAXPWM 130
+#define MAXPWM 200
 #define MINSPEED 2
 #define TPR (128.0*75.0)  //Ticks per rev.
 #define KP 5.0
-#define R                 // TODO: The radius of the wheels in cm
+#define KI 0.1
+#define KD 0
+#define R  3.25             
+
+
+struct state
+{
+    double d, v;  
+}
  
 struct Motor
 {
@@ -16,6 +24,7 @@ struct Motor
     int pwm = 0;
     double speed, targetSpeed = 0;
     long oldt, oldPos = 0;
+    double E = 0, olde = 0;
 
     // I had to modify Encoder.h to be able to call the default constructor.
     Encoder encoder;
@@ -64,7 +73,7 @@ struct Motor
     // Computes the current speed.
     // Modifies the PWM value to track the target speed.
     // Returns the distance covered by the wheel since the last call in (cm).
-    double update()
+    state update()
     {
         long newPos = encoder.read();
         long t = millis()-oldt;
@@ -75,7 +84,10 @@ struct Motor
         double ticksPerSec = ticks*(1000.0/t);
         speed = (ticksPerSec/TPR)*2*M_PI;
         double e = targetSpeed - speed;
-        pwm += (int)(KP*e);
+        double de = e-olde;
+        olde = e;
+        E += e;
+        pwm += (int)(KP*e + KD*de + KI*E);
 
         byte pwmPin, gndPin;
         if(targetSpeed > 0)
@@ -93,7 +105,10 @@ struct Motor
         digitalWrite(gndPin, 0);
         analogWrite(pwmPin, abs(pwm));
 
-        return 2*M_PI*R*(ticks/TPR);
+        state s;
+        s.d = 2*M_PI*R*(ticks/TPR);
+        s.v = d/t;
+        return s;
     }
 };
 
