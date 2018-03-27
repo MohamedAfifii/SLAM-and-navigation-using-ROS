@@ -8,6 +8,7 @@
 struct Robot
 {
     double x = 0, y = 0, theta = 0;
+    double vx = 0, vy = 0, vth = 0;
     Motor left = Motor(10, 9, 3, 2);
     Motor right = Motor(6, 7, 18, 19);
 
@@ -43,6 +44,10 @@ struct Robot
         x += dc*cos(avTheta);
         y += dc*sin(avTheta);
         theta = newTheta;
+
+        vx = vc*cos(avTheta);
+        vy = vc*sin(avTheta);
+        vth = wc;
     }
 };
 

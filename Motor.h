@@ -16,7 +16,7 @@
 struct state
 {
     double d, v;  
-}
+};
  
 struct Motor
 {
@@ -107,7 +107,7 @@ struct Motor
 
         state s;
         s.d = 2*M_PI*R*(ticks/TPR);
-        s.v = d/t;
+        s.v = s.d/t;
         return s;
     }
 };
