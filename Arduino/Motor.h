@@ -13,11 +13,6 @@
 #define R  3.25             
 
 
-struct state
-{
-    double d, v;  
-};
- 
 struct Motor
 {
     byte pin1, pin2;    
@@ -49,7 +44,6 @@ struct Motor
         digitalWrite(pin2, 0);
     }
 
-
     // Sets the desired angular velocity of the motor in rad/sec
     void setTargetSpeed(double targetSpeed)
     {
@@ -73,7 +67,7 @@ struct Motor
     // Computes the current speed.
     // Modifies the PWM value to track the target speed.
     // Returns the distance covered by the wheel since the last call in (cm).
-    state update()
+    double update()
     {
         long newPos = encoder.read();
         long t = millis()-oldt;
@@ -105,10 +99,7 @@ struct Motor
         digitalWrite(gndPin, 0);
         analogWrite(pwmPin, abs(pwm));
 
-        state s;
-        s.d = 2*M_PI*R*(ticks/TPR);
-        s.v = s.d/t;
-        return s;
+        return 2*M_PI*R*(ticks/TPR);
     }
 };
 
