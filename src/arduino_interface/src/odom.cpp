@@ -83,12 +83,12 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 
 int main(int argc , char** argv) 
 {
-	ros::init (argc , argv , "wheel_odometry") ;
+	ros::init (argc , argv , "odom_translator") ;
 	ros::NodeHandle nh;
 
-	pubPtr = new ros::Publisher(nh.advertise<nav_msgs::Odometry>("odom" ,100));
+	pubPtr = new ros::Publisher(nh.advertise<nav_msgs::Odometry>("/odom" ,100));
 
-	ros::Subscriber sub = nh.subscribe("/odom_arduino" , 100 ,&odom_arduino_cb);
+	ros::Subscriber sub = nh.subscribe("/wheel_odometry" , 100 ,&odom_arduino_cb);
 	ros::spin();
 
 	delete pubPtr;

@@ -306,6 +306,7 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 # Directory level rules for directory arduino_interface
 
 # Convenience name for "all" pass in the directory.
+arduino_interface/all: arduino_interface/CMakeFiles/imu_translator.dir/all
 arduino_interface/all: arduino_interface/CMakeFiles/odom_translator.dir/all
 
 .PHONY : arduino_interface/all
@@ -315,6 +316,7 @@ arduino_interface/clean: arduino_interface/CMakeFiles/tf2_msgs_generate_messages
 arduino_interface/clean: arduino_interface/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
 arduino_interface/clean: arduino_interface/CMakeFiles/tf2_msgs_generate_messages_eus.dir/clean
 arduino_interface/clean: arduino_interface/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
+arduino_interface/clean: arduino_interface/CMakeFiles/imu_translator.dir/clean
 arduino_interface/clean: arduino_interface/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
 arduino_interface/clean: arduino_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 arduino_interface/clean: arduino_interface/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/clean
@@ -495,6 +497,43 @@ arduino_interface/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean:
 
 # clean rule for target.
 clean: arduino_interface/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target arduino_interface/CMakeFiles/imu_translator.dir
+
+# All Build rule for target.
+arduino_interface/CMakeFiles/imu_translator.dir/all:
+	$(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/depend
+	$(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=5,6 "Built target imu_translator"
+.PHONY : arduino_interface/CMakeFiles/imu_translator.dir/all
+
+# Include target in all.
+all: arduino_interface/CMakeFiles/imu_translator.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+arduino_interface/CMakeFiles/imu_translator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/imu_translator.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles 0
+.PHONY : arduino_interface/CMakeFiles/imu_translator.dir/rule
+
+# Convenience name for target.
+imu_translator: arduino_interface/CMakeFiles/imu_translator.dir/rule
+
+.PHONY : imu_translator
+
+# clean rule for target.
+arduino_interface/CMakeFiles/imu_translator.dir/clean:
+	$(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/clean
+.PHONY : arduino_interface/CMakeFiles/imu_translator.dir/clean
+
+# clean rule for target.
+clean: arduino_interface/CMakeFiles/imu_translator.dir/clean
 
 .PHONY : clean
 
@@ -1433,7 +1472,7 @@ clean: arduino_interface/CMakeFiles/tf_generate_messages_cpp.dir/clean
 arduino_interface/CMakeFiles/odom_translator.dir/all:
 	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/depend
 	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=5,6 "Built target odom_translator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=7,8 "Built target odom_translator"
 .PHONY : arduino_interface/CMakeFiles/odom_translator.dir/all
 
 # Include target in all.

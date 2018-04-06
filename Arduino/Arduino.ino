@@ -6,7 +6,7 @@
 Robot robot;
 IMU imu;
 
-#define T 10
+#define T 20
 long oldt;
 
 void setup() 

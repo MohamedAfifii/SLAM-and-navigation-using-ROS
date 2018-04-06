@@ -21,8 +21,10 @@ struct Motor
     long oldt, oldPos = 0;
     double E = 0, olde = 0;
 
-    // I had to modify Encoder.h to be able to call the default constructor.
-    Encoder encoder;
+    //2, 3 are dummy values to be able to call the constructor of Encoder.
+    //These values are overwritten by the values passed to the constructor of Motor.
+    //You can instead modify Encoder.h and call the default constructor.
+    Encoder encoder = Encoder(2,3);
 
     /*
      * Assign the values to pwmPin1 and pwmPin2 such that when the PWM is applied to 
@@ -33,7 +35,7 @@ struct Motor
      */
     Motor(byte pwmPin1, byte pwmPin2, byte encoderPin1, byte encoderPin2)
     {
-        encoder.setPins(encoderPin1, encoderPin2);
+        encoder = Encoder(encoderPin1, encoderPin2);
         oldt = millis();
         pin1 = pwmPin1;
         pin2 = pwmPin2;

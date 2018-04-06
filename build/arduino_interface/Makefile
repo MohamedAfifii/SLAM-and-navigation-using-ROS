@@ -226,6 +226,21 @@ actionlib_msgs_generate_messages_py/fast:
 .PHONY : actionlib_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+arduino_interface/CMakeFiles/imu_translator.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/imu_translator.dir/rule
+.PHONY : arduino_interface/CMakeFiles/imu_translator.dir/rule
+
+# Convenience name for target.
+imu_translator: arduino_interface/CMakeFiles/imu_translator.dir/rule
+
+.PHONY : imu_translator
+
+# fast build rule for target.
+imu_translator/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/build
+.PHONY : imu_translator/fast
+
+# Convenience name for target.
 arduino_interface/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 .PHONY : arduino_interface/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
@@ -930,6 +945,33 @@ actionlib_generate_messages_nodejs/fast:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make arduino_interface/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
 .PHONY : actionlib_generate_messages_nodejs/fast
 
+src/imu.o: src/imu.cpp.o
+
+.PHONY : src/imu.o
+
+# target to build an object file
+src/imu.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/src/imu.cpp.o
+.PHONY : src/imu.cpp.o
+
+src/imu.i: src/imu.cpp.i
+
+.PHONY : src/imu.i
+
+# target to preprocess a source file
+src/imu.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/src/imu.cpp.i
+.PHONY : src/imu.cpp.i
+
+src/imu.s: src/imu.cpp.s
+
+.PHONY : src/imu.s
+
+# target to generate assembly for a file
+src/imu.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/src/imu.cpp.s
+.PHONY : src/imu.cpp.s
+
 src/odom.o: src/odom.cpp.o
 
 .PHONY : src/odom.o
@@ -969,6 +1011,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_py"
+	@echo "... imu_translator"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_nodejs"
@@ -1021,6 +1064,9 @@ help:
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_nodejs"
+	@echo "... src/imu.o"
+	@echo "... src/imu.i"
+	@echo "... src/imu.s"
 	@echo "... src/odom.o"
 	@echo "... src/odom.i"
 	@echo "... src/odom.s"

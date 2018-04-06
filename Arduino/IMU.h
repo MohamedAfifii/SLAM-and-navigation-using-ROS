@@ -4,7 +4,6 @@
 #include<Wire.h>
 
 const int MPU_addr=0x68;
-//If you need to define other constants, define them here.
 const double Rad_to_Deg = 180.0 / 3.141 ;
 const double Deg_to_Rad = 3.141 / 180.0 ;
 
@@ -13,7 +12,7 @@ struct IMU
     double ax, ay, az;
     double gx, gy, gz;
     double mx, my, mz;
-    //If you need extra variables, define them here.
+
     double ax_reg, ay_reg, az_reg;
     double gx_reg, gy_reg, gz_reg;
     double mx_reg, my_reg, mz_reg;

@@ -3,7 +3,7 @@
 
 #include "Motor.h"
 
-#define L  27    
+#define L 27    
 
 struct Robot
 {
@@ -16,8 +16,8 @@ struct Robot
     //The function uses inverse kinematics to set the desired angular velocities of the two motors
     void setTarget(double vc, double wc)
     {
-        right.setTargetSpeed((2*vc+wc*L) / (2*R));
-        left.setTargetSpeed((2*vc-wc*L) / (2*R));
+        right.setTargetSpeed((2*vc+wc*L) / (2.0*R));
+        left.setTargetSpeed((2*vc-wc*L) / (2.0*R));
     }
 
     //Modifies the PWM of the left and right motors to track the desired linear and angular velocities.

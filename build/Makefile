@@ -309,6 +309,19 @@ actionlib_msgs_generate_messages_py/fast:
 .PHONY : actionlib_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named imu_translator
+
+# Build rule for target.
+imu_translator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 imu_translator
+.PHONY : imu_translator
+
+# fast build rule for target.
+imu_translator/fast:
+	$(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/build
+.PHONY : imu_translator/fast
+
+#=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -943,6 +956,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_py"
+	@echo "... imu_translator"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_nodejs"
