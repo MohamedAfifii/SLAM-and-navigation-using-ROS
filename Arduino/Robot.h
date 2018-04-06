@@ -7,10 +7,9 @@
 
 struct Robot
 {
-    double x = 0, y = 0, theta = 0;
-    double vx = 0, vy = 0, vth = 0;
-    Motor left = Motor(10, 9, 3, 2);
-    Motor right = Motor(6, 7, 18, 19);
+    double dl, dr;
+    Motor left = Motor(10, 9, 3, 2);      //Hardware order: 2, 3, 9, 10
+    Motor right = Motor(6, 7, 18, 19);    //Hardware order: 18, 19, 6, 7
 
     //vc: Target linear velocity of the robot (cm/sec)
     //wc: Target angular velocity of the robot (rad/sec)
@@ -22,25 +21,11 @@ struct Robot
     }
 
     //Modifies the PWM of the left and right motors to track the desired linear and angular velocities.
-    //Updates the estimated position of the robot using wheel encoder.
+    //Stores the distance covered by the left and right wheels to be published later to ROS.
     void update()
     {
-        double dl = left.update();
-        double dr = right.update(); 
-        double dc = (dl+dr)/2;
-        
-        double newTheta = theta+(dr-dl)/L;
-        newTheta = atan2(sin(newTheta), cos(newTheta));
-
-        //You can't take the average of two angles by adding them and dividing by 2.
-        //These is a work around for taking the average of 2 angles.
-        double avTheta = atan2(sin(newTheta)+sin(theta), cos(newTheta)+cos(theta)); 
-
-        x += dc*cos(avTheta);
-        y += dc*sin(avTheta);
-        theta = newTheta;
-
-        //TODO: Update the pose covariance
+        dl = left.update();
+        dr = right.update(); 
     }
 };
 

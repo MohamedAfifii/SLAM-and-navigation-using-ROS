@@ -1,5 +1,5 @@
-#ifndef __ROS__
-#define __ROS__
+#ifndef __ROS___
+#define __ROS___
 
 #if defined(ARDUINO) && ARDUINO >= 100
   #include "Arduino.h"
@@ -9,87 +9,65 @@
 
 
 #include <ros.h>  
-#include <ros/time.h>
-
-#include <sensor_msgs/Imu.h>
 #include <geometry_msgs/Twist.h>
-#include <nav_msgs/Odometry.h>
+#include <geometry_msgs/Vector3.h>
+#include <geometry_msgs/Accel.h>
 
-#include <tf/transform_broadcaster.h>
-#include <tf/tf.h>
+void twistCb(const geometry_msgs::Twist& twist);
 
-#include "Robot.h"
-#include "IMU.h"
+geometry_msgs::Vector3 odom_msg;
+geometry_msgs::Accel imu_msg;
+ros::NodeHandle nh;
+double targetV, targetW;  
 
-struct Ros_wrapper
+ros::Subscriber<geometry_msgs::Twist> sub("/cmd_vel", twistCb);
+ros::Publisher odom_pub("/wheel_odometry", &odom_msg);
+ros::Publisher imu_pub("/acc_topic", &imu_msg);
+
+void twistCb(const geometry_msgs::Twist& twist)
 {
-    ros::NodeHandle nh;
-    //ros::Subscriber<geometry_msgs::Twist> sub = ros::Subscriber("/cmd_vel", cmd_cb);
-    ros::Publisher odom_pub = ros::Publisher("/odom", &odom);
-    ros::Publisher imu_pub = ros::Publisher("/imu", &imu_msg);
+    targetV = twist.linear.x*100;
+    targetW = twist.angular.z;    
+}
+
+void cmd_cb(const geometry_msgs::Twist& cmd_msg)
+{
+    targetV = cmd_msg.linear.x*100;
+    targetW = cmd_msg.angular.z;
+}
+
+void publishOdometry(const Robot &robot)
+{ 
+    odom_msg.x = robot.dl;
+    odom_msg.y = robot.dr;
+
+    odom_pub.publish(&odom_msg);
+}
+
+void publishIMU(const IMU &imu)
+{
+    geometry_msgs::Vector3 angular;
+    geometry_msgs::Vector3 linear;
+
+    linear.x = imu.ax;
+    linear.y = imu.ay;
+    linear.z = imu.az;
     
-    nav_msgs::Odometry odom;
-    sensor_msgs::Imu imu_msg;
-
-    double targetV, targetW;  
-
-
-    Ros_wrapper()
-    {
-        nh.initNode();
-        //nh.subscribe(sub);
-        nh.advertise(odom_pub);
-        nh.advertise(imu_pub);  
-    }
-
-    void spinOnce()
-    {
-        nh.spinOnce();   
-    }
-
-    void cmd_cb(const geometry_msgs::Twist& cmd_msg)
-    {
-        targetV = cmd_msg.linear.x*100;
-        targetW = cmd_msg.angular.z;
-    }
-
-    void publishOdometry(const Robot &robot)
-    { 
-        odom.header.stamp = nh.now();
-        odom.header.frame_id = "odom";
+    angular.x = imu.gx;
+    angular.y = imu.gy;
+    angular.z = imu.gz;
     
-        odom.pose.pose.position.x = robot.x;
-        odom.pose.pose.position.y = robot.y;
-        odom.pose.pose.position.z = 0.0;
-        odom.pose.pose.orientation = tf::createQuaternionFromYaw(robot.theta);
+    imu_msg.angular = angular;
+    imu_msg.linear = linear;
 
-        //TODO: Set the pose covariance
-        
-        odom_pub.publish(&odom);
-    }
+    imu_pub.publish(&imu_msg);
+}
 
+void publishState(const Robot &robot, const IMU &imu)
+{
+    publishOdometry(robot);
+    publishIMU(imu);
+}
 
-    // NOTE: The filters in imu_tools uses a parameter called "constant_dt", measured in seconds (default = 0.0).
-    // If left at 0.0, it will use the message timestamps to compute dt. 
-    // If set to a positive value, it will use a constant dt.
-    void publishIMU(const IMU &imu)
-    {
-        geometry_msgs::Vector3 angular_velocity;
-        geometry_msgs::Vector3 linear_acceleration;
-
-        linear_acceleration.x = imu.ax;
-        linear_acceleration.y = imu.ay;
-        linear_acceleration.z = imu.az;
-        
-        angular_velocity.x = imu.gx;
-        angular_velocity.y = imu.gy;
-        angular_velocity.z = imu.gz;
-        
-        imu_msg.angular_velocity = angular_velocity;
-        imu_msg.linear_acceleration = linear_acceleration;
-    
-        imu_pub.publish(&imu_msg);
-    }
-};
 
 #endif

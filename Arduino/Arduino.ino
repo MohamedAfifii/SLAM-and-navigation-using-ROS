@@ -1,34 +1,37 @@
 
-#include "ros_wrapper.h"
 #include "Robot.h"
 #include "IMU.h"
+#include "ros_wrapper.h"
 
+Robot robot;
+IMU imu;
 
 #define T 10
 long oldt;
 
-Robot robot;
-IMU imu;
-Ros_wrapper ROS;
-
-
 void setup() 
 {
+    nh.initNode();
+    nh.subscribe(sub);
+    nh.advertise(odom_pub);
+    nh.advertise(imu_pub);  
+
+    imu.init();
+    
     oldt = millis();
 }
 
 
 void loop() 
 {   
-    ROS.spinOnce();             
-    robot.setTarget(ROS.targetV, ROS.targetW);
+    nh.spinOnce();             
+    robot.setTarget(targetV, targetW);
     
     while(millis()-oldt < T){}
     oldt = millis();
 
     robot.update();
-    ROS.publishOdometry(robot);   
-
     imu.update();
-    ROS.publishIMU(imu);
+    
+    publishState(robot, imu);
 }

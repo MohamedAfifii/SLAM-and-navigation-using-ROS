@@ -8,7 +8,7 @@
 #define MINSPEED 2
 #define TPR (128.0*75.0)  //Ticks per rev.
 #define KP 5.0
-#define KI 0.1
+#define KI 0.2
 #define KD 0
 #define R  3.25             
 

@@ -1,0 +1,2 @@
+arduino_interface
+-DCATKIN_DEVEL_PREFIX=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel -DCMAKE_INSTALL_PREFIX=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/install -G Unix Makefiles

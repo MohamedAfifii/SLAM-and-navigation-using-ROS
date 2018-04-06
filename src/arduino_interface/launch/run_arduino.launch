@@ -1,0 +1,18 @@
+<launch>
+
+	<node pkg="rosserial_python" type="serial_node.py" name="rosserial" output="screen">
+	  <param name="port" value="/dev/ttyACM0" />
+	  <param name="baud" value="57600" />
+	</node>
+  
+	<node pkg="turtlebot_teleop" type="turtlebot_teleop_key" name="turtlebot_teleop_keyboard"  output="screen" launch-prefix = "xterm -e" required = "true">
+
+	<param name="scale_linear" value="0.5" type="double"/>
+	<param name="scale_angular" value="1.5" type="double"/>
+	<remap from="turtlebot_teleop_keyboard/cmd_vel" to="/cmd_vel"/>
+	</node>
+  
+	<node pkg = "arduino_interface" type = "odom_translator" name = "odom_translator" />
+  
+</launch>
+
