@@ -6,7 +6,7 @@
 Robot robot;
 IMU imu;
 
-#define T 20
+#define T 50
 long oldt;
 
 void setup() 
@@ -24,6 +24,8 @@ void setup()
 
 void loop() 
 {   
+    if(millis()-vtime > 500)  targetV = targetW = 0;
+    
     nh.spinOnce();             
     robot.setTarget(targetV, targetW);
     

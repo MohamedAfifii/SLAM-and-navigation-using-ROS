@@ -23,3 +23,6 @@ target_link_libraries(odom_translator ${catkin_LIBRARIES})
 
 add_executable(imu_translator src/imu.cpp)
 target_link_libraries(imu_translator ${catkin_LIBRARIES})
+
+add_executable(my_teleop src/teleop.cpp)
+target_link_libraries(my_teleop ${catkin_LIBRARIES})

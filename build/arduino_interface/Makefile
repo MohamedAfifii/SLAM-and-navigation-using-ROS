@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -77,6 +66,17 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -164,6 +164,21 @@ preinstall/fast:
 depend:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+arduino_interface/CMakeFiles/my_teleop.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/my_teleop.dir/rule
+.PHONY : arduino_interface/CMakeFiles/my_teleop.dir/rule
+
+# Convenience name for target.
+my_teleop: arduino_interface/CMakeFiles/my_teleop.dir/rule
+
+.PHONY : my_teleop
+
+# fast build rule for target.
+my_teleop/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/build
+.PHONY : my_teleop/fast
 
 # Convenience name for target.
 arduino_interface/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
@@ -999,14 +1014,42 @@ src/odom.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.s
 .PHONY : src/odom.cpp.s
 
+src/teleop.o: src/teleop.cpp.o
+
+.PHONY : src/teleop.o
+
+# target to build an object file
+src/teleop.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.o
+.PHONY : src/teleop.cpp.o
+
+src/teleop.i: src/teleop.cpp.i
+
+.PHONY : src/teleop.i
+
+# target to preprocess a source file
+src/teleop.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.i
+.PHONY : src/teleop.cpp.i
+
+src/teleop.s: src/teleop.cpp.s
+
+.PHONY : src/teleop.s
+
+# target to generate assembly for a file
+src/teleop.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.s
+.PHONY : src/teleop.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... my_teleop"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_eus"
@@ -1070,6 +1113,9 @@ help:
 	@echo "... src/odom.o"
 	@echo "... src/odom.i"
 	@echo "... src/odom.s"
+	@echo "... src/teleop.o"
+	@echo "... src/teleop.i"
+	@echo "... src/teleop.s"
 .PHONY : help
 
 

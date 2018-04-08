@@ -4,7 +4,7 @@
 #include <Encoder.h>
 #include <math.h>
 
-#define MAXPWM 255
+#define MAXPWM 200
 #define MINSPEED 2
 #define TPR (128.0*75.0)  //Ticks per rev.
 #define KP 5.0
@@ -12,7 +12,7 @@
 #define KD 0
 #define R  3.25             
 
-
+ 
 struct Motor
 {
     byte pin1, pin2;    
@@ -21,10 +21,7 @@ struct Motor
     long oldt, oldPos = 0;
     double E = 0, olde = 0;
 
-    //2, 3 are dummy values to be able to call the constructor of Encoder.
-    //These values are overwritten by the values passed to the constructor of Motor.
-    //You can instead modify Encoder.h and call the default constructor.
-    //Encoder encoder = Encoder(2,3);
+    // I had to modify Encoder.h to be able to call the default constructor.
     Encoder encoder;
 
     /*
@@ -36,7 +33,6 @@ struct Motor
      */
     Motor(byte pwmPin1, byte pwmPin2, byte encoderPin1, byte encoderPin2)
     {
-        //encoder = Encoder(encoderPin1, encoderPin2);
         encoder.setPins(encoderPin1, encoderPin2);
         oldt = millis();
         pin1 = pwmPin1;
@@ -47,6 +43,7 @@ struct Motor
         digitalWrite(pin1, 0);
         digitalWrite(pin2, 0);
     }
+
 
     // Sets the desired angular velocity of the motor in rad/sec
     void setTargetSpeed(double targetSpeed)
@@ -103,7 +100,7 @@ struct Motor
         digitalWrite(gndPin, 0);
         analogWrite(pwmPin, abs(pwm));
 
-        return 2*M_PI*R*(ticks/TPR);
+        return (ticks/TPR)*2*M_PI*R;
     }
 };
 

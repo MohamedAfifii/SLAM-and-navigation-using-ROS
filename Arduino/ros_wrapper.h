@@ -7,7 +7,6 @@
   #include <WProgram.h>
 #endif
 
-
 #include <ros.h>  
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Vector3.h>
@@ -18,22 +17,41 @@ void twistCb(const geometry_msgs::Twist& twist);
 geometry_msgs::Vector3 odom_msg;
 geometry_msgs::Accel imu_msg;
 ros::NodeHandle nh;
-double targetV, targetW;  
+double targetV, targetW;
+//int oldCmdV, oldCmdW;
 
 ros::Subscriber<geometry_msgs::Twist> sub("/cmd_vel", twistCb);
 ros::Publisher odom_pub("/wheel_odometry", &odom_msg);
 ros::Publisher imu_pub("/acc_topic", &imu_msg);
 
+long vtime;
+
 void twistCb(const geometry_msgs::Twist& twist)
 {
-    targetV = twist.linear.x*100;
-    targetW = twist.angular.z;    
-}
+    targetV = twist.linear.x*8;
+    targetW = twist.angular.z/2;
+    vtime = millis();
+    /*
+    int cmdV = twist.linear.x*100;
+    int cmdW = twist.angular.z*100;
 
-void cmd_cb(const geometry_msgs::Twist& cmd_msg)
-{
-    targetV = cmd_msg.linear.x*100;
-    targetW = cmd_msg.angular.z;
+    //if(cmdV > 10)  targetV = 16;
+    //else          targetV = 0;
+
+    int signV = cmdV > 0, signW = cmdW > 0;
+    signV *= 2, signV -= 1;
+    signW *= 2, signW -= 1;
+    
+    cmdV = abs(cmdV), cmdW = abs(cmdW);
+    
+    if(cmdV > oldCmdV)  targetV = signV*16;
+    if(cmdV < oldCmdV)  targetV = 0;
+
+    if(cmdW > oldCmdW)  targetW = signW*1;
+    if(cmdW < oldCmdW)  targetW = 0;
+
+    oldCmdV = cmdV, oldCmdW = cmdW;
+    */
 }
 
 void publishOdometry(const Robot &robot)
