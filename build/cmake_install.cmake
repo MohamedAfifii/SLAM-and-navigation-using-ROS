@@ -117,6 +117,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/gtest/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/filters/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface/cmake_install.cmake")
 
 endif()
