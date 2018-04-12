@@ -22,6 +22,9 @@ void imu_cb(const geometry_msgs::Accel& msgIn)
 	msgOut.angular_velocity.z = msgIn.angular.z;
 	
 	msgOut.header.stamp = ros::Time::now();
+	
+	//TODO: Set the covariance
+	
 
 	pubPtr->publish (msgOut);
 }

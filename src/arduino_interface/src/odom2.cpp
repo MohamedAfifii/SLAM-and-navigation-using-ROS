@@ -52,8 +52,8 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	//You should take the absolute of the stddevs if you are going to use them for uncertainty estimation.
 	double sigmal = k*dl, sigmar = k*dr;			
 	dl -= 3*sigmal, dr -= 3*sigmar;					//Calibration
-	double sigmal2 = sigmal*sigmal, sigmar2 = sigmar*sigmar;
-	
+	//double sigmal2 = sigmal*sigmal, sigmar2 = sigmar*sigmar;
+	double sigmal2 = abs(sigmal), sigmar2 = abs(sigmar);
 	
 	//Update pose
 	double dc = (dl+dr)/2;
@@ -80,9 +80,12 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	twistMsg.twist.twist.angular.z = wc;
 	
 	//Calculate twist covariance
-	double cv2 = (sigmar2+sigmal2)/(4*dt2);
-	double cw2 = (sigmar2+sigmal2)/(L*L*dt2);
-	double cvcw = (sigmar2-sigmal2)/(2*L*dt2);
+	//double cv2 = (sigmar2+sigmal2)/(4*dt2);
+	//double cw2 = (sigmar2+sigmal2)/(L*L*dt2);
+	//double cvcw = (sigmar2-sigmal2)/(2*L*dt2);
+	double cv2 = (sigmar2+sigmal2)/(2*dt);
+	double cw2 = (sigmar2+sigmal2)/(L*dt);
+	double cvcw = (sigmar2-sigmal2)/(2*L*dt);
 	
 	//Set the covariance
 	twistMsg.twist.covariance[0] = cv2;

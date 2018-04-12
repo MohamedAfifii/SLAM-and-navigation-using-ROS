@@ -30,7 +30,8 @@ struct IMU
         Wire.write(0x1B);
         Wire.write(0b00001000);
         Wire.endTransmission(true);
-        
+
+        //TODO: Calibration
     }
 
     void readAcc()
@@ -45,9 +46,11 @@ struct IMU
           az_reg = Wire.read()<<8|Wire.read();
           
             
-          ax = ( ax_reg /16384.0 - 0.02 ) * 9.8 ;
-          ay = ( ay_reg /16384.0 + 0.01 ) * 9.8 ;
-          az = ( az_reg /16384.0 - 0.19 ) * 9.8 ;
+          ax = ( ax_reg /16384.0 - 0.02 ) * 9.8;
+          ay = ( ay_reg /16384.0 + 0.01 ) * 9.8;
+          az = ( az_reg /16384.0 - 0.19 ) * 9.8;
+
+          //TODO: Calibration
     }
 
     void readGyro()
@@ -63,7 +66,9 @@ struct IMU
           
         gx = ( gx_reg / 65.5 ) * Deg_to_Rad ;
         gy = ( gy_reg / 65.5 ) * Deg_to_Rad ;
-        gz = ( gz_reg / 65.5 ) * Deg_to_Rad ;         
+        gz = ( gz_reg / 65.5 ) * Deg_to_Rad ;   
+
+        //TODO: Calibration
     }
 
     void readMag()
