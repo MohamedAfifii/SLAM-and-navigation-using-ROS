@@ -57,38 +57,38 @@ include arduino_interface/CMakeFiles/odom_translator.dir/progress.make
 # Include the compile flags for this target's objects.
 include arduino_interface/CMakeFiles/odom_translator.dir/flags.make
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o: arduino_interface/CMakeFiles/odom_translator.dir/flags.make
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o: /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o"
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/odom_translator.dir/src/odom.cpp.o -c /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom.cpp
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o: arduino_interface/CMakeFiles/odom_translator.dir/flags.make
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o: /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o"
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/odom_translator.dir/src/odom2.cpp.o -c /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom2.cpp
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odom_translator.dir/src/odom.cpp.i"
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom.cpp > CMakeFiles/odom_translator.dir/src/odom.cpp.i
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odom_translator.dir/src/odom2.cpp.i"
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom2.cpp > CMakeFiles/odom_translator.dir/src/odom2.cpp.i
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odom_translator.dir/src/odom.cpp.s"
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom.cpp -o CMakeFiles/odom_translator.dir/src/odom.cpp.s
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odom_translator.dir/src/odom2.cpp.s"
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom2.cpp -o CMakeFiles/odom_translator.dir/src/odom2.cpp.s
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.requires:
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.requires:
 
-.PHONY : arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.requires
+.PHONY : arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.requires
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.provides: arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.requires
-	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.provides.build
-.PHONY : arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.provides
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.provides: arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.requires
+	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.provides.build
+.PHONY : arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.provides
 
-arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.provides.build: arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o
+arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.provides.build: arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o
 
 
 # Object files for target odom_translator
 odom_translator_OBJECTS = \
-"CMakeFiles/odom_translator.dir/src/odom.cpp.o"
+"CMakeFiles/odom_translator.dir/src/odom2.cpp.o"
 
 # External object files for target odom_translator
 odom_translator_EXTERNAL_OBJECTS =
 
-/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/arduino_interface/odom_translator: arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/arduino_interface/odom_translator: arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/arduino_interface/odom_translator: arduino_interface/CMakeFiles/odom_translator.dir/build.make
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/arduino_interface/odom_translator: /opt/ros/kinetic/lib/libtf.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/arduino_interface/odom_translator: /opt/ros/kinetic/lib/libtf2_ros.so
@@ -123,7 +123,7 @@ arduino_interface/CMakeFiles/odom_translator.dir/build: /home/afifi/Graduation_p
 
 .PHONY : arduino_interface/CMakeFiles/odom_translator.dir/build
 
-arduino_interface/CMakeFiles/odom_translator.dir/requires: arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o.requires
+arduino_interface/CMakeFiles/odom_translator.dir/requires: arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o.requires
 
 .PHONY : arduino_interface/CMakeFiles/odom_translator.dir/requires
 

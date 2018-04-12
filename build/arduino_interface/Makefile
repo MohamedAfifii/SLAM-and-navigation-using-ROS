@@ -987,32 +987,32 @@ src/imu.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/src/imu.cpp.s
 .PHONY : src/imu.cpp.s
 
-src/odom.o: src/odom.cpp.o
+src/odom2.o: src/odom2.cpp.o
 
-.PHONY : src/odom.o
+.PHONY : src/odom2.o
 
 # target to build an object file
-src/odom.cpp.o:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o
-.PHONY : src/odom.cpp.o
+src/odom2.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o
+.PHONY : src/odom2.cpp.o
 
-src/odom.i: src/odom.cpp.i
+src/odom2.i: src/odom2.cpp.i
 
-.PHONY : src/odom.i
+.PHONY : src/odom2.i
 
 # target to preprocess a source file
-src/odom.cpp.i:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.i
-.PHONY : src/odom.cpp.i
+src/odom2.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.i
+.PHONY : src/odom2.cpp.i
 
-src/odom.s: src/odom.cpp.s
+src/odom2.s: src/odom2.cpp.s
 
-.PHONY : src/odom.s
+.PHONY : src/odom2.s
 
 # target to generate assembly for a file
-src/odom.cpp.s:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.s
-.PHONY : src/odom.cpp.s
+src/odom2.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.s
+.PHONY : src/odom2.cpp.s
 
 src/teleop.o: src/teleop.cpp.o
 
@@ -1110,9 +1110,9 @@ help:
 	@echo "... src/imu.o"
 	@echo "... src/imu.i"
 	@echo "... src/imu.s"
-	@echo "... src/odom.o"
-	@echo "... src/odom.i"
-	@echo "... src/odom.s"
+	@echo "... src/odom2.o"
+	@echo "... src/odom2.i"
+	@echo "... src/odom2.s"
 	@echo "... src/teleop.o"
 	@echo "... src/teleop.i"
 	@echo "... src/teleop.s"

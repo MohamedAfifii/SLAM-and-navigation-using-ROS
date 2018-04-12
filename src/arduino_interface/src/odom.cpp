@@ -61,6 +61,7 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	double costh = cos(avTheta);
 	double sinth = sin(avTheta);
 	
+	/*	
 	msgOut.pose.covariance[0] = a*costh*costh;
 	msgOut.pose.covariance[1] = a*costh*sinth;
 	msgOut.pose.covariance[5] = b*costh;
@@ -72,6 +73,8 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	msgOut.pose.covariance[30] = b*costh;
 	msgOut.pose.covariance[31] = b*sinth;
 	msgOut.pose.covariance[35] = c;
+	*/
+	for(int i = 0; i < 6; i++)	msgOut.pose.covariance[7*i] = 0.2;	//Diagonal
 	
 	//Set the time stamp
 	msgOut.header.stamp = ros::Time::now();

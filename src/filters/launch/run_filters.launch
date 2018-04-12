@@ -14,6 +14,10 @@
 	</node>
   
 	
-	<!-- robot_pose_ekf -->
+	<!--robot_localization -->
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
 	
+		<rosparam command="load" file="$(find filters)/params/ekf_params.yaml" />
+		
+	</node>
 </launch>

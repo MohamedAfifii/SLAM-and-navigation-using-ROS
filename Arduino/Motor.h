@@ -51,8 +51,8 @@ struct Motor
     // Sets the desired angular velocity of the motor in rad/sec
     void setTargetSpeed(double targetSpeed)
     {
-        if(abs(targetSpeed) < MINSPEED)  targetSpeed = 0;
         this->targetSpeed = targetSpeed;
+        if(abs(targetSpeed) < MINSPEED)  flush();
     }
 
     // Returns the current target speed in rad/sec
@@ -104,6 +104,11 @@ struct Motor
         analogWrite(pwmPin, abs(pwm));
 
         return 2*M_PI*R*(ticks/TPR);
+    }
+
+    void flush()
+    {
+        targetSpeed = pwm = E = olde = 0;
     }
 };
 

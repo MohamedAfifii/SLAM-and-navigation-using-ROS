@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom.cpp" "/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface/CMakeFiles/odom_translator.dir/src/odom.cpp.o"
+  "/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface/src/odom2.cpp" "/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

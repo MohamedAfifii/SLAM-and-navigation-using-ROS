@@ -10,14 +10,15 @@ void imu_cb(const geometry_msgs::Accel& msgIn)
 {
 	sensor_msgs::Imu msgOut;
 
-	msgOut.header.frame_id = "imu";	
+	//Assuming that the imu axes are aligned with their corresponding robot axes.
+	msgOut.header.frame_id = "base_link";		
 	
 	msgOut.linear_acceleration.x = msgIn.linear.x;
-        msgOut.linear_acceleration.y = msgIn.linear.y;
+    msgOut.linear_acceleration.y = msgIn.linear.y;
 	msgOut.linear_acceleration.z = msgIn.linear.z;
 
 	msgOut.angular_velocity.x = msgIn.angular.x;
-        msgOut.angular_velocity.y = msgIn.angular.y;
+    msgOut.angular_velocity.y = msgIn.angular.y;
 	msgOut.angular_velocity.z = msgIn.angular.z;
 	
 	msgOut.header.stamp = ros::Time::now();

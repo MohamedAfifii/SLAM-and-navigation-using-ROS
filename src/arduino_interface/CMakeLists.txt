@@ -18,7 +18,7 @@ catkin_package()
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(odom_translator src/odom.cpp)
+add_executable(odom_translator src/odom2.cpp)
 target_link_libraries(odom_translator ${catkin_LIBRARIES})
 
 add_executable(imu_translator src/imu.cpp)
