@@ -18,11 +18,11 @@ catkin_package()
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(odom_translator src/odom2.cpp)
-target_link_libraries(odom_translator ${catkin_LIBRARIES})
+add_executable(odom_translator1 src/odom.cpp)
+target_link_libraries(odom_translator1 ${catkin_LIBRARIES})
+
+add_executable(odom_translator2 src/odom2.cpp)
+target_link_libraries(odom_translator2 ${catkin_LIBRARIES})
 
 add_executable(imu_translator src/imu.cpp)
 target_link_libraries(imu_translator ${catkin_LIBRARIES})
-
-add_executable(my_teleop src/teleop.cpp)
-target_link_libraries(my_teleop ${catkin_LIBRARIES})

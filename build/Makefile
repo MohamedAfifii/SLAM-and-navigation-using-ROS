@@ -270,17 +270,17 @@ _catkin_empty_exported_target/fast:
 .PHONY : _catkin_empty_exported_target/fast
 
 #=============================================================================
-# Target rules for targets named my_teleop
+# Target rules for targets named odom_translator1
 
 # Build rule for target.
-my_teleop: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 my_teleop
-.PHONY : my_teleop
+odom_translator1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 odom_translator1
+.PHONY : odom_translator1
 
 # fast build rule for target.
-my_teleop/fast:
-	$(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/build
-.PHONY : my_teleop/fast
+odom_translator1/fast:
+	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator1.dir/build.make arduino_interface/CMakeFiles/odom_translator1.dir/build
+.PHONY : odom_translator1/fast
 
 #=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_nodejs
@@ -411,6 +411,19 @@ nav_msgs_generate_messages_lisp: cmake_check_build_system
 nav_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f arduino_interface/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make arduino_interface/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named odom_translator2
+
+# Build rule for target.
+odom_translator2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 odom_translator2
+.PHONY : odom_translator2
+
+# fast build rule for target.
+odom_translator2/fast:
+	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/build
+.PHONY : odom_translator2/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_eus
@@ -725,19 +738,6 @@ tf_generate_messages_cpp/fast:
 .PHONY : tf_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named odom_translator
-
-# Build rule for target.
-odom_translator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 odom_translator
-.PHONY : odom_translator
-
-# fast build rule for target.
-odom_translator/fast:
-	$(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/build
-.PHONY : odom_translator/fast
-
-#=============================================================================
 # Target rules for targets named actionlib_generate_messages_eus
 
 # Build rule for target.
@@ -979,7 +979,7 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... _catkin_empty_exported_target"
-	@echo "... my_teleop"
+	@echo "... odom_translator1"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_eus"
@@ -990,6 +990,7 @@ help:
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... odom_translator2"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
@@ -1014,7 +1015,6 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_eus"
 	@echo "... tf_generate_messages_cpp"
-	@echo "... odom_translator"
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_cpp"

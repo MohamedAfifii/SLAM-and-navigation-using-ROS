@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -166,19 +166,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-arduino_interface/CMakeFiles/my_teleop.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/my_teleop.dir/rule
-.PHONY : arduino_interface/CMakeFiles/my_teleop.dir/rule
+arduino_interface/CMakeFiles/odom_translator1.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/odom_translator1.dir/rule
+.PHONY : arduino_interface/CMakeFiles/odom_translator1.dir/rule
 
 # Convenience name for target.
-my_teleop: arduino_interface/CMakeFiles/my_teleop.dir/rule
+odom_translator1: arduino_interface/CMakeFiles/odom_translator1.dir/rule
 
-.PHONY : my_teleop
+.PHONY : odom_translator1
 
 # fast build rule for target.
-my_teleop/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/build
-.PHONY : my_teleop/fast
+odom_translator1/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator1.dir/build.make arduino_interface/CMakeFiles/odom_translator1.dir/build
+.PHONY : odom_translator1/fast
 
 # Convenience name for target.
 arduino_interface/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
@@ -329,6 +329,21 @@ nav_msgs_generate_messages_lisp: arduino_interface/CMakeFiles/nav_msgs_generate_
 nav_msgs_generate_messages_lisp/fast:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make arduino_interface/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+arduino_interface/CMakeFiles/odom_translator2.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/odom_translator2.dir/rule
+.PHONY : arduino_interface/CMakeFiles/odom_translator2.dir/rule
+
+# Convenience name for target.
+odom_translator2: arduino_interface/CMakeFiles/odom_translator2.dir/rule
+
+.PHONY : odom_translator2
+
+# fast build rule for target.
+odom_translator2/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/build
+.PHONY : odom_translator2/fast
 
 # Convenience name for target.
 arduino_interface/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
@@ -691,21 +706,6 @@ tf_generate_messages_cpp/fast:
 .PHONY : tf_generate_messages_cpp/fast
 
 # Convenience name for target.
-arduino_interface/CMakeFiles/odom_translator.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/odom_translator.dir/rule
-.PHONY : arduino_interface/CMakeFiles/odom_translator.dir/rule
-
-# Convenience name for target.
-odom_translator: arduino_interface/CMakeFiles/odom_translator.dir/rule
-
-.PHONY : odom_translator
-
-# fast build rule for target.
-odom_translator/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/build
-.PHONY : odom_translator/fast
-
-# Convenience name for target.
 arduino_interface/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/actionlib_generate_messages_eus.dir/rule
 .PHONY : arduino_interface/CMakeFiles/actionlib_generate_messages_eus.dir/rule
@@ -987,13 +987,40 @@ src/imu.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/imu_translator.dir/build.make arduino_interface/CMakeFiles/imu_translator.dir/src/imu.cpp.s
 .PHONY : src/imu.cpp.s
 
+src/odom.o: src/odom.cpp.o
+
+.PHONY : src/odom.o
+
+# target to build an object file
+src/odom.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator1.dir/build.make arduino_interface/CMakeFiles/odom_translator1.dir/src/odom.cpp.o
+.PHONY : src/odom.cpp.o
+
+src/odom.i: src/odom.cpp.i
+
+.PHONY : src/odom.i
+
+# target to preprocess a source file
+src/odom.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator1.dir/build.make arduino_interface/CMakeFiles/odom_translator1.dir/src/odom.cpp.i
+.PHONY : src/odom.cpp.i
+
+src/odom.s: src/odom.cpp.s
+
+.PHONY : src/odom.s
+
+# target to generate assembly for a file
+src/odom.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator1.dir/build.make arduino_interface/CMakeFiles/odom_translator1.dir/src/odom.cpp.s
+.PHONY : src/odom.cpp.s
+
 src/odom2.o: src/odom2.cpp.o
 
 .PHONY : src/odom2.o
 
 # target to build an object file
 src/odom2.cpp.o:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.o
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/src/odom2.cpp.o
 .PHONY : src/odom2.cpp.o
 
 src/odom2.i: src/odom2.cpp.i
@@ -1002,7 +1029,7 @@ src/odom2.i: src/odom2.cpp.i
 
 # target to preprocess a source file
 src/odom2.cpp.i:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.i
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/src/odom2.cpp.i
 .PHONY : src/odom2.cpp.i
 
 src/odom2.s: src/odom2.cpp.s
@@ -1011,35 +1038,8 @@ src/odom2.s: src/odom2.cpp.s
 
 # target to generate assembly for a file
 src/odom2.cpp.s:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator.dir/build.make arduino_interface/CMakeFiles/odom_translator.dir/src/odom2.cpp.s
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/src/odom2.cpp.s
 .PHONY : src/odom2.cpp.s
-
-src/teleop.o: src/teleop.cpp.o
-
-.PHONY : src/teleop.o
-
-# target to build an object file
-src/teleop.cpp.o:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.o
-.PHONY : src/teleop.cpp.o
-
-src/teleop.i: src/teleop.cpp.i
-
-.PHONY : src/teleop.i
-
-# target to preprocess a source file
-src/teleop.cpp.i:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.i
-.PHONY : src/teleop.cpp.i
-
-src/teleop.s: src/teleop.cpp.s
-
-.PHONY : src/teleop.s
-
-# target to generate assembly for a file
-src/teleop.cpp.s:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/my_teleop.dir/build.make arduino_interface/CMakeFiles/my_teleop.dir/src/teleop.cpp.s
-.PHONY : src/teleop.cpp.s
 
 # Help Target
 help:
@@ -1047,9 +1047,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
 	@echo "... edit_cache"
-	@echo "... my_teleop"
+	@echo "... install/local"
+	@echo "... odom_translator1"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_eus"
@@ -1061,6 +1061,7 @@ help:
 	@echo "... actionlib_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_lisp"
 	@echo "... list_install_components"
+	@echo "... odom_translator2"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
@@ -1089,7 +1090,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... tf_generate_messages_eus"
 	@echo "... tf_generate_messages_cpp"
-	@echo "... odom_translator"
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_cpp"
@@ -1110,12 +1110,12 @@ help:
 	@echo "... src/imu.o"
 	@echo "... src/imu.i"
 	@echo "... src/imu.s"
+	@echo "... src/odom.o"
+	@echo "... src/odom.i"
+	@echo "... src/odom.s"
 	@echo "... src/odom2.o"
 	@echo "... src/odom2.i"
 	@echo "... src/odom2.s"
-	@echo "... src/teleop.o"
-	@echo "... src/teleop.i"
-	@echo "... src/teleop.s"
 .PHONY : help
 
 

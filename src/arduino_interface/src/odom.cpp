@@ -10,7 +10,7 @@ It subscribes to the topic "odom_arduino", from which it reads the distances cov
 #include <geometry_msgs/Vector3.h>
 #include <nav_msgs/Odometry.h>
 
-#define L  27    //Distance between the two wheels of the robot
+#define L  0.27    //Distance between the two wheels of the robot
 
 ros::Publisher *pubPtr;
 double x = 0,y = 0,theta = 0;	//Start at the 2D pose (0,0,0).
@@ -21,7 +21,7 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 {
 	nav_msgs::Odometry msgOut;	
 	
-	double dl = msgIn.x, dr = msgIn.y;
+	double dl = msgIn.x/100, dr = msgIn.y/100;
 	
 	//Assume the stddev is proportional to the distance covered by the wheel.
 	double sigmal = k*dl, sigmar = k*dr;	
@@ -47,6 +47,7 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 
 	
 	//Set the covariance matrix	
+	/*	
 	double k1 = dr*dr - dl*dl;
 	double k2 = dr*dr + dl*dl;
 	double k3 = dr*dl;
@@ -61,7 +62,7 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	double costh = cos(avTheta);
 	double sinth = sin(avTheta);
 	
-	/*	
+
 	msgOut.pose.covariance[0] = a*costh*costh;
 	msgOut.pose.covariance[1] = a*costh*sinth;
 	msgOut.pose.covariance[5] = b*costh;
@@ -74,7 +75,8 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	msgOut.pose.covariance[31] = b*sinth;
 	msgOut.pose.covariance[35] = c;
 	*/
-	for(int i = 0; i < 6; i++)	msgOut.pose.covariance[7*i] = 0.2;	//Diagonal
+	
+	for(int i = 0; i < 6; i++)	msgOut.pose.covariance[7*i] = 0.001;	//Diagonal
 	
 	//Set the time stamp
 	msgOut.header.stamp = ros::Time::now();

@@ -10,7 +10,7 @@
 	<remap from="turtle1/cmd_vel" to="/cmd_vel"/>
 	</node>
   
-	<node pkg = "arduino_interface" type = "odom_translator" name = "odom_translator" />
+	<node pkg = "arduino_interface" type = "odom_translator" name = "odom_translator1" />
 	<node pkg = "arduino_interface" type = "imu_translator" name = "imu_translator" />
   
 </launch>
