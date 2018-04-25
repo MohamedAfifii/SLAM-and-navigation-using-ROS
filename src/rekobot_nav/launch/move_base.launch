@@ -1,0 +1,22 @@
+<launch>
+  <master auto="start"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find rekobot_nav)/maps/map.pgm 0.050000"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find amcl)/examples/amcl_diff.launch" />
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find rekobot_nav)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find rekobot_nav)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find rekobot_nav)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rekobot_nav)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find rekobot_nav)/param/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find rekobot_nav)/param/move_base_params.yaml" command="load" />
+    
+    <remap from="nav_msgs/Odometry" to="/filtered_odom"/>
+    <remap from="/map" to="/rtabmap/grid_map"/>
+    <remap from="/scan" to="/kinect_scan"/>
+  </node>
+</launch>

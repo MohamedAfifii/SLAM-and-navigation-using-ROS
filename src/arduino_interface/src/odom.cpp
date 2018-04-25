@@ -25,7 +25,7 @@ void odom_arduino_cb(const geometry_msgs::Vector3& msgIn)
 	
 	//Assume the stddev is proportional to the distance covered by the wheel.
 	double sigmal = k*dl, sigmar = k*dr;	
-	dl -= 3*sigmal, dr -= 3*sigmar;
+	//dl -= 3*sigmal, dr -= 3*sigmar;
 	
 	double dc = (dl+dr)/2;
 	double newTheta = theta+(dr-dl)/L;

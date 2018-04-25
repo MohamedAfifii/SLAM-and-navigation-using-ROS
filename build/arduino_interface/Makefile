@@ -166,6 +166,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+arduino_interface/CMakeFiles/pose_to_odom.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/pose_to_odom.dir/rule
+.PHONY : arduino_interface/CMakeFiles/pose_to_odom.dir/rule
+
+# Convenience name for target.
+pose_to_odom: arduino_interface/CMakeFiles/pose_to_odom.dir/rule
+
+.PHONY : pose_to_odom
+
+# fast build rule for target.
+pose_to_odom/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/pose_to_odom.dir/build.make arduino_interface/CMakeFiles/pose_to_odom.dir/build
+.PHONY : pose_to_odom/fast
+
+# Convenience name for target.
+arduino_interface/CMakeFiles/teleop_to_cmd.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/teleop_to_cmd.dir/rule
+.PHONY : arduino_interface/CMakeFiles/teleop_to_cmd.dir/rule
+
+# Convenience name for target.
+teleop_to_cmd: arduino_interface/CMakeFiles/teleop_to_cmd.dir/rule
+
+.PHONY : teleop_to_cmd
+
+# fast build rule for target.
+teleop_to_cmd/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/teleop_to_cmd.dir/build.make arduino_interface/CMakeFiles/teleop_to_cmd.dir/build
+.PHONY : teleop_to_cmd/fast
+
+# Convenience name for target.
 arduino_interface/CMakeFiles/odom_translator1.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_interface/CMakeFiles/odom_translator1.dir/rule
 .PHONY : arduino_interface/CMakeFiles/odom_translator1.dir/rule
@@ -1041,6 +1071,60 @@ src/odom2.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/odom_translator2.dir/build.make arduino_interface/CMakeFiles/odom_translator2.dir/src/odom2.cpp.s
 .PHONY : src/odom2.cpp.s
 
+src/pose_to_odom.o: src/pose_to_odom.cpp.o
+
+.PHONY : src/pose_to_odom.o
+
+# target to build an object file
+src/pose_to_odom.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/pose_to_odom.dir/build.make arduino_interface/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.o
+.PHONY : src/pose_to_odom.cpp.o
+
+src/pose_to_odom.i: src/pose_to_odom.cpp.i
+
+.PHONY : src/pose_to_odom.i
+
+# target to preprocess a source file
+src/pose_to_odom.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/pose_to_odom.dir/build.make arduino_interface/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.i
+.PHONY : src/pose_to_odom.cpp.i
+
+src/pose_to_odom.s: src/pose_to_odom.cpp.s
+
+.PHONY : src/pose_to_odom.s
+
+# target to generate assembly for a file
+src/pose_to_odom.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/pose_to_odom.dir/build.make arduino_interface/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.s
+.PHONY : src/pose_to_odom.cpp.s
+
+src/teleop_to_cmdvel.o: src/teleop_to_cmdvel.cpp.o
+
+.PHONY : src/teleop_to_cmdvel.o
+
+# target to build an object file
+src/teleop_to_cmdvel.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/teleop_to_cmd.dir/build.make arduino_interface/CMakeFiles/teleop_to_cmd.dir/src/teleop_to_cmdvel.cpp.o
+.PHONY : src/teleop_to_cmdvel.cpp.o
+
+src/teleop_to_cmdvel.i: src/teleop_to_cmdvel.cpp.i
+
+.PHONY : src/teleop_to_cmdvel.i
+
+# target to preprocess a source file
+src/teleop_to_cmdvel.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/teleop_to_cmd.dir/build.make arduino_interface/CMakeFiles/teleop_to_cmd.dir/src/teleop_to_cmdvel.cpp.i
+.PHONY : src/teleop_to_cmdvel.cpp.i
+
+src/teleop_to_cmdvel.s: src/teleop_to_cmdvel.cpp.s
+
+.PHONY : src/teleop_to_cmdvel.s
+
+# target to generate assembly for a file
+src/teleop_to_cmdvel.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f arduino_interface/CMakeFiles/teleop_to_cmd.dir/build.make arduino_interface/CMakeFiles/teleop_to_cmd.dir/src/teleop_to_cmdvel.cpp.s
+.PHONY : src/teleop_to_cmdvel.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1048,6 +1132,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... pose_to_odom"
+	@echo "... teleop_to_cmd"
 	@echo "... install/local"
 	@echo "... odom_translator1"
 	@echo "... tf2_msgs_generate_messages_nodejs"
@@ -1116,6 +1202,12 @@ help:
 	@echo "... src/odom2.o"
 	@echo "... src/odom2.i"
 	@echo "... src/odom2.s"
+	@echo "... src/pose_to_odom.o"
+	@echo "... src/pose_to_odom.i"
+	@echo "... src/pose_to_odom.s"
+	@echo "... src/teleop_to_cmdvel.o"
+	@echo "... src/teleop_to_cmdvel.i"
+	@echo "... src/teleop_to_cmdvel.s"
 .PHONY : help
 
 

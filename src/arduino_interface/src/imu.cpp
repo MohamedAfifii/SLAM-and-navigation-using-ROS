@@ -11,7 +11,7 @@ void imu_cb(const geometry_msgs::Accel& msgIn)
 	sensor_msgs::Imu msgOut;
 
 	//Assuming that the imu axes are aligned with their corresponding robot axes.
-	msgOut.header.frame_id = "base_link";		
+	msgOut.header.frame_id = "base_footprint";		
 	
 	msgOut.linear_acceleration.x = msgIn.linear.x;
     msgOut.linear_acceleration.y = msgIn.linear.y;

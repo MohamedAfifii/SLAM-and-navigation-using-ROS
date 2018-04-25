@@ -28,9 +28,10 @@ long vtime;
 
 void twistCb(const geometry_msgs::Twist& twist)
 {
-    targetV = twist.linear.x*8;
-    targetW = twist.angular.z/2;
+    targetV = twist.linear.x*100;   //cm/sec
+    targetW = twist.angular.z;
     vtime = millis();
+    
     /*
     int cmdV = twist.linear.x*100;
     int cmdW = twist.angular.z*100;
