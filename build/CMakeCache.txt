@@ -252,35 +252,14 @@ actionlib_DIR:PATH=/opt/ros/kinetic/share/actionlib/cmake
 //The directory containing a CMake configuration file for actionlib_msgs.
 actionlib_msgs_DIR:PATH=/opt/ros/kinetic/share/actionlib_msgs/cmake
 
-//Value Computed by CMake
-arduino_interface_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface
-
-//Value Computed by CMake
-arduino_interface_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/arduino_interface
-
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
 
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/kinetic/share/cpp_common/cmake
 
-//The directory containing a CMake configuration file for diagnostic_msgs.
-diagnostic_msgs_DIR:PATH=/opt/ros/kinetic/share/diagnostic_msgs/cmake
-
-//The directory containing a CMake configuration file for diagnostic_updater.
-diagnostic_updater_DIR:PATH=/opt/ros/kinetic/share/diagnostic_updater/cmake
-
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/kinetic/share/dynamic_reconfigure/cmake
-
-//The directory containing a CMake configuration file for eigen_conversions.
-eigen_conversions_DIR:PATH=/opt/ros/kinetic/share/eigen_conversions/cmake
-
-//Value Computed by CMake
-filters_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/filters
-
-//Value Computed by CMake
-filters_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/filters
 
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/kinetic/share/gencpp/cmake
@@ -299,9 +278,6 @@ gennodejs_DIR:PATH=/opt/ros/kinetic/share/gennodejs/cmake
 
 //The directory containing a CMake configuration file for genpy.
 genpy_DIR:PATH=/opt/ros/kinetic/share/genpy/cmake
-
-//The directory containing a CMake configuration file for geographic_msgs.
-geographic_msgs_DIR:PATH=geographic_msgs_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/kinetic/share/geometry_msgs/cmake
@@ -331,12 +307,6 @@ gtest_force_shared_crt:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
-//Value Computed by CMake
-kinect_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/kinect
-
-//Value Computed by CMake
-kinect_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/kinect
-
 //Path to a library.
 lib:FILEPATH=/opt/ros/kinetic/lib/libxmlrpcpp.so
 
@@ -365,16 +335,34 @@ my_robot_name_2dnav_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_na
 nav_msgs_DIR:PATH=/opt/ros/kinetic/share/nav_msgs/cmake
 
 //Value Computed by CMake
-rekobot_nav_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rekobot_nav
+rikobot_arduino_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_arduino
 
 //Value Computed by CMake
-rekobot_nav_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rekobot_nav
+rikobot_arduino_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_arduino
 
 //Value Computed by CMake
-robot_localization_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/robot_localization
+rikobot_filters_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters
 
 //Value Computed by CMake
-robot_localization_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/robot_localization
+rikobot_filters_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_filters
+
+//Value Computed by CMake
+rikobot_nav_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav
+
+//Value Computed by CMake
+rikobot_nav_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_nav
+
+//Value Computed by CMake
+rikobot_rtab_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab
+
+//Value Computed by CMake
+rikobot_rtab_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_rtab
+
+//Value Computed by CMake
+rikobot_run_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_run
+
+//Value Computed by CMake
+rikobot_run_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_run
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/kinetic/share/rosconsole/cmake
@@ -526,7 +514,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

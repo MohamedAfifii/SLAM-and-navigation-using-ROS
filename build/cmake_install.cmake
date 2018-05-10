@@ -117,11 +117,12 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/gtest/cmake_install.cmake")
-  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/filters/cmake_install.cmake")
-  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/kinect/cmake_install.cmake")
-  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/arduino_interface/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_run/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_arduino/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/my_robot_name_2dnav/cmake_install.cmake")
-  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rekobot_nav/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav/cmake_install.cmake")
 
 endif()
 
