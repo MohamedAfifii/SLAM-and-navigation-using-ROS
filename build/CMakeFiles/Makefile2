@@ -353,6 +353,24 @@ clean: rikobot_filters/CMakeFiles/_catkin_empty_exported_target.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory rikobot_kinect
+
+# Convenience name for "all" pass in the directory.
+rikobot_kinect/all:
+
+.PHONY : rikobot_kinect/all
+
+# Convenience name for "clean" pass in the directory.
+rikobot_kinect/clean:
+
+.PHONY : rikobot_kinect/clean
+
+# Convenience name for "preinstall" pass in the directory.
+rikobot_kinect/preinstall:
+
+.PHONY : rikobot_kinect/preinstall
+
+#=============================================================================
 # Directory level rules for directory rikobot_rtab
 
 # Convenience name for "all" pass in the directory.

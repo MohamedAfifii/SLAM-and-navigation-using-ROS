@@ -347,6 +347,12 @@ rikobot_filters_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_naviga
 rikobot_filters_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_filters
 
 //Value Computed by CMake
+rikobot_kinect_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect
+
+//Value Computed by CMake
+rikobot_kinect_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_kinect
+
+//Value Computed by CMake
 rikobot_nav_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav
 
 //Value Computed by CMake
@@ -514,7 +520,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

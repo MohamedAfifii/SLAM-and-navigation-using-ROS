@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(rikobot_filters)
+subdirs(rikobot_kinect)
 subdirs(rikobot_rtab)
 subdirs(rikobot_run)
 subdirs(rikobot_arduino)

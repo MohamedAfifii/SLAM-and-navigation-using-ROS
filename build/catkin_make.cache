@@ -1,2 +1,2 @@
-my_robot_name_2dnav:rikobot_arduino:rikobot_filters:rikobot_nav:rikobot_rtab:rikobot_run
+my_robot_name_2dnav:rikobot_arduino:rikobot_filters:rikobot_kinect:rikobot_nav:rikobot_rtab:rikobot_run
 -DCATKIN_DEVEL_PREFIX=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel -DCMAKE_INSTALL_PREFIX=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/install -G Unix Makefiles

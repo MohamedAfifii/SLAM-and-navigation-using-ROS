@@ -27,6 +27,13 @@
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters/CMakeFiles/install/local.dir
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters/CMakeFiles/install/strip.dir
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters/CMakeFiles/test.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/list_install_components.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/install.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/rebuild_cache.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/install/strip.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/install/local.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/test.dir
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/CMakeFiles/edit_cache.dir
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab/CMakeFiles/list_install_components.dir
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab/CMakeFiles/install.dir
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab/CMakeFiles/rebuild_cache.dir

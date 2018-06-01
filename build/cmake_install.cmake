@@ -118,6 +118,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/gtest/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters/cmake_install.cmake")
+  include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_rtab/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_run/cmake_install.cmake")
   include("/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_arduino/cmake_install.cmake")
