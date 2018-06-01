@@ -56,16 +56,38 @@ CMAKE_BINARY_DIR = /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : edit_cache/fast
+.PHONY : test/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -78,15 +100,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -100,38 +123,15 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : install/strip/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -181,96 +181,6 @@ pose_to_odom/fast:
 .PHONY : pose_to_odom/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
-
-# Convenience name for target.
-teleop_to_cmd: rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
-
-.PHONY : teleop_to_cmd
-
-# fast build rule for target.
-teleop_to_cmd/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/build.make rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/build
-.PHONY : teleop_to_cmd/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/odom_translator1.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
-
-# Convenience name for target.
-odom_translator1: rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
-
-.PHONY : odom_translator1
-
-# fast build rule for target.
-odom_translator1/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/odom_translator1.dir/build.make rikobot_arduino/CMakeFiles/odom_translator1.dir/build
-.PHONY : odom_translator1/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_py
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
-.PHONY : actionlib_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 rikobot_arduino/CMakeFiles/imu_translator.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/imu_translator.dir/rule
 .PHONY : rikobot_arduino/CMakeFiles/imu_translator.dir/rule
@@ -284,81 +194,6 @@ imu_translator: rikobot_arduino/CMakeFiles/imu_translator.dir/rule
 imu_translator/fast:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/imu_translator.dir/build.make rikobot_arduino/CMakeFiles/imu_translator.dir/build
 .PHONY : imu_translator/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_py: rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-.PHONY : actionlib_generate_messages_py
-
-# fast build rule for target.
-actionlib_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/build
-.PHONY : actionlib_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : nav_msgs_generate_messages_lisp
-
-# fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/odom_translator2.dir/rule:
@@ -376,184 +211,19 @@ odom_translator2/fast:
 .PHONY : odom_translator2/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+rikobot_arduino/CMakeFiles/odom_translator1.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_eus: rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+odom_translator1: rikobot_arduino/CMakeFiles/odom_translator1.dir/rule
 
-.PHONY : roscpp_generate_messages_eus
+.PHONY : odom_translator1
 
 # fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : nav_msgs_generate_messages_cpp
-
-# fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-.PHONY : nav_msgs_generate_messages_eus
-
-# fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+odom_translator1/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/odom_translator1.dir/build.make rikobot_arduino/CMakeFiles/odom_translator1.dir/build
+.PHONY : odom_translator1/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
@@ -571,94 +241,79 @@ tf2_msgs_generate_messages_cpp/fast:
 .PHONY : tf2_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-tf2_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+actionlib_generate_messages_nodejs: rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
 
-.PHONY : tf2_msgs_generate_messages_py
+.PHONY : actionlib_generate_messages_nodejs
 
 # fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
+actionlib_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
+.PHONY : actionlib_generate_messages_nodejs/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
+rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-actionlib_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
+actionlib_generate_messages_lisp: rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
 
-.PHONY : actionlib_msgs_generate_messages_nodejs
+.PHONY : actionlib_generate_messages_lisp
 
 # fast build rule for target.
-actionlib_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
-.PHONY : actionlib_msgs_generate_messages_nodejs/fast
+actionlib_generate_messages_lisp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/build
+.PHONY : actionlib_generate_messages_lisp/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+actionlib_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
-.PHONY : std_msgs_generate_messages_nodejs
+.PHONY : actionlib_msgs_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+actionlib_msgs_generate_messages_py/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
+.PHONY : actionlib_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+actionlib_generate_messages_py: rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_py
+.PHONY : actionlib_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+actionlib_generate_messages_py/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_py.dir/build
+.PHONY : actionlib_generate_messages_py/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+nav_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : std_msgs_generate_messages_eus
+.PHONY : nav_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
+nav_msgs_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
@@ -674,216 +329,6 @@ actionlib_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/actionlib_msgs
 actionlib_msgs_generate_messages_lisp/fast:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
 .PHONY : actionlib_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_eus: rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-.PHONY : tf_generate_messages_eus
-
-# fast build rule for target.
-tf_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/build
-.PHONY : tf_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_cpp: rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-.PHONY : tf_generate_messages_cpp
-
-# fast build rule for target.
-tf_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/build
-.PHONY : tf_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_eus: rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_generate_messages_eus
-
-# fast build rule for target.
-actionlib_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/build
-.PHONY : actionlib_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_cpp: rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/build
-.PHONY : actionlib_generate_messages_cpp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_lisp: rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_nodejs: rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/tf_generate_messages_py.dir/rule:
@@ -916,19 +361,94 @@ actionlib_msgs_generate_messages_eus/fast:
 .PHONY : actionlib_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-actionlib_generate_messages_lisp: rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+tf_generate_messages_nodejs: rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/rule
 
-.PHONY : actionlib_generate_messages_lisp
+.PHONY : tf_generate_messages_nodejs
 
 # fast build rule for target.
-actionlib_generate_messages_lisp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_lisp.dir/build
-.PHONY : actionlib_generate_messages_lisp/fast
+tf_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_nodejs.dir/build
+.PHONY : tf_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
+
+# Convenience name for target.
+teleop_to_cmd: rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/rule
+
+.PHONY : teleop_to_cmd
+
+# fast build rule for target.
+teleop_to_cmd/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/build.make rikobot_arduino/CMakeFiles/teleop_to_cmd.dir/build
+.PHONY : teleop_to_cmd/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_eus: rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/rule
+
+.PHONY : tf_generate_messages_eus
+
+# fast build rule for target.
+tf_generate_messages_eus/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_eus.dir/build
+.PHONY : tf_generate_messages_eus/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+tf2_msgs_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
+.PHONY : tf2_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_lisp: rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+.PHONY : tf_generate_messages_lisp
+
+# fast build rule for target.
+tf_generate_messages_lisp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_lisp.dir/build
+.PHONY : tf_generate_messages_lisp/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
@@ -946,19 +466,94 @@ actionlib_msgs_generate_messages_cpp/fast:
 .PHONY : actionlib_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+nav_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_cpp
+.PHONY : nav_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
+nav_msgs_generate_messages_cpp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+.PHONY : nav_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+.PHONY : nav_msgs_generate_messages_eus
+
+# fast build rule for target.
+nav_msgs_generate_messages_eus/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+.PHONY : nav_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_py
+
+# fast build rule for target.
+tf2_msgs_generate_messages_py/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+.PHONY : tf2_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_eus: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_eus
+
+# fast build rule for target.
+tf2_msgs_generate_messages_eus/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
+.PHONY : tf2_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : nav_msgs_generate_messages_lisp
+
+# fast build rule for target.
+nav_msgs_generate_messages_lisp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+.PHONY : nav_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
@@ -976,19 +571,124 @@ sensor_msgs_generate_messages_eus/fast:
 .PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
+rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-actionlib_generate_messages_nodejs: rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
+tf_generate_messages_cpp: rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/rule
 
-.PHONY : actionlib_generate_messages_nodejs
+.PHONY : tf_generate_messages_cpp
 
 # fast build rule for target.
-actionlib_generate_messages_nodejs/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
-.PHONY : actionlib_generate_messages_nodejs/fast
+tf_generate_messages_cpp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/tf_generate_messages_cpp.dir/build
+.PHONY : tf_generate_messages_cpp/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+actionlib_generate_messages_eus: rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/rule
+
+.PHONY : actionlib_generate_messages_eus
+
+# fast build rule for target.
+actionlib_generate_messages_eus/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_eus.dir/build
+.PHONY : actionlib_generate_messages_eus/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_lisp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_lisp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+.PHONY : tf2_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make rikobot_arduino/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_nodejs: rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_nodejs/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make rikobot_arduino/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
+.PHONY : actionlib_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
+.PHONY : rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+actionlib_generate_messages_cpp: rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
+
+.PHONY : actionlib_generate_messages_cpp
+
+# fast build rule for target.
+actionlib_generate_messages_cpp/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make rikobot_arduino/CMakeFiles/actionlib_generate_messages_cpp.dir/build
+.PHONY : actionlib_generate_messages_cpp/fast
 
 src/imu.o: src/imu.cpp.o
 
@@ -1131,68 +831,48 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... pose_to_odom"
-	@echo "... teleop_to_cmd"
-	@echo "... install/local"
-	@echo "... odom_translator1"
-	@echo "... tf2_msgs_generate_messages_nodejs"
-	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... actionlib_msgs_generate_messages_py"
-	@echo "... imu_translator"
-	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_py"
-	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... list_install_components"
-	@echo "... odom_translator2"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... nav_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... install"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... install/strip"
-	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... test"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... install/strip"
+	@echo "... pose_to_odom"
+	@echo "... imu_translator"
+	@echo "... odom_translator2"
+	@echo "... odom_translator1"
 	@echo "... tf2_msgs_generate_messages_cpp"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... actionlib_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... actionlib_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rebuild_cache"
-	@echo "... tf_generate_messages_eus"
-	@echo "... tf_generate_messages_cpp"
-	@echo "... actionlib_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... actionlib_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... tf_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... tf_generate_messages_nodejs"
+	@echo "... actionlib_generate_messages_nodejs"
+	@echo "... actionlib_generate_messages_lisp"
+	@echo "... actionlib_msgs_generate_messages_py"
+	@echo "... actionlib_generate_messages_py"
+	@echo "... nav_msgs_generate_messages_nodejs"
+	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_eus"
-	@echo "... actionlib_generate_messages_lisp"
+	@echo "... tf_generate_messages_nodejs"
+	@echo "... teleop_to_cmd"
+	@echo "... tf_generate_messages_eus"
+	@echo "... install/local"
+	@echo "... nav_msgs_generate_messages_py"
+	@echo "... edit_cache"
+	@echo "... tf2_msgs_generate_messages_nodejs"
+	@echo "... tf_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_eus"
+	@echo "... install"
+	@echo "... tf2_msgs_generate_messages_py"
+	@echo "... tf2_msgs_generate_messages_eus"
+	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... list_install_components"
 	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... actionlib_generate_messages_nodejs"
+	@echo "... tf_generate_messages_cpp"
+	@echo "... actionlib_generate_messages_eus"
+	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_nodejs"
+	@echo "... actionlib_generate_messages_cpp"
 	@echo "... src/imu.o"
 	@echo "... src/imu.i"
 	@echo "... src/imu.s"

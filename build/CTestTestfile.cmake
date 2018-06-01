@@ -5,10 +5,10 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
-subdirs(rikobot_filters)
 subdirs(rikobot_kinect)
 subdirs(rikobot_rtab)
 subdirs(rikobot_run)
+subdirs(rikobot_filters)
 subdirs(rikobot_arduino)
 subdirs(my_robot_name_2dnav)
 subdirs(rikobot_nav)
