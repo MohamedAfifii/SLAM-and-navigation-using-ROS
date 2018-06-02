@@ -19,40 +19,31 @@ class sensor_readings {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.linear = null;
-      this.angular = null;
-      this.wheel = null;
+      this.imu_msg = null;
+      this.odom_msg = null;
     }
     else {
-      if (initObj.hasOwnProperty('linear')) {
-        this.linear = initObj.linear
+      if (initObj.hasOwnProperty('imu_msg')) {
+        this.imu_msg = initObj.imu_msg
       }
       else {
-        this.linear = new geometry_msgs.msg.Vector3();
+        this.imu_msg = new geometry_msgs.msg.Accel();
       }
-      if (initObj.hasOwnProperty('angular')) {
-        this.angular = initObj.angular
-      }
-      else {
-        this.angular = new geometry_msgs.msg.Vector3();
-      }
-      if (initObj.hasOwnProperty('wheel')) {
-        this.wheel = initObj.wheel
+      if (initObj.hasOwnProperty('odom_msg')) {
+        this.odom_msg = initObj.odom_msg
       }
       else {
-        this.wheel = new geometry_msgs.msg.Vector3();
+        this.odom_msg = new geometry_msgs.msg.Vector3();
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type sensor_readings
-    // Serialize message field [linear]
-    bufferOffset = geometry_msgs.msg.Vector3.serialize(obj.linear, buffer, bufferOffset);
-    // Serialize message field [angular]
-    bufferOffset = geometry_msgs.msg.Vector3.serialize(obj.angular, buffer, bufferOffset);
-    // Serialize message field [wheel]
-    bufferOffset = geometry_msgs.msg.Vector3.serialize(obj.wheel, buffer, bufferOffset);
+    // Serialize message field [imu_msg]
+    bufferOffset = geometry_msgs.msg.Accel.serialize(obj.imu_msg, buffer, bufferOffset);
+    // Serialize message field [odom_msg]
+    bufferOffset = geometry_msgs.msg.Vector3.serialize(obj.odom_msg, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -60,12 +51,10 @@ class sensor_readings {
     //deserializes a message object of type sensor_readings
     let len;
     let data = new sensor_readings(null);
-    // Deserialize message field [linear]
-    data.linear = geometry_msgs.msg.Vector3.deserialize(buffer, bufferOffset);
-    // Deserialize message field [angular]
-    data.angular = geometry_msgs.msg.Vector3.deserialize(buffer, bufferOffset);
-    // Deserialize message field [wheel]
-    data.wheel = geometry_msgs.msg.Vector3.deserialize(buffer, bufferOffset);
+    // Deserialize message field [imu_msg]
+    data.imu_msg = geometry_msgs.msg.Accel.deserialize(buffer, bufferOffset);
+    // Deserialize message field [odom_msg]
+    data.odom_msg = geometry_msgs.msg.Vector3.deserialize(buffer, bufferOffset);
     return data;
   }
 
@@ -80,15 +69,20 @@ class sensor_readings {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '20ab05332d8a6eb3abd384abca190819';
+    return '97f12acf8e150b22ecdcf2d2e3b6aecb';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    geometry_msgs/Vector3 linear
-    geometry_msgs/Vector3 angular
-    geometry_msgs/Vector3 wheel
+    geometry_msgs/Accel imu_msg
+    geometry_msgs/Vector3 odom_msg
+    
+    ================================================================================
+    MSG: geometry_msgs/Accel
+    # This expresses acceleration in free space broken into its linear and angular parts.
+    Vector3  linear
+    Vector3  angular
     
     ================================================================================
     MSG: geometry_msgs/Vector3
@@ -111,25 +105,18 @@ class sensor_readings {
       msg = {};
     }
     const resolved = new sensor_readings(null);
-    if (msg.linear !== undefined) {
-      resolved.linear = geometry_msgs.msg.Vector3.Resolve(msg.linear)
+    if (msg.imu_msg !== undefined) {
+      resolved.imu_msg = geometry_msgs.msg.Accel.Resolve(msg.imu_msg)
     }
     else {
-      resolved.linear = new geometry_msgs.msg.Vector3()
+      resolved.imu_msg = new geometry_msgs.msg.Accel()
     }
 
-    if (msg.angular !== undefined) {
-      resolved.angular = geometry_msgs.msg.Vector3.Resolve(msg.angular)
+    if (msg.odom_msg !== undefined) {
+      resolved.odom_msg = geometry_msgs.msg.Vector3.Resolve(msg.odom_msg)
     }
     else {
-      resolved.angular = new geometry_msgs.msg.Vector3()
-    }
-
-    if (msg.wheel !== undefined) {
-      resolved.wheel = geometry_msgs.msg.Vector3.Resolve(msg.wheel)
-    }
-    else {
-      resolved.wheel = new geometry_msgs.msg.Vector3()
+      resolved.odom_msg = new geometry_msgs.msg.Vector3()
     }
 
     return resolved;

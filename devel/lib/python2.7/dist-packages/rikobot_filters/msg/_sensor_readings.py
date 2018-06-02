@@ -8,12 +8,17 @@ import struct
 import geometry_msgs.msg
 
 class sensor_readings(genpy.Message):
-  _md5sum = "20ab05332d8a6eb3abd384abca190819"
+  _md5sum = "97f12acf8e150b22ecdcf2d2e3b6aecb"
   _type = "rikobot_filters/sensor_readings"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """geometry_msgs/Vector3 linear
-geometry_msgs/Vector3 angular
-geometry_msgs/Vector3 wheel
+  _full_text = """geometry_msgs/Accel imu_msg
+geometry_msgs/Vector3 odom_msg
+
+================================================================================
+MSG: geometry_msgs/Accel
+# This expresses acceleration in free space broken into its linear and angular parts.
+Vector3  linear
+Vector3  angular
 
 ================================================================================
 MSG: geometry_msgs/Vector3
@@ -27,8 +32,8 @@ MSG: geometry_msgs/Vector3
 float64 x
 float64 y
 float64 z"""
-  __slots__ = ['linear','angular','wheel']
-  _slot_types = ['geometry_msgs/Vector3','geometry_msgs/Vector3','geometry_msgs/Vector3']
+  __slots__ = ['imu_msg','odom_msg']
+  _slot_types = ['geometry_msgs/Accel','geometry_msgs/Vector3']
 
   def __init__(self, *args, **kwds):
     """
@@ -38,7 +43,7 @@ float64 z"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       linear,angular,wheel
+       imu_msg,odom_msg
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -47,16 +52,13 @@ float64 z"""
     if args or kwds:
       super(sensor_readings, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
-      if self.linear is None:
-        self.linear = geometry_msgs.msg.Vector3()
-      if self.angular is None:
-        self.angular = geometry_msgs.msg.Vector3()
-      if self.wheel is None:
-        self.wheel = geometry_msgs.msg.Vector3()
+      if self.imu_msg is None:
+        self.imu_msg = geometry_msgs.msg.Accel()
+      if self.odom_msg is None:
+        self.odom_msg = geometry_msgs.msg.Vector3()
     else:
-      self.linear = geometry_msgs.msg.Vector3()
-      self.angular = geometry_msgs.msg.Vector3()
-      self.wheel = geometry_msgs.msg.Vector3()
+      self.imu_msg = geometry_msgs.msg.Accel()
+      self.odom_msg = geometry_msgs.msg.Vector3()
 
   def _get_types(self):
     """
@@ -71,7 +73,7 @@ float64 z"""
     """
     try:
       _x = self
-      buff.write(_get_struct_9d().pack(_x.linear.x, _x.linear.y, _x.linear.z, _x.angular.x, _x.angular.y, _x.angular.z, _x.wheel.x, _x.wheel.y, _x.wheel.z))
+      buff.write(_get_struct_9d().pack(_x.imu_msg.linear.x, _x.imu_msg.linear.y, _x.imu_msg.linear.z, _x.imu_msg.angular.x, _x.imu_msg.angular.y, _x.imu_msg.angular.z, _x.odom_msg.x, _x.odom_msg.y, _x.odom_msg.z))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -81,17 +83,15 @@ float64 z"""
     :param str: byte array of serialized message, ``str``
     """
     try:
-      if self.linear is None:
-        self.linear = geometry_msgs.msg.Vector3()
-      if self.angular is None:
-        self.angular = geometry_msgs.msg.Vector3()
-      if self.wheel is None:
-        self.wheel = geometry_msgs.msg.Vector3()
+      if self.imu_msg is None:
+        self.imu_msg = geometry_msgs.msg.Accel()
+      if self.odom_msg is None:
+        self.odom_msg = geometry_msgs.msg.Vector3()
       end = 0
       _x = self
       start = end
       end += 72
-      (_x.linear.x, _x.linear.y, _x.linear.z, _x.angular.x, _x.angular.y, _x.angular.z, _x.wheel.x, _x.wheel.y, _x.wheel.z,) = _get_struct_9d().unpack(str[start:end])
+      (_x.imu_msg.linear.x, _x.imu_msg.linear.y, _x.imu_msg.linear.z, _x.imu_msg.angular.x, _x.imu_msg.angular.y, _x.imu_msg.angular.z, _x.odom_msg.x, _x.odom_msg.y, _x.odom_msg.z,) = _get_struct_9d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -105,7 +105,7 @@ float64 z"""
     """
     try:
       _x = self
-      buff.write(_get_struct_9d().pack(_x.linear.x, _x.linear.y, _x.linear.z, _x.angular.x, _x.angular.y, _x.angular.z, _x.wheel.x, _x.wheel.y, _x.wheel.z))
+      buff.write(_get_struct_9d().pack(_x.imu_msg.linear.x, _x.imu_msg.linear.y, _x.imu_msg.linear.z, _x.imu_msg.angular.x, _x.imu_msg.angular.y, _x.imu_msg.angular.z, _x.odom_msg.x, _x.odom_msg.y, _x.odom_msg.z))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -116,17 +116,15 @@ float64 z"""
     :param numpy: numpy python module
     """
     try:
-      if self.linear is None:
-        self.linear = geometry_msgs.msg.Vector3()
-      if self.angular is None:
-        self.angular = geometry_msgs.msg.Vector3()
-      if self.wheel is None:
-        self.wheel = geometry_msgs.msg.Vector3()
+      if self.imu_msg is None:
+        self.imu_msg = geometry_msgs.msg.Accel()
+      if self.odom_msg is None:
+        self.odom_msg = geometry_msgs.msg.Vector3()
       end = 0
       _x = self
       start = end
       end += 72
-      (_x.linear.x, _x.linear.y, _x.linear.z, _x.angular.x, _x.angular.y, _x.angular.z, _x.wheel.x, _x.wheel.y, _x.wheel.z,) = _get_struct_9d().unpack(str[start:end])
+      (_x.imu_msg.linear.x, _x.imu_msg.linear.y, _x.imu_msg.linear.z, _x.imu_msg.angular.x, _x.imu_msg.angular.y, _x.imu_msg.angular.z, _x.odom_msg.x, _x.odom_msg.y, _x.odom_msg.z,) = _get_struct_9d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill

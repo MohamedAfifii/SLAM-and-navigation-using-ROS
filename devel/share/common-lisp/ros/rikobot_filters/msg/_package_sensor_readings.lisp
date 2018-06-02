@@ -1,8 +1,6 @@
 (cl:in-package rikobot_filters-msg)
-(cl:export '(LINEAR-VAL
-          LINEAR
-          ANGULAR-VAL
-          ANGULAR
-          WHEEL-VAL
-          WHEEL
+(cl:export '(IMU_MSG-VAL
+          IMU_MSG
+          ODOM_MSG-VAL
+          ODOM_MSG
 ))

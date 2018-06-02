@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/
 include rikobot_filters/CMakeFiles/_rikobot_filters_generate_messages_check_deps_sensor_readings.dir/progress.make
 
 rikobot_filters/CMakeFiles/_rikobot_filters_generate_messages_check_deps_sensor_readings:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py rikobot_filters /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_filters/msg/sensor_readings.msg geometry_msgs/Vector3
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py rikobot_filters /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_filters/msg/sensor_readings.msg geometry_msgs/Accel:geometry_msgs/Vector3
 
 _rikobot_filters_generate_messages_check_deps_sensor_readings: rikobot_filters/CMakeFiles/_rikobot_filters_generate_messages_check_deps_sensor_readings
 _rikobot_filters_generate_messages_check_deps_sensor_readings: rikobot_filters/CMakeFiles/_rikobot_filters_generate_messages_check_deps_sensor_readings.dir/build.make

@@ -16,81 +16,71 @@
 
 (defclass rikobot_filters::sensor_readings
   :super ros::object
-  :slots (_linear _angular _wheel ))
+  :slots (_imu_msg _odom_msg ))
 
 (defmethod rikobot_filters::sensor_readings
   (:init
    (&key
-    ((:linear __linear) (instance geometry_msgs::Vector3 :init))
-    ((:angular __angular) (instance geometry_msgs::Vector3 :init))
-    ((:wheel __wheel) (instance geometry_msgs::Vector3 :init))
+    ((:imu_msg __imu_msg) (instance geometry_msgs::Accel :init))
+    ((:odom_msg __odom_msg) (instance geometry_msgs::Vector3 :init))
     )
    (send-super :init)
-   (setq _linear __linear)
-   (setq _angular __angular)
-   (setq _wheel __wheel)
+   (setq _imu_msg __imu_msg)
+   (setq _odom_msg __odom_msg)
    self)
-  (:linear
-   (&rest __linear)
-   (if (keywordp (car __linear))
-       (send* _linear __linear)
+  (:imu_msg
+   (&rest __imu_msg)
+   (if (keywordp (car __imu_msg))
+       (send* _imu_msg __imu_msg)
      (progn
-       (if __linear (setq _linear (car __linear)))
-       _linear)))
-  (:angular
-   (&rest __angular)
-   (if (keywordp (car __angular))
-       (send* _angular __angular)
+       (if __imu_msg (setq _imu_msg (car __imu_msg)))
+       _imu_msg)))
+  (:odom_msg
+   (&rest __odom_msg)
+   (if (keywordp (car __odom_msg))
+       (send* _odom_msg __odom_msg)
      (progn
-       (if __angular (setq _angular (car __angular)))
-       _angular)))
-  (:wheel
-   (&rest __wheel)
-   (if (keywordp (car __wheel))
-       (send* _wheel __wheel)
-     (progn
-       (if __wheel (setq _wheel (car __wheel)))
-       _wheel)))
+       (if __odom_msg (setq _odom_msg (car __odom_msg)))
+       _odom_msg)))
   (:serialization-length
    ()
    (+
-    ;; geometry_msgs/Vector3 _linear
-    (send _linear :serialization-length)
-    ;; geometry_msgs/Vector3 _angular
-    (send _angular :serialization-length)
-    ;; geometry_msgs/Vector3 _wheel
-    (send _wheel :serialization-length)
+    ;; geometry_msgs/Accel _imu_msg
+    (send _imu_msg :serialization-length)
+    ;; geometry_msgs/Vector3 _odom_msg
+    (send _odom_msg :serialization-length)
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; geometry_msgs/Vector3 _linear
-       (send _linear :serialize s)
-     ;; geometry_msgs/Vector3 _angular
-       (send _angular :serialize s)
-     ;; geometry_msgs/Vector3 _wheel
-       (send _wheel :serialize s)
+     ;; geometry_msgs/Accel _imu_msg
+       (send _imu_msg :serialize s)
+     ;; geometry_msgs/Vector3 _odom_msg
+       (send _odom_msg :serialize s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; geometry_msgs/Vector3 _linear
-     (send _linear :deserialize buf ptr-) (incf ptr- (send _linear :serialization-length))
-   ;; geometry_msgs/Vector3 _angular
-     (send _angular :deserialize buf ptr-) (incf ptr- (send _angular :serialization-length))
-   ;; geometry_msgs/Vector3 _wheel
-     (send _wheel :deserialize buf ptr-) (incf ptr- (send _wheel :serialization-length))
+   ;; geometry_msgs/Accel _imu_msg
+     (send _imu_msg :deserialize buf ptr-) (incf ptr- (send _imu_msg :serialization-length))
+   ;; geometry_msgs/Vector3 _odom_msg
+     (send _odom_msg :deserialize buf ptr-) (incf ptr- (send _odom_msg :serialization-length))
    ;;
    self)
   )
 
-(setf (get rikobot_filters::sensor_readings :md5sum-) "20ab05332d8a6eb3abd384abca190819")
+(setf (get rikobot_filters::sensor_readings :md5sum-) "97f12acf8e150b22ecdcf2d2e3b6aecb")
 (setf (get rikobot_filters::sensor_readings :datatype-) "rikobot_filters/sensor_readings")
 (setf (get rikobot_filters::sensor_readings :definition-)
-      "geometry_msgs/Vector3 linear
-geometry_msgs/Vector3 angular
-geometry_msgs/Vector3 wheel
+      "geometry_msgs/Accel imu_msg
+geometry_msgs/Vector3 odom_msg
+
+================================================================================
+MSG: geometry_msgs/Accel
+# This expresses acceleration in free space broken into its linear and angular parts.
+Vector3  linear
+Vector3  angular
 
 ================================================================================
 MSG: geometry_msgs/Vector3
@@ -108,6 +98,6 @@ float64 z
 
 
 
-(provide :rikobot_filters/sensor_readings "20ab05332d8a6eb3abd384abca190819")
+(provide :rikobot_filters/sensor_readings "97f12acf8e150b22ecdcf2d2e3b6aecb")
 
 

@@ -15,8 +15,7 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <geometry_msgs/Vector3.h>
-#include <geometry_msgs/Vector3.h>
+#include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Vector3.h>
 
 namespace rikobot_filters
@@ -27,27 +26,22 @@ struct sensor_readings_
   typedef sensor_readings_<ContainerAllocator> Type;
 
   sensor_readings_()
-    : linear()
-    , angular()
-    , wheel()  {
+    : imu_msg()
+    , odom_msg()  {
     }
   sensor_readings_(const ContainerAllocator& _alloc)
-    : linear(_alloc)
-    , angular(_alloc)
-    , wheel(_alloc)  {
+    : imu_msg(_alloc)
+    , odom_msg(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef  ::geometry_msgs::Vector3_<ContainerAllocator>  _linear_type;
-  _linear_type linear;
+   typedef  ::geometry_msgs::Accel_<ContainerAllocator>  _imu_msg_type;
+  _imu_msg_type imu_msg;
 
-   typedef  ::geometry_msgs::Vector3_<ContainerAllocator>  _angular_type;
-  _angular_type angular;
-
-   typedef  ::geometry_msgs::Vector3_<ContainerAllocator>  _wheel_type;
-  _wheel_type wheel;
+   typedef  ::geometry_msgs::Vector3_<ContainerAllocator>  _odom_msg_type;
+  _odom_msg_type odom_msg;
 
 
 
@@ -126,12 +120,12 @@ struct MD5Sum< ::rikobot_filters::sensor_readings_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "20ab05332d8a6eb3abd384abca190819";
+    return "97f12acf8e150b22ecdcf2d2e3b6aecb";
   }
 
   static const char* value(const ::rikobot_filters::sensor_readings_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x20ab05332d8a6eb3ULL;
-  static const uint64_t static_value2 = 0xabd384abca190819ULL;
+  static const uint64_t static_value1 = 0x97f12acf8e150b22ULL;
+  static const uint64_t static_value2 = 0xecdcf2d2e3b6aecbULL;
 };
 
 template<class ContainerAllocator>
@@ -150,9 +144,14 @@ struct Definition< ::rikobot_filters::sensor_readings_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "geometry_msgs/Vector3 linear\n\
-geometry_msgs/Vector3 angular\n\
-geometry_msgs/Vector3 wheel\n\
+    return "geometry_msgs/Accel imu_msg\n\
+geometry_msgs/Vector3 odom_msg\n\
+\n\
+================================================================================\n\
+MSG: geometry_msgs/Accel\n\
+# This expresses acceleration in free space broken into its linear and angular parts.\n\
+Vector3  linear\n\
+Vector3  angular\n\
 \n\
 ================================================================================\n\
 MSG: geometry_msgs/Vector3\n\
@@ -184,9 +183,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.linear);
-      stream.next(m.angular);
-      stream.next(m.wheel);
+      stream.next(m.imu_msg);
+      stream.next(m.odom_msg);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -205,15 +203,12 @@ struct Printer< ::rikobot_filters::sensor_readings_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::rikobot_filters::sensor_readings_<ContainerAllocator>& v)
   {
-    s << indent << "linear: ";
+    s << indent << "imu_msg: ";
     s << std::endl;
-    Printer< ::geometry_msgs::Vector3_<ContainerAllocator> >::stream(s, indent + "  ", v.linear);
-    s << indent << "angular: ";
+    Printer< ::geometry_msgs::Accel_<ContainerAllocator> >::stream(s, indent + "  ", v.imu_msg);
+    s << indent << "odom_msg: ";
     s << std::endl;
-    Printer< ::geometry_msgs::Vector3_<ContainerAllocator> >::stream(s, indent + "  ", v.angular);
-    s << indent << "wheel: ";
-    s << std::endl;
-    Printer< ::geometry_msgs::Vector3_<ContainerAllocator> >::stream(s, indent + "  ", v.wheel);
+    Printer< ::geometry_msgs::Vector3_<ContainerAllocator> >::stream(s, indent + "  ", v.odom_msg);
   }
 };
 

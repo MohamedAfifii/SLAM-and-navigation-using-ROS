@@ -1,3 +1,2 @@
-geometry_msgs/Vector3 linear
-geometry_msgs/Vector3 angular
-geometry_msgs/Vector3 wheel
+geometry_msgs/Accel imu_msg
+geometry_msgs/Vector3 odom_msg
