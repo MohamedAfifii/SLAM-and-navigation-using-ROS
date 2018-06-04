@@ -10,10 +10,19 @@
 using namespace Eigen;
 
 static double theta = 0;
+tf::TransformBroadcaster imu_broadcaster;
+
+ros::Time prevTime = ros::Time::now();
 
 double complementary_filter(const geometry_msgs::Accel &imu_msg)
 {
+	//Compute dt
+	ros::Time currentTime = ros::Time::now();
+	double dt = (currentTime - prevTime).toSec();
+	prevTime = curretTime;
+	
 	//TODO: Update theta
+	
 	
 	//Publish the imu->IMU rotation transformation (For debugging)
 	geometry_msgs::TransformStamped imu_trans;

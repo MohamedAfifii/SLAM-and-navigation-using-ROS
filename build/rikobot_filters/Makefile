@@ -271,6 +271,21 @@ rikobot_filters_generate_messages/fast:
 .PHONY : rikobot_filters_generate_messages/fast
 
 # Convenience name for target.
+rikobot_filters/CMakeFiles/my_lib.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/my_lib.dir/rule
+.PHONY : rikobot_filters/CMakeFiles/my_lib.dir/rule
+
+# Convenience name for target.
+my_lib: rikobot_filters/CMakeFiles/my_lib.dir/rule
+
+.PHONY : my_lib
+
+# fast build rule for target.
+my_lib/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/my_lib.dir/build.make rikobot_filters/CMakeFiles/my_lib.dir/build
+.PHONY : my_lib/fast
+
+# Convenience name for target.
 rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_eus.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_eus.dir/rule
 .PHONY : rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_eus.dir/rule
@@ -346,6 +361,21 @@ rikobot_filters_generate_messages_lisp/fast:
 .PHONY : rikobot_filters_generate_messages_lisp/fast
 
 # Convenience name for target.
+rikobot_filters/CMakeFiles/pose_to_odom.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/pose_to_odom.dir/rule
+.PHONY : rikobot_filters/CMakeFiles/pose_to_odom.dir/rule
+
+# Convenience name for target.
+pose_to_odom: rikobot_filters/CMakeFiles/pose_to_odom.dir/rule
+
+.PHONY : pose_to_odom
+
+# fast build rule for target.
+pose_to_odom/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/pose_to_odom.dir/build.make rikobot_filters/CMakeFiles/pose_to_odom.dir/build
+.PHONY : pose_to_odom/fast
+
+# Convenience name for target.
 rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_nodejs.dir/rule:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_nodejs.dir/rule
 .PHONY : rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_nodejs.dir/rule
@@ -359,6 +389,33 @@ rikobot_filters_generate_messages_nodejs: rikobot_filters/CMakeFiles/rikobot_fil
 rikobot_filters_generate_messages_nodejs/fast:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_nodejs.dir/build.make rikobot_filters/CMakeFiles/rikobot_filters_generate_messages_nodejs.dir/build
 .PHONY : rikobot_filters_generate_messages_nodejs/fast
+
+src/my_lib.o: src/my_lib.cpp.o
+
+.PHONY : src/my_lib.o
+
+# target to build an object file
+src/my_lib.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/my_lib.dir/build.make rikobot_filters/CMakeFiles/my_lib.dir/src/my_lib.cpp.o
+.PHONY : src/my_lib.cpp.o
+
+src/my_lib.i: src/my_lib.cpp.i
+
+.PHONY : src/my_lib.i
+
+# target to preprocess a source file
+src/my_lib.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/my_lib.dir/build.make rikobot_filters/CMakeFiles/my_lib.dir/src/my_lib.cpp.i
+.PHONY : src/my_lib.cpp.i
+
+src/my_lib.s: src/my_lib.cpp.s
+
+.PHONY : src/my_lib.s
+
+# target to generate assembly for a file
+src/my_lib.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/my_lib.dir/build.make rikobot_filters/CMakeFiles/my_lib.dir/src/my_lib.cpp.s
+.PHONY : src/my_lib.cpp.s
 
 src/our_filter.o: src/our_filter.cpp.o
 
@@ -387,6 +444,33 @@ src/our_filter.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/our_filter.dir/build.make rikobot_filters/CMakeFiles/our_filter.dir/src/our_filter.cpp.s
 .PHONY : src/our_filter.cpp.s
 
+src/pose_to_odom.o: src/pose_to_odom.cpp.o
+
+.PHONY : src/pose_to_odom.o
+
+# target to build an object file
+src/pose_to_odom.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/pose_to_odom.dir/build.make rikobot_filters/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.o
+.PHONY : src/pose_to_odom.cpp.o
+
+src/pose_to_odom.i: src/pose_to_odom.cpp.i
+
+.PHONY : src/pose_to_odom.i
+
+# target to preprocess a source file
+src/pose_to_odom.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/pose_to_odom.dir/build.make rikobot_filters/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.i
+.PHONY : src/pose_to_odom.cpp.i
+
+src/pose_to_odom.s: src/pose_to_odom.cpp.s
+
+.PHONY : src/pose_to_odom.s
+
+# target to generate assembly for a file
+src/pose_to_odom.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/pose_to_odom.dir/build.make rikobot_filters/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.s
+.PHONY : src/pose_to_odom.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -406,16 +490,24 @@ help:
 	@echo "... rikobot_filters_generate_messages_cpp"
 	@echo "... _rikobot_filters_generate_messages_check_deps_sensor_readings"
 	@echo "... rikobot_filters_generate_messages"
+	@echo "... my_lib"
 	@echo "... rikobot_filters_generate_messages_eus"
 	@echo "... rikobot_filters_gennodejs"
 	@echo "... rikobot_filters_geneus"
 	@echo "... rikobot_filters_genlisp"
 	@echo "... rikobot_filters_generate_messages_lisp"
 	@echo "... edit_cache"
+	@echo "... pose_to_odom"
 	@echo "... rikobot_filters_generate_messages_nodejs"
+	@echo "... src/my_lib.o"
+	@echo "... src/my_lib.i"
+	@echo "... src/my_lib.s"
 	@echo "... src/our_filter.o"
 	@echo "... src/our_filter.i"
 	@echo "... src/our_filter.s"
+	@echo "... src/pose_to_odom.o"
+	@echo "... src/pose_to_odom.i"
+	@echo "... src/pose_to_odom.s"
 .PHONY : help
 
 

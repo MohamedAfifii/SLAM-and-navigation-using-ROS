@@ -71,6 +71,9 @@ void call_back(const rikobot_filters::sensor_readings& msgIn)
 	msgOut.pose.pose.position.y = y;
 	msgOut.pose.pose.position.z = 0;
     msgOut.pose.pose.orientation = odom_quat;
+    
+    for(int i = 0; i < 6; i++)	msgOut.pose.covariance[7*i] = 0.001;	//TODO: Fill the cov. using sigma
+    
 	msgOut.header.stamp = current_time;
 	msgOut.header.frame_id = "odom";
 	pub.publish(msgOut);

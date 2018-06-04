@@ -114,6 +114,7 @@ our_filter_EXTERNAL_OBJECTS =
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter: /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/libmy_lib.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter: rikobot_filters/CMakeFiles/our_filter.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_filters/our_filter"
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_filters && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/our_filter.dir/link.txt --verbose=$(VERBOSE)

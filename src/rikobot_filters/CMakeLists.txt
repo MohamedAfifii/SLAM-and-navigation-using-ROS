@@ -38,6 +38,9 @@ include_directories(
 )
 
 add_executable(our_filter src/our_filter.cpp)
-target_link_libraries(our_filter ${catkin_LIBRARIES})
+add_library(my_lib src/my_lib.cpp)
+target_link_libraries(our_filter ${catkin_LIBRARIES} my_lib)
 add_dependencies(our_filter rikobot_filters_generate_messages_cpp)
 
+add_executable(pose_to_odom src/pose_to_odom.cpp)
+target_link_libraries(pose_to_odom ${catkin_LIBRARIES})

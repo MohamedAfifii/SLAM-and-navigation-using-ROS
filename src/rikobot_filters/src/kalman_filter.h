@@ -1,37 +1,72 @@
 
 //Perform a kalman filter udpate step and return the current estimate of the pose
 
-#include <cmath>
 #include <Eigen/Dense>
+#include "my_lib.h"
 using namespace Eigen;
 
-#define L  0.27    //Distance between the two wheels of the robot
 
 Vector3d k, mu = Vector3d::Zero();
 Matrix3d G, sigma = Matrix3d::Zero(), R = 1e-3*Matrix3d::Identity(), I = Matrix3d::Identity();
 RowVector3d c(0,0,1);
 double Q = 1e-6;
 
-
 void ekf_prediction_step(double dl, double dr)
 {
 	//Update mu
-	double dc = (dl+dr)/2;
-	double theta = mu(2), newTheta = theta+(dr-dl)/L;
-	newTheta = atan2(sin(newTheta), cos(newTheta));
-	double avTheta = atan2(sin(newTheta)+sin(theta), cos(newTheta)+cos(theta)); 
-
-	mu(0) += dc*cos(avTheta);
-	mu(1) += dc*sin(avTheta);
-	mu(2) = newTheta;
+	mu = motion_command(mu, dl, dr);
 
 	//Update sigma
-	G << 1, 0, -dc*sin(avTheta),
-		 0, 1, dc*cos(avTheta),
-		 0, 0, 1;	 
-		 
+	G = compute_jacobian(mu, dl, dr);
 	sigma = G*sigma*G.transpose() + R;
 }
+
+
+double n = 3, lambda = 1;
+
+void ukf_prediction_step(double dl, double dr)
+{
+	//Compute sigma points
+	Matrix3d m = my_sqrt((n+lambda)*sigma);
+	Matrix<double, 3, 7> sigma_points;
+	sigma_points << mu, m.colwise()+mu, m.colwise()-mu;
+	lp(j, 0, 7)	sigma_points(2, j) = normalize_angle(sigma_points(2,j));
+	
+	//Transform
+	lp(j, 0, 7)	
+	{
+		Vector3d x;
+		lp(i, 0, 3)	x(i) = sigma_points(i, j);
+		x = motion_command(x, dl, dr);
+		lp(i, 0, 3)	sigma_points(i, j) = x(i);
+	}
+	
+	//Compute weights
+	Matrix<double, 1, 7> w;
+	w(0) = lambda/(n+lambda);
+	lp(j, 1, 7)	w(j) = 1/(2*(n+lambda));
+	
+	//Recover mu
+	mu = Vector3d::Zero();
+	lp(j, 0, 7)	lp(i, 0, 2)	mu(i) += w(j)*sigma_points(i, j);
+	double cosines = 0, sines = 0;
+	lp(j, 0, 7)	cosines += w(j)*cos(sigma_points(2,j)), sines += w(j)*sin(sigma_points(2,j));
+	mu(2) = atan2(sines,cosines);
+	
+	//Recover sigma
+	sigma = Matrix3d::Zero();
+	lp(j, 0, 7)
+	{
+		Vector3d x;
+		lp(i, 0, 3)	x(i) = sigma_points(i, j);
+		
+		Vector3d deviation = x - mu;
+		deviation(2) = normalize_angle(deviation(2));
+		sigma += w(j)*deviation*deviation.transpose();
+	}
+	sigma += R;
+}	
+
 
 void kf_correction_step(double z)
 {
