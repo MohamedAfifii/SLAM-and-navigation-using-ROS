@@ -11,13 +11,9 @@
     <pose>0 0 0 0 0 0</pose>
 
     <inertial>
-      <mass value="10"/>
+      <mass value="3"/>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
-      <inertia
-          ixx="0.0" ixy="0" ixz="0"
-          iyy="0.0" iyz="0"
-          izz="0.0"
-      />
+	  <box_inertia m="3" x="0.3" y="0.23" z="0.07"/>
     </inertial>
 
     <collision name='collision'>
@@ -81,7 +77,12 @@
       <geometry>
         <sphere radius="0.0325"/>
       </geometry>
+      <inertial>
+		  <mass value="1"/>
+      </inertial>
     </visual>
+    
+    
     <collision name='caster_collision2'>
       <origin xyz="-0.1075 -0.07 -0.035" rpy=" 0 0 0"/>
       <geometry>
@@ -104,8 +105,13 @@
       <geometry>
         <sphere radius="0.0325"/>
       </geometry>
+      <inertial>
+		  <mass value="1"/>
+      </inertial>
     </visual>
   </link>
+  
+  
 <link name="imu_link">
   <inertial>
     <mass value="0.001"/>
@@ -144,11 +150,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <mass value="1"/>
-      <cylinder_inertia m="0.05" r="0.0325" h="0.02"/>
-      <inertia
-        ixx="0.0" ixy="0.0" ixz="0.0"
-        iyy="0.0" iyz="0.0"
-        izz="0.0"/>
+      <cylinder_inertia m="1" r="0.0325" h="0.02"/>
     </inertial>
   </link>
 
@@ -169,13 +171,11 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <mass value="1"/>
-      <cylinder_inertia m="0.05" r="0.0325" h="0.02"/>
-      <inertia
-        ixx="0.0" ixy="0.0" ixz="0.0"
-        iyy="0.0" iyz="0.0"
-        izz="0.0"/>
+      <cylinder_inertia m="1" r="0.0325" h="0.02"/>
     </inertial>
   </link>
+  
+  
   <joint name="imu_joint" type="fixed">
     <axis xyz="1 0 0"/> <!-- 0 1 0 -->
     <origin xyz="0 0 0.19"/>
