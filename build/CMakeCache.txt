@@ -246,6 +246,9 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
+//Path to a file.
+_file_name:FILEPATH=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/openni_description/test/sample_kobuki.test
+
 //The directory containing a CMake configuration file for actionlib.
 actionlib_DIR:PATH=/opt/ros/kinetic/share/actionlib/cmake
 
@@ -331,8 +334,38 @@ my_robot_name_2dnav_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_na
 //Value Computed by CMake
 my_robot_name_2dnav_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/my_robot_name_2dnav
 
+//Value Computed by CMake
+mybot_control_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/mybot_control
+
+//Value Computed by CMake
+mybot_control_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/mybot_control
+
+//Value Computed by CMake
+mybot_description_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/mybot_description
+
+//Value Computed by CMake
+mybot_description_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/mybot_description
+
+//Value Computed by CMake
+mybot_gazebo_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/mybot_gazebo
+
+//Value Computed by CMake
+mybot_gazebo_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/mybot_gazebo
+
+//Value Computed by CMake
+mybot_navigation_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/mybot_navigation
+
+//Value Computed by CMake
+mybot_navigation_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/mybot_navigation
+
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/kinetic/share/nav_msgs/cmake
+
+//Value Computed by CMake
+openni_description_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/openni_description
+
+//Value Computed by CMake
+openni_description_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/openni_description
 
 //Value Computed by CMake
 rikobot_arduino_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_arduino
@@ -345,6 +378,12 @@ rikobot_filters_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_naviga
 
 //Value Computed by CMake
 rikobot_filters_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_filters
+
+//Value Computed by CMake
+rikobot_kinect_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_kinect
+
+//Value Computed by CMake
+rikobot_kinect_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_kinect
 
 //Value Computed by CMake
 rikobot_nav_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav
@@ -384,6 +423,9 @@ rosgraph_msgs_DIR:PATH=/opt/ros/kinetic/share/rosgraph_msgs/cmake
 
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/kinetic/share/rospy/cmake
+
+//The directory containing a CMake configuration file for rostest.
+rostest_DIR:PATH=/opt/ros/kinetic/share/rostest/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/kinetic/share/rostime/cmake
@@ -514,7 +556,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=14
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
