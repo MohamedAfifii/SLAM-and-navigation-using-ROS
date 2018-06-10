@@ -1,14 +1,15 @@
 <launch>
 
-	<include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/>
+	<!--include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/-->
 	<include file = "$(find rikobot_filters)/launch/run_filters.launch"/>
 	
-	<include file = "$(find openni_launch)/launch/openni.launch">
+	<!--include file = "$(find openni_launch)/launch/openni.launch">
 		<arg name = "depth_registration" value = "true"/>
-	</include>
+	</include-->
 	
 	<include file = "$(find rikobot_rtab)/launch/run_rtabmap.launch"/>
 	
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/config.rviz"/>
+	<!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/config.rviz"/-->
+	<node name="rviz" pkg="rviz" type="rviz">
 </launch>
 
