@@ -8,3 +8,4 @@
 
 # modified environment variables
 export PWD="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build"
+export PYTHONPATH="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/python2.7/dist-packages:$PYTHONPATH"

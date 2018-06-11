@@ -1,8 +1,8 @@
 <launch>
 
 	<include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/>
-	<include file = "$(find rikobot_filters)/launch/run_filters.launch"/>
-	<node pkg="rikobot_filters" type="our_filter" name="our_filter"/>
+	<!--include file = "$(find rikobot_filters)/launch/run_filters.launch"/-->
+	<node pkg="rikobot_filters" type="test_complementary_filter" name="test_complementary_filter"/>
 	
 	<node name="rviz" pkg="rviz" type="rviz"/>
 </launch>

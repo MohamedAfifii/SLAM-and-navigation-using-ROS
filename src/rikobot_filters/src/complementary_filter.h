@@ -9,6 +9,7 @@
 #include <Eigen/Dense>
 using namespace Eigen;
 
+double alpha = 0.1;
 static double theta = 0;
 tf::TransformBroadcaster imu_broadcaster;
 
@@ -19,11 +20,13 @@ double complementary_filter(const geometry_msgs::Accel &imu_msg)
 	//Compute dt
 	ros::Time currentTime = ros::Time::now();
 	double dt = (currentTime - prevTime).toSec();
-	prevTime = curretTime;
+	prevTime = currentTime;
 	
 	//TODO: Update theta
+	double gz = imu_msg.angular.z;
+	theta = alpha*(theta + gz*dt);
 	
-	
+		
 	//Publish the imu->IMU rotation transformation (For debugging)
 	geometry_msgs::TransformStamped imu_trans;
 	imu_trans.header.stamp = ros::Time::now();

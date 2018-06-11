@@ -37,10 +37,10 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(our_filter src/our_filter.cpp)
+add_executable(test_complementary_filter src/test_complementary_filter.cpp)
 add_library(my_lib src/my_lib.cpp)
-target_link_libraries(our_filter ${catkin_LIBRARIES} my_lib)
-add_dependencies(our_filter rikobot_filters_generate_messages_cpp)
+target_link_libraries(test_complementary_filter ${catkin_LIBRARIES} my_lib)
+add_dependencies(test_complementary_filter rikobot_filters_generate_messages_cpp)
 
 add_executable(pose_to_odom src/pose_to_odom.cpp)
 target_link_libraries(pose_to_odom ${catkin_LIBRARIES})

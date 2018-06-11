@@ -166,19 +166,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-rikobot_filters/CMakeFiles/our_filter.dir/rule:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/our_filter.dir/rule
-.PHONY : rikobot_filters/CMakeFiles/our_filter.dir/rule
+rikobot_filters/CMakeFiles/test_complementary_filter.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_filters/CMakeFiles/test_complementary_filter.dir/rule
+.PHONY : rikobot_filters/CMakeFiles/test_complementary_filter.dir/rule
 
 # Convenience name for target.
-our_filter: rikobot_filters/CMakeFiles/our_filter.dir/rule
+test_complementary_filter: rikobot_filters/CMakeFiles/test_complementary_filter.dir/rule
 
-.PHONY : our_filter
+.PHONY : test_complementary_filter
 
 # fast build rule for target.
-our_filter/fast:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/our_filter.dir/build.make rikobot_filters/CMakeFiles/our_filter.dir/build
-.PHONY : our_filter/fast
+test_complementary_filter/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/test_complementary_filter.dir/build.make rikobot_filters/CMakeFiles/test_complementary_filter.dir/build
+.PHONY : test_complementary_filter/fast
 
 # Convenience name for target.
 rikobot_filters/CMakeFiles/rikobot_filters_genpy.dir/rule:
@@ -417,33 +417,6 @@ src/my_lib.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/my_lib.dir/build.make rikobot_filters/CMakeFiles/my_lib.dir/src/my_lib.cpp.s
 .PHONY : src/my_lib.cpp.s
 
-src/our_filter.o: src/our_filter.cpp.o
-
-.PHONY : src/our_filter.o
-
-# target to build an object file
-src/our_filter.cpp.o:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/our_filter.dir/build.make rikobot_filters/CMakeFiles/our_filter.dir/src/our_filter.cpp.o
-.PHONY : src/our_filter.cpp.o
-
-src/our_filter.i: src/our_filter.cpp.i
-
-.PHONY : src/our_filter.i
-
-# target to preprocess a source file
-src/our_filter.cpp.i:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/our_filter.dir/build.make rikobot_filters/CMakeFiles/our_filter.dir/src/our_filter.cpp.i
-.PHONY : src/our_filter.cpp.i
-
-src/our_filter.s: src/our_filter.cpp.s
-
-.PHONY : src/our_filter.s
-
-# target to generate assembly for a file
-src/our_filter.cpp.s:
-	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/our_filter.dir/build.make rikobot_filters/CMakeFiles/our_filter.dir/src/our_filter.cpp.s
-.PHONY : src/our_filter.cpp.s
-
 src/pose_to_odom.o: src/pose_to_odom.cpp.o
 
 .PHONY : src/pose_to_odom.o
@@ -471,6 +444,33 @@ src/pose_to_odom.cpp.s:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/pose_to_odom.dir/build.make rikobot_filters/CMakeFiles/pose_to_odom.dir/src/pose_to_odom.cpp.s
 .PHONY : src/pose_to_odom.cpp.s
 
+src/test_complementary_filter.o: src/test_complementary_filter.cpp.o
+
+.PHONY : src/test_complementary_filter.o
+
+# target to build an object file
+src/test_complementary_filter.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/test_complementary_filter.dir/build.make rikobot_filters/CMakeFiles/test_complementary_filter.dir/src/test_complementary_filter.cpp.o
+.PHONY : src/test_complementary_filter.cpp.o
+
+src/test_complementary_filter.i: src/test_complementary_filter.cpp.i
+
+.PHONY : src/test_complementary_filter.i
+
+# target to preprocess a source file
+src/test_complementary_filter.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/test_complementary_filter.dir/build.make rikobot_filters/CMakeFiles/test_complementary_filter.dir/src/test_complementary_filter.cpp.i
+.PHONY : src/test_complementary_filter.cpp.i
+
+src/test_complementary_filter.s: src/test_complementary_filter.cpp.s
+
+.PHONY : src/test_complementary_filter.s
+
+# target to generate assembly for a file
+src/test_complementary_filter.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_filters/CMakeFiles/test_complementary_filter.dir/build.make rikobot_filters/CMakeFiles/test_complementary_filter.dir/src/test_complementary_filter.cpp.s
+.PHONY : src/test_complementary_filter.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -482,7 +482,7 @@ help:
 	@echo "... test"
 	@echo "... list_install_components"
 	@echo "... install/strip"
-	@echo "... our_filter"
+	@echo "... test_complementary_filter"
 	@echo "... install/local"
 	@echo "... rikobot_filters_genpy"
 	@echo "... rikobot_filters_generate_messages_py"
@@ -502,12 +502,12 @@ help:
 	@echo "... src/my_lib.o"
 	@echo "... src/my_lib.i"
 	@echo "... src/my_lib.s"
-	@echo "... src/our_filter.o"
-	@echo "... src/our_filter.i"
-	@echo "... src/our_filter.s"
 	@echo "... src/pose_to_odom.o"
 	@echo "... src/pose_to_odom.i"
 	@echo "... src/pose_to_odom.s"
+	@echo "... src/test_complementary_filter.o"
+	@echo "... src/test_complementary_filter.i"
+	@echo "... src/test_complementary_filter.s"
 .PHONY : help
 
 
