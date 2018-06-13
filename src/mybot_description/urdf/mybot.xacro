@@ -185,7 +185,7 @@
 
 
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0.135 -0.135 -0.035" rpy="0 0 0"/>
+    <origin xyz="0.135 0.135 -0.035" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -194,7 +194,7 @@
   </joint>
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0.135 0.135 -0.035" rpy="0 0 0"/>
+    <origin xyz="0.135 -0.135 -0.035" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -243,8 +243,7 @@
       </inertial>
     </link>
 
-    <!-- The fixed joints & links below are usually published by static_transformers launched by the OpenNi launch 
-         files. However, for Gazebo simulation we need them, so we add them here.
+    <!-- The fixed joints & links below are usually published by static_transformers launched by the OpenNi launch files. However, for Gazebo simulation we need them, so we add them here.
          (Hence, don't publish them additionally!) -->
 	<joint name="camera_depth_joint" type="fixed">
 	  <origin xyz="0 0 0" rpy="0 0 0" />

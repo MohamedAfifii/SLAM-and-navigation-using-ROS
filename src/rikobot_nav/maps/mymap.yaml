@@ -1,0 +1,7 @@
+image: /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_nav/maps/mymap.pgm
+resolution: 0.050000
+origin: [-1.385709, -3.385425, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
