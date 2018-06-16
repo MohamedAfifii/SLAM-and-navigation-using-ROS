@@ -190,7 +190,7 @@
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="10"/>
+    <!-- joint_properties damping="0.0" friction="10"/-->
   </joint>
 
   <joint type="continuous" name="right_wheel_hinge">
@@ -199,7 +199,7 @@
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="10"/>
+    <!-- joint_properties damping="0.0" friction="10"/-->
   </joint>
 
     <joint name="camera_rgb_joint" type="fixed">

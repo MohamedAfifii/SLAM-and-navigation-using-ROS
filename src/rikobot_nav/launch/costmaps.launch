@@ -1,0 +1,18 @@
+
+<launch>
+
+  <node pkg="costmap_2d" type="costmap_2d_node" name="global_costmap" output="screen">
+    <rosparam file="$(find rikobot_nav)/param/my_global_costmap_params.yaml" command="load" ns="/global_costmap/costmap"/>
+    <rosparam file="$(find rikobot_nav)/param/my_common_costmap_params.yaml" command="load" ns="/global_costmap/costmap"/>
+  </node>
+  
+  
+  <node pkg="costmap_2d" type="costmap_2d_node" name="local_costmap" output="screen">
+    <rosparam file="$(find rikobot_nav)/param/my_local_costmap_params.yaml" command="load" ns="/local_costmap/costmap"/>
+    <rosparam file="$(find rikobot_nav)/param/my_common_costmap_params.yaml" command="load" ns="/local_costmap/costmap"/>
+  </node>
+  
+  <node pkg="tf" type="static_transform_publisher" name="basefootprint_to_baselink" args="0 0 0.065 0 0 0 1 base_footprint base_link 100" />
+
+  <!--node name="static_tf0" pkg="tf" type="static_transform_publisher" args="2 0 0 0 0 0 /map /base_footprint 100"/-->
+</launch>

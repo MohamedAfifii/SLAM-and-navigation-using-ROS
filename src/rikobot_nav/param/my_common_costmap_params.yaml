@@ -1,3 +1,4 @@
+
 max_obstacle_height: 0.60  # assume something like an arm is mounted on top of the robot
 
 # Obstacle Cost Shaping (http://wiki.ros.org/costmap_2d/hydro/inflation)
@@ -50,5 +51,4 @@ inflation_layer:
 
 static_layer:
   enabled:              true
-  
 

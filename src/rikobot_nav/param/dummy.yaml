@@ -1,0 +1,11 @@
+#Put here your custom parameters
+
+
+#Global costmap parameters
+global_costmap:
+   always_send_full_costmap: false
+
+
+#Local costmap parameters
+local_costmap:
+   always_send_full_costmap: true
