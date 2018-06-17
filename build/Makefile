@@ -1141,6 +1141,19 @@ move_base_msgs_generate_messages_lisp/fast:
 .PHONY : move_base_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named my_nav
+
+# Build rule for target.
+my_nav: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 my_nav
+.PHONY : my_nav
+
+# fast build rule for target.
+my_nav/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/build
+.PHONY : my_nav/fast
+
+#=============================================================================
 # Target rules for targets named run_tests_openni_description_rostest
 
 # Build rule for target.
@@ -1319,6 +1332,7 @@ help:
 	@echo "... move_base_msgs_generate_messages_eus"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... move_base_msgs_generate_messages_lisp"
+	@echo "... my_nav"
 	@echo "... run_tests_openni_description_rostest"
 	@echo "... _run_tests_openni_description"
 	@echo "... _run_tests_openni_description_rostest_test_sample_kobuki.test"

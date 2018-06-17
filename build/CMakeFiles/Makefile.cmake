@@ -341,6 +341,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "my_robot_name_2dnav/CMakeFiles/move_base_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "my_robot_name_2dnav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/DependInfo.cmake"
   "my_robot_name_2dnav/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/DependInfo.cmake"
+  "rikobot_nav/CMakeFiles/my_nav.dir/DependInfo.cmake"
   "openni_description/CMakeFiles/run_tests_openni_description_rostest.dir/DependInfo.cmake"
   "openni_description/CMakeFiles/_run_tests_openni_description.dir/DependInfo.cmake"
   "openni_description/CMakeFiles/_run_tests_openni_description_rostest_test_sample_kobuki.test.dir/DependInfo.cmake"

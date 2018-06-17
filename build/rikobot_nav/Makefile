@@ -89,6 +89,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -122,17 +133,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/CMakeFiles /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav/CMakeFiles/progress.marks
@@ -165,6 +165,48 @@ depend:
 	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+rikobot_nav/CMakeFiles/my_nav.dir/rule:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 rikobot_nav/CMakeFiles/my_nav.dir/rule
+.PHONY : rikobot_nav/CMakeFiles/my_nav.dir/rule
+
+# Convenience name for target.
+my_nav: rikobot_nav/CMakeFiles/my_nav.dir/rule
+
+.PHONY : my_nav
+
+# fast build rule for target.
+my_nav/fast:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/build
+.PHONY : my_nav/fast
+
+src/navigation.o: src/navigation.cpp.o
+
+.PHONY : src/navigation.o
+
+# target to build an object file
+src/navigation.cpp.o:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o
+.PHONY : src/navigation.cpp.o
+
+src/navigation.i: src/navigation.cpp.i
+
+.PHONY : src/navigation.i
+
+# target to preprocess a source file
+src/navigation.cpp.i:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.i
+.PHONY : src/navigation.cpp.i
+
+src/navigation.s: src/navigation.cpp.s
+
+.PHONY : src/navigation.s
+
+# target to generate assembly for a file
+src/navigation.cpp.s:
+	cd /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build && $(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.s
+.PHONY : src/navigation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -174,10 +216,14 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... my_nav"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... edit_cache"
+	@echo "... src/navigation.o"
+	@echo "... src/navigation.i"
+	@echo "... src/navigation.s"
 .PHONY : help
 
 

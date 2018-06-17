@@ -311,7 +311,7 @@ gtest_force_shared_crt:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/kinetic/lib/libxmlrpcpp.so
+lib:FILEPATH=/opt/ros/kinetic/lib/libtf2.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/kinetic/share/message_filters/cmake
@@ -321,6 +321,12 @@ message_generation_DIR:PATH=/opt/ros/kinetic/share/message_generation/cmake
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/kinetic/share/message_runtime/cmake
+
+//Value Computed by CMake
+messages_tutorial2_BINARY_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build/rikobot_nav
+
+//Value Computed by CMake
+messages_tutorial2_SOURCE_DIR:STATIC=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_nav
 
 //The directory containing a CMake configuration file for move_base.
 move_base_DIR:PATH=/opt/ros/kinetic/share/move_base/cmake
