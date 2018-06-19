@@ -1,0 +1,7 @@
+
+<launch>
+
+	<include file="$(find rikobot_nav)/launch/costmaps.launch"/>
+	<node pkg="rikobot_nav" type="my_nav" name="my_nav" output="screen"/>
+
+</launch>

@@ -9,20 +9,24 @@
 
 class TFWrapper
 {
-	tf::TransforListener listener;
-	tf::StamperTransfor transform;
+public:
+	tf::TransformListener listener;
+	tf::StampedTransform transform;
 
 	//Listens to the /tf topic and waits for a transformation between the /map and /base_footprint
 	//frames for atmost 3 seconds. If no transformation is available, an exception will be raised.	
 	Pose getCurrentPose()
 	{
-		ros::Time now = ros::Time::now();
-		listener.waitForTransform("/map", "/base_footprint", now, ros::Duration(3));
-		listener.lookupTransform("/map", "base_footprint", now, transform);
+		listener.waitForTransform("map", "base_footprint", ros::Time::now(), ros::Duration(1));
+		listener.lookupTransform("map", "base_footprint", ros::Time(0), transform);
 
-		Pose p;
-		p.position = transform.getOrigin();
-		p.orientation = transform.getRotation();
+		geometry_msgs::TransformStamped msg;
+		tf::transformStampedTFToMsg(transform, msg);
+
+		Pose p;		
+		p.position.x = msg.transform.translation.x;
+		p.position.y = msg.transform.translation.y;
+		p.orientation = msg.transform.rotation;
 
 		return p;
 	}

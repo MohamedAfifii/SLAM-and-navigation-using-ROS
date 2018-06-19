@@ -8,11 +8,39 @@
 
 #include <my_types.h>
 #include <costmap.h>
+#include <geometry.h>
 
 #include <cmath>
 
+void remove_redundancy(vector<GridPoint> &v, GlobalCostmap& map)
+{
+	int n = v.size();
+	vector<GridPoint> res;
+	res.push_back(v[0]);
+
+	int i = 0;
+	while(i < n-1)
+	{
+		int j;
+		int s = i+1, e = n-1;
+		while(s <= e)
+		{
+			int k = (s+e)/2;
+
+			if(lineOfSight(v[i], v[k], map))	j = k, s = k+1;
+			else								e = k-1;
+		}
+
+		res.push_back(v[j]);
+		i = j;
+	}
+
+	v = res;
+}
+
 class global_planner
 {
+public:
 	//Data needed for computing the heuristic value	
 	string algorithm;
 	GridPoint src, dest;		
@@ -39,12 +67,14 @@ class global_planner
 
 		vector<double> backward_cost(map.width*map.height+9, -1);
 		vector<GridPoint> parent(map.width*map.height+9);
+		vector<bool> expanded(map.width*map.height+9, false);
+
 		parent[map.get_index(src)] = src;
 
 		set<QueueNode> s;
 		s.insert({heuristic_value(src),src});
 
-		int dxs[] = {-1, 1, 0}, dys[] = {-1, 1, 0};
+		int dxs[] = {-1, 0, 1}, dys[] = {-1, 0, 1};
 
 		while(!s.empty())
 		{
@@ -53,8 +83,9 @@ class global_planner
 			double cost = n.first - heuristic_value(p);
 
 			int idx = map.get_index(p);
-			if(backward_cost[idx] != -1)	continue;
-			backward_cost[idx] = cost;
+			if(expanded[idx])	continue;
+			expanded[idx] = true;
+			if(p == dest)	break;
 			
 			for(int dx: dxs) for(int dy: dys)
 			{
@@ -76,7 +107,7 @@ class global_planner
 
 
 		//Goal unreachable
-		if(backward_cost[dest] == -1)	return false;
+		if(!expanded[map.get_index(dest)])	return false;
 
 
 		//Construct the path
@@ -85,27 +116,33 @@ class global_planner
 		GridPoint p = dest;
 		do
 		{
-		    p = parent[p];
+		    p = parent[map.get_index(p)];
 		    v.push_back(p);
 
 		}while(p != src);
 		reverse(v.begin(), v.end());
 
+
+		//Remove redundant points
+		cout << "Path smoothing ..." << endl;
+		remove_redundancy(v, map);
+
+
 		//Fill in the path message
+		path.header.frame_id = "map";
 		int sz = v.size();
 		path.poses.resize(sz);
 		for(int i = 0; i < sz; i++)
 		{
 			GridPoint grid_point = v[i];
 			WorldPoint world_point = map.grid_to_world(grid_point);
-			poses[i].header.frame_id = "/map";
-			poses[i].pose.position = world_point;
+			path.poses[i].header.frame_id = "map";
+			path.poses[i].pose.position = world_point;
 		}
 
 		return true;
 	}
 };
-
 
 
 //Success: return 1
@@ -118,9 +155,10 @@ int global_plan(Goal goal, Path& path, string algorithm)
 
 	//Get source
 	TFWrapper tf_wrapper;
+	WorldPoint start_point;
 	try
 	{
-		WorldPoint start_point = tf_wrapper.getCurrentPose().position;
+		start_point = tf_wrapper.getCurrentPose().position;
 	}
 	catch(tf::TransformException ex)
 	{
@@ -131,15 +169,18 @@ int global_plan(Goal goal, Path& path, string algorithm)
 
 
 	//Get destination
-	Point goal_point;
-	goal_point.x = goal.goal.target_pose.pose.position.x;
-	goal_point.y = goal.goal.target_pose.pose.position.y;
+	WorldPoint goal_point;
+	goal_point = goal.pose.position;
 	if(map.outside_grid(goal_point))
 	{
 		cout << "Goal is outside the global map!" << endl;
 		return 2;
 	}
 	GridPoint dest = map.world_to_grid(goal_point);
+
+
+	printf("You are now at: (%d, %d)\n", src.first, src.second);
+	printf("The goal is at: (%d, %d)\n", dest.first, dest.second);
 
 	
 	//Algorithm availability check
@@ -159,8 +200,8 @@ int global_plan(Goal goal, Path& path, string algorithm)
 	bool can = planner.solve(map, src, dest, path, algorithm);
 	if(can)
 	{
-		ros::Duration = ros::Time::now()-start_time;
-		double t = Duration.toSec();
+		ros::Duration d = ros::Time::now()-start_time;
+		double t = d.toSec();
 		cout << "A global path was successfully constructed in " << t << " seconds!" << endl;
 		return 1;
 	}

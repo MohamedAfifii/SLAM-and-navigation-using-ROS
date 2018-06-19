@@ -4,6 +4,7 @@
 #include <ros/ros.h>
 #include <my_types.h>
 
+
 class Costmap
 {
 public:
@@ -13,7 +14,7 @@ public:
 	WorldPoint origin;
 	bool flag = false;
 
-	int thresh = 90;
+	int thresh = 20;
 
 	ros::NodeHandle nh;
 	ros::Subscriber sub;
@@ -36,18 +37,20 @@ public:
 	//The node will keep subscribed to that topic until the costmap object goes out of scope
 	void subscribe()
 	{
-		sub = nh.subscribe(costmap_topic, 10, &Costmap::call_back, this);
+		sub = nh.subscribe(costmap_topic, 2, &Costmap::call_back, this);
 	}
 
 	//Temporarily subscribe to the costmap_topic, receive the latest version of the map,
 	//then the subscriber object will go out of scope.
 	void get_map()
 	{
-		cout << "Waiting for the global map" << endl;
-		ros::Subscriber temp_sub = nh.subscribe(costmap_topic, 10, &Costmap::call_back, this);
+		cout << "Waiting for the costmap ..." << endl;
+
 		flag = false;
-		while(!flag){}
-		cout << "Global map received!" << endl;
+		ros::Subscriber temp_sub = nh.subscribe(costmap_topic, 2, &Costmap::call_back, this);
+		while(!flag){ros::spinOnce();}
+
+		cout << "Costmap received!" << endl;
 	}
 
 	bool outside_grid(WorldPoint p)
@@ -90,7 +93,7 @@ public:
 
 	int get_index(GridPoint grid_point)
 	{
-		return grid_point.y*width + grid_point.x;
+		return grid_point.second*width + grid_point.first;
 	}
 
 	GridPoint get_grid_point(int index)
@@ -133,6 +136,7 @@ public:
 
 class GlobalCostmap:public Costmap
 {
+public:
 	GlobalCostmap()
 	{
 		costmap_topic = "/global_costmap/costmap/costmap";
@@ -142,6 +146,7 @@ class GlobalCostmap:public Costmap
 
 class LocalCostmap:public Costmap
 {
+public:
 	LocalCostmap()
 	{
 		costmap_topic = "/local_costmap/costmap/costmap";
