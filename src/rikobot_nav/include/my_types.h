@@ -9,6 +9,8 @@
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/TransformStamped.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/Twist.h>
+#include <visualization_msgs/Marker.h>
 
 #include <iostream>
 #include <cstdio>
@@ -16,6 +18,7 @@
 #include <set>
 #include <string>
 #include <complex>
+#include <cmath>
 
 using namespace std;
 
@@ -24,8 +27,9 @@ typedef nav_msgs::Path Path;
 typedef geometry_msgs::Point WorldPoint;
 typedef geometry_msgs::Pose Pose;
 typedef geometry_msgs::PoseStamped Goal;
-
 typedef pair<int, int> GridPoint;
+
 typedef pair<double, GridPoint> QueueNode;
+typedef pair<double, double> Command;
 
 #endif

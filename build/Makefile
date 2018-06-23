@@ -1141,6 +1141,58 @@ move_base_msgs_generate_messages_lisp/fast:
 .PHONY : move_base_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_nodejs
+
+# Build rule for target.
+visualization_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_nodejs
+.PHONY : visualization_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+visualization_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+.PHONY : visualization_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_eus
+
+# Build rule for target.
+visualization_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_eus
+.PHONY : visualization_msgs_generate_messages_eus
+
+# fast build rule for target.
+visualization_msgs_generate_messages_eus/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+.PHONY : visualization_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_cpp
+
+# Build rule for target.
+visualization_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_cpp
+.PHONY : visualization_msgs_generate_messages_cpp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+.PHONY : visualization_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_lisp
+
+# Build rule for target.
+visualization_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_lisp
+.PHONY : visualization_msgs_generate_messages_lisp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
+.PHONY : visualization_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named my_nav
 
 # Build rule for target.
@@ -1152,6 +1204,19 @@ my_nav: cmake_check_build_system
 my_nav/fast:
 	$(MAKE) -f rikobot_nav/CMakeFiles/my_nav.dir/build.make rikobot_nav/CMakeFiles/my_nav.dir/build
 .PHONY : my_nav/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_py
+
+# Build rule for target.
+visualization_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_py
+.PHONY : visualization_msgs_generate_messages_py
+
+# fast build rule for target.
+visualization_msgs_generate_messages_py/fast:
+	$(MAKE) -f rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make rikobot_nav/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
+.PHONY : visualization_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named run_tests_openni_description_rostest
@@ -1332,7 +1397,12 @@ help:
 	@echo "... move_base_msgs_generate_messages_eus"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... move_base_msgs_generate_messages_lisp"
+	@echo "... visualization_msgs_generate_messages_nodejs"
+	@echo "... visualization_msgs_generate_messages_eus"
+	@echo "... visualization_msgs_generate_messages_cpp"
+	@echo "... visualization_msgs_generate_messages_lisp"
 	@echo "... my_nav"
+	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... run_tests_openni_description_rostest"
 	@echo "... _run_tests_openni_description"
 	@echo "... _run_tests_openni_description_rostest_test_sample_kobuki.test"

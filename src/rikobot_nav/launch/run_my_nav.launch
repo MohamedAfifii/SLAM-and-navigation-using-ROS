@@ -1,6 +1,31 @@
 
 <launch>
 
+	<param name="/costmap/threshold_cost" value="20"/>
+	<param name="/global_planner/max_segment_length" value="0.5"/>
+	
+	<param name="/local_planner/goal_tolerance" value="0.2"/>
+	<param name="/local_planner/frequency" value="4"/>
+	
+	<param name="/local_planner/vmin" value="0"/>
+	<param name="/local_planner/vmax" value="0.25"/>
+	<param name="/local_planner/dv" value="0.02"/>
+	<param name="/local_planner/wmin" value="-2"/>
+	<param name="/local_planner/wmax" value="2"/>
+	<param name="/local_planner/dw" value="0.2"/>
+	
+	<param name="/motor/vmin" value="4"/>
+	<param name="/motor/vmax" value="8"/>
+
+	<param name="/simulation/min_trajectory_time" value="0.3"/>
+	<param name="/simulation/sim_time" value="4"/>
+	<param name="/simulation/sim_time_step" value="0.25"/>	<!-- 1/local_planner_frequency --> 
+	<param name="/simulation/expected_velocity" value="0.15"/>
+	<param name="/simulation/angle_tolerance" value="0.175"/>	<!-- ~10 degrees -->
+	<!--param name="/simulation/angle_tolerance" value="1"/-->
+	
+	
+	
 	<include file="$(find rikobot_nav)/launch/costmaps.launch"/>
 	<node pkg="rikobot_nav" type="my_nav" name="my_nav" output="screen"/>
 

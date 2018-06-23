@@ -3,6 +3,7 @@
 
 #include <ros/ros.h>
 #include <my_types.h>
+#include <tf_wrapper.h>
 
 
 class Costmap
@@ -14,7 +15,8 @@ public:
 	WorldPoint origin;
 	bool flag = false;
 
-	int thresh = 20;
+	//int thresh = 20;
+	static int thresh;
 
 	ros::NodeHandle nh;
 	ros::Subscriber sub;
@@ -87,6 +89,7 @@ public:
 
 		world_point.x = origin.x + grid_point.first*resolution;
 		world_point.y = origin.y + grid_point.second*resolution;
+		world_point.z = 0;
 
 		return world_point;
 	}
@@ -134,13 +137,15 @@ public:
 	}
 };
 
+int Costmap::thresh = 20;	//Default value, updated from the parameter server
+
 class GlobalCostmap:public Costmap
 {
 public:
 	GlobalCostmap()
 	{
 		costmap_topic = "/global_costmap/costmap/costmap";
-		get_map();
+		//get_map();
 	}
 };
 

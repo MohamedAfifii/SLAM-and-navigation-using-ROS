@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   move_base
   move_base_msgs
   tf
+  visualization_msgs
 )
 
 

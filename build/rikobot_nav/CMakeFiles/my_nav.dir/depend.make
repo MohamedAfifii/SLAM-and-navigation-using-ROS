@@ -88,6 +88,7 @@ rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/rosconsole/macros_generated.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/sensor_msgs/ChannelFloat32.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/sensor_msgs/PointCloud.h
+rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/std_msgs/ColorRGBA.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/std_msgs/Empty.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/tf/FrameGraph.h
@@ -121,6 +122,7 @@ rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/tf2_ros/buffer.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/tf2_ros/buffer_interface.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/tf2_ros/transform_listener.h
+rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/visualization_msgs/Marker.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 rikobot_nav/CMakeFiles/my_nav.dir/src/navigation.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
 

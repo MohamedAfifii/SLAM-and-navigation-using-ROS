@@ -8,4 +8,3 @@
 
 # modified environment variables
 export PWD="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build"
-export PYTHONPATH="/home/afifi/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages"

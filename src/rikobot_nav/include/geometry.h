@@ -3,7 +3,9 @@
 #define __GEOMETRY__
 
 #include <my_types.h>
+#include <cmath>
 #include <costmap.h>
+#include <tf_wrapper.h>
 
 #define EPS 1e-8
 #define EQ(x, y)	(abs((x)-(y)) < EPS)
@@ -17,7 +19,6 @@
 typedef complex<double> point;
 typedef complex<double> vec;
 typedef pair<point, point> line;
-
 
 inline bool onLine(point p, line l)
 {
@@ -38,7 +39,7 @@ inline bool toLeft(point p, line l)
 }
 
 
-bool lineOfSight(GridPoint a, GridPoint b, GlobalCostmap& map)
+bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 {
 	GridPoint mn = min(a, b), mx = max(a, b);
 
@@ -60,5 +61,54 @@ bool lineOfSight(GridPoint a, GridPoint b, GlobalCostmap& map)
 
 	return true;
 }
+
+bool lineOfSight(WorldPoint a, WorldPoint b, Costmap& map)
+{
+	return lineOfSight(map.world_to_grid(a), map.world_to_grid(b), map);
+}
+
+bool onSight(Pose pose, WorldPoint local_goal, double angle_tolerance)
+{
+	double theta_heading = tf::getYaw(pose.orientation);
+
+	double dx = local_goal.x - pose.position.x;
+	double dy = local_goal.y - pose.position.y;
+	double theta_goal = atan2(dy, dx);
+
+	return abs(theta_heading - theta_goal) <= angle_tolerance;
+}
+
+double EuclideanDistance(WorldPoint a, WorldPoint b)
+{
+	double dx = abs(a.x - b.x);
+	double dy = abs(a.y - b.y);
+	return hypot(dx, dy);
+}
+
+double EuclideanDistance(GridPoint a, GridPoint b)
+{
+	int dx = abs(a.first - b.first);
+	int dy = abs(a.second - b.second);
+	return hypot(dx, dy);
+}
+
+struct Window
+{
+	WorldPoint center;
+	double width, height;
+	double xl, xh, yl, yh;
+
+	Window(WorldPoint center, double width, double height):
+	center(center), width(width), height(height)
+	{
+		xl = center.x-width/2, xh = center.x+width/2;
+		yl = center.y-height/2, yh = center.y+height/2;
+	}
+
+	bool pointInside(WorldPoint p)
+	{
+		return (xl <= p.x && p.x <= xh && yl <= p.y && p.y <= yh);
+	}
+};
 
 #endif

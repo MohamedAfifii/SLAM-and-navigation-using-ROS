@@ -100,12 +100,12 @@ my_nav_EXTERNAL_OBJECTS =
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /usr/lib/x86_64-linux-gnu/libboost_signals.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/libxmlrpcpp.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/libtf2.so
-/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/librosconsole.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/librostime.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /opt/ros/kinetic/lib/libcpp_common.so
 /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib/rikobot_nav/my_nav: /usr/lib/x86_64-linux-gnu/libboost_system.so
