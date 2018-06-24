@@ -6,6 +6,7 @@
 #include <move_base_msgs/MoveBaseActionGoal.h>
 #include <map_msgs/OccupancyGridUpdate.h>
 #include <geometry_msgs/Point.h>
+#include <geometry_msgs/PointStamped.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/TransformStamped.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -23,13 +24,16 @@
 using namespace std;
 
 typedef nav_msgs::OccupancyGrid Grid;
-typedef nav_msgs::Path Path;
 typedef geometry_msgs::Point WorldPoint;
 typedef geometry_msgs::Pose Pose;
 typedef geometry_msgs::PoseStamped Goal;
 typedef pair<int, int> GridPoint;
 
+typedef vector<WorldPoint> Path;
+
 typedef pair<double, GridPoint> QueueNode;
 typedef pair<double, double> Command;
+
+#define sz(v) (int)v.size()
 
 #endif

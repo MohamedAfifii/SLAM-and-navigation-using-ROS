@@ -3,6 +3,7 @@
 
 	<param name="/costmap/threshold_cost" value="20"/>
 	<param name="/global_planner/max_segment_length" value="0.5"/>
+	<param name="/global_planner/publish_path" value="true"/>
 	
 	<param name="/local_planner/goal_tolerance" value="0.2"/>
 	<param name="/local_planner/frequency" value="4"/>
@@ -15,7 +16,7 @@
 	<param name="/local_planner/dw" value="0.2"/>
 	
 	<param name="/motor/vmin" value="4"/>
-	<param name="/motor/vmax" value="8"/>
+	<param name="/motor/vmax" value="9"/>
 
 	<param name="/simulation/min_trajectory_time" value="0.3"/>
 	<param name="/simulation/sim_time" value="4"/>

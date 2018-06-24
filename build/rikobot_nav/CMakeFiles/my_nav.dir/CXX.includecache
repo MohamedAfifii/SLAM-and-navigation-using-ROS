@@ -63,6 +63,8 @@ map_msgs/OccupancyGridUpdate.h
 -
 geometry_msgs/Point.h
 -
+geometry_msgs/PointStamped.h
+-
 geometry_msgs/Pose.h
 -
 geometry_msgs/TransformStamped.h

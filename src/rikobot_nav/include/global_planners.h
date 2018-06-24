@@ -12,14 +12,13 @@
 
 #include <cmath>
 
-bool publish_path = true;
-
 class GlobalPlanner
 {
 public:
 	string algorithm;
 	GridPoint src, dest;		
 	double max_segment_length;
+	bool publish_path;
 
 	ros::NodeHandle nh;
 	ros::Publisher path_pub = ros::Publisher(nh.advertise<nav_msgs::Path>("/my_nav/path", 3));
@@ -129,10 +128,9 @@ public:
 		//Stuff the path with redundant points so that the distance between any
 		//two points on the path doesn't exceed max_segment_length
 		int sz = vw.size();
-		vector<WorldPoint> res;
 		for(int i = 0; i < sz-1; i++)
 		{
-			res.push_back(vw[i]);
+			path.push_back(vw[i]);
 
 			WorldPoint p = vw[i], nxt = vw[i+1];
 			double distance = EuclideanDistance(p, nxt);
@@ -151,11 +149,11 @@ public:
 					newPoint.x += t*u.real();
 					newPoint.y += t*u.imag();
 
-					res.push_back(newPoint);
+					path.push_back(newPoint);
 				}
 			}
 		}
-		res.push_back(vw[sz-1]);
+		path.push_back(vw[sz-1]);
 
 
 
@@ -170,15 +168,15 @@ public:
 	    line_strip.id = 1;
 	    points.type = visualization_msgs::Marker::POINTS;
 	    line_strip.type = visualization_msgs::Marker::LINE_STRIP;
-	    points.scale.x = 0.2;
-	    points.scale.y = 0.2;
-	    line_strip.scale.x = 0.1;
+	    points.scale.x = 0.07;
+	    points.scale.y = 0.07;
+	    line_strip.scale.x = 0.05;
 	    points.color.g = 1.0f;
 	    points.color.a = 1.0;
 	    line_strip.color.b = 1.0;
 	    line_strip.color.a = 1.0;
 
-	    for(WorldPoint p: res)	
+	    for(WorldPoint p: path)	
 	    {
 			points.points.push_back(p);
 			line_strip.points.push_back(p);
@@ -190,17 +188,18 @@ public:
 	    //Pulbish nav_msgs::Path
 		if(publish_path)
 		{
-			//Fill in the path message
-			path.header.frame_id = "map";
-			sz = res.size();
-			path.poses.resize(sz);
+			nav_msgs::Path msgOut;
+
+			msgOut.header.frame_id = "map";
+			sz = path.size();
+			msgOut.poses.resize(sz);
 			for(int i = 0; i < sz; i++)
 			{
-				path.poses[i].header.frame_id = "map";
-				path.poses[i].pose.position = res[i];
+				msgOut.poses[i].header.frame_id = "map";
+				msgOut.poses[i].pose.position = path[i];
 			}
 
-			path_pub.publish(path);
+			path_pub.publish(msgOut);
 		}
 
 		return true;
