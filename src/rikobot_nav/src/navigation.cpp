@@ -21,7 +21,7 @@ void call_back(const Goal& goal_point)
 
 	//Read parameters from the parameter server
 	bool ok = true;
-	ok &= ros::param::get("/costmap/threshold_cost", map.thresh);		//map.thresh is a static variable
+	ok &= ros::param::get("/costmap/threshold_cost", Costmap::thresh);		
 	ok &= ros::param::get("/global_planner/max_segment_length", global_planner.max_segment_length);
 	ok &= ros::param::get("/global_planner/publish_path", global_planner.publish_path);
 	ok &= ros::param::get("/local_planner/goal_tolerance", local_planner.goal_tolerance);

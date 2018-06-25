@@ -3,7 +3,7 @@
 
 	<param name="/costmap/threshold_cost" value="20"/>
 	<param name="/global_planner/max_segment_length" value="0.5"/>
-	<param name="/global_planner/publish_path" value="true"/>
+	<param name="/global_planner/publish_path" value="false"/>
 	
 	<param name="/local_planner/goal_tolerance" value="0.2"/>
 	<param name="/local_planner/frequency" value="4"/>

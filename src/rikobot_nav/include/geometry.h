@@ -47,6 +47,19 @@ inline bool toLeft(point p, line l)
 	return GT(cross(u,v), 0);
 }
 
+double EuclideanDistance(WorldPoint a, WorldPoint b)
+{
+	double dx = abs(a.x - b.x);
+	double dy = abs(a.y - b.y);
+	return hypot(dx, dy);
+}
+
+double EuclideanDistance(GridPoint a, GridPoint b)
+{
+	int dx = abs(a.first - b.first);
+	int dy = abs(a.second - b.second);
+	return hypot(dx, dy);
+}
 
 double getAngle(WorldPoint p1, WorldPoint p2)
 {
@@ -57,6 +70,16 @@ double getAngle(WorldPoint p1, WorldPoint p2)
 WorldPoint getAnotherPointOnline(WorldPoint p, double theta)
 {
 	vec u = polar(1.0, theta);
+	WorldPoint ret = p;
+	ret.x += u.real();
+	ret.y += u.imag();
+
+	return ret;
+}
+
+WorldPoint getAnotherPointOnline(WorldPoint p, double theta, double d)
+{
+	vec u = polar(d, theta);
 	WorldPoint ret = p;
 	ret.x += u.real();
 	ret.y += u.imag();
@@ -83,16 +106,28 @@ double perpindicularDistance(WorldPoint C, WorldPoint A, double angle)
 
 bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 {
-	GridPoint mn = min(a, b), mx = max(a, b);
+	int old_thresh = Costmap::thresh;
+	
+	if(old_thresh < 10)
+		Costmap::thresh = max({old_thresh, map.getCostVal(a), map.getCostVal(b)});
+	else 
+		Costmap::thresh = max({old_thresh, map.getCostVal(a)+10, map.getCostVal(b)+10});
 
+	GridPoint mn = min(a, b), mx = max(a, b);
+	line l = {point(mn.first, mn.second), point(mx.first, mx.second)};
+
+	bool free = true;
 	while(mn != mx)
 	{
-		if(map.isOccupied(mn))	return false;
+		if(map.isOccupied(mn))
+		{
+			free = false;
+			break;
+		}
 
 		point upper_corner(mn.first+0.5, mn.second+0.5);
 		point lower_corner(mn.first+0.5, mn.second-0.5);
-		line l = {point(mn.first, mn.second), point(mx.first, mx.second)};
-
+		
 		if(onLine(upper_corner, l))				mn.first++, mn.second++;
 		else if(onLine(lower_corner, l))		mn.first++, mn.second--;
 
@@ -101,7 +136,8 @@ bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 		else									mn.first++;
 	}
 
-	return true;
+	Costmap::thresh = old_thresh;
+	return free;
 }
 
 bool lineOfSight(WorldPoint a, WorldPoint b, Costmap& map)
@@ -114,30 +150,75 @@ bool onSight(Pose pose, WorldPoint local_goal, double angle_tolerance)
 	double theta_heading = tf::getYaw(pose.orientation);
 	double theta_goal = getAngle(pose.position, local_goal);
 
-	return abs(theta_heading - theta_goal) <= angle_tolerance;
+	double difference = theta_heading - theta_goal;
+	difference = atan2(sin(difference), cos(difference));
+	return abs(difference) <= angle_tolerance;
+}
+
+bool safeCurve(WorldPoint start, WorldPoint end, WorldPoint center, int sign, Costmap& map)
+{
+	int old_thresh = Costmap::thresh;
+	Costmap::thresh = max({old_thresh, map.getCostVal(start), map.getCostVal(end)});
+	bool free = true;
+
+	start = map.grid_to_world(map.world_to_grid(start));
+	end = map.grid_to_world(map.world_to_grid(end));
+	center = map.grid_to_world(map.world_to_grid(center));
+
+	double radius = EuclideanDistance(start, center);
+	WorldPoint p = start;
+	while(EuclideanDistance(p, end) > 0.2)
+	{
+		if(map.isOccupied(p))
+		{
+			free = false;
+			break;
+		}
+
+		double theta_cp = getAngle(center, p);
+		double theta_tangent = theta_cp+sign*M_PI/2;
+
+		WorldPoint p2 = getAnotherPointOnline(p, theta_tangent, map.resolution);
+		GridPoint p2_grid = map.world_to_grid(p2);
+		GridPoint p_grid = map.world_to_grid(p);
+
+		WorldPoint nxt;
+		double best = -1;
+
+		int dxs[] = {-1, 0, 1}, dys[] = {-1, 0, 1};
+		for(int dx: dxs) for(int dy: dys)
+		{
+			GridPoint candidate = p2_grid;
+			candidate.first += dx, candidate.second += dy;
+			if(candidate == p_grid)	continue;
+
+			WorldPoint candidate_world = map.grid_to_world(candidate);
+			double dist = EuclideanDistance(candidate_world, center);
+
+			if(best == -1 || abs(dist-radius) < best)
+			{
+				nxt = candidate_world;
+				best = abs(dist-radius);
+			}
+		}
+
+		p = nxt;
+	}
+
+	Costmap::thresh = old_thresh;
+	return free;
 }
 
 bool shouldRotate(Pose pose, WorldPoint local_goal)
 {
 	double theta_heading = tf::getYaw(pose.orientation);
 	double theta_goal = getAngle(pose.position, local_goal);
+	double difference = theta_heading - theta_goal;
+	difference = atan2(sin(difference), cos(difference));
 
-	return abs(theta_heading - theta_goal) > M_PI/2;
+	return abs(difference) > M_PI/2;
 }
 
-double EuclideanDistance(WorldPoint a, WorldPoint b)
-{
-	double dx = abs(a.x - b.x);
-	double dy = abs(a.y - b.y);
-	return hypot(dx, dy);
-}
-
-double EuclideanDistance(GridPoint a, GridPoint b)
-{
-	int dx = abs(a.first - b.first);
-	int dy = abs(a.second - b.second);
-	return hypot(dx, dy);
-}
 
 WorldPoint midPoint(WorldPoint a, WorldPoint b)
 {

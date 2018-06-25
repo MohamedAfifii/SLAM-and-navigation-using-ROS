@@ -107,11 +107,21 @@ public:
 		return {x,y};
 	}
 
+	int getCostVal(GridPoint grid_point)
+	{
+		return map.data[get_index(grid_point)];
+	}
+	
+	int getCostVal(WorldPoint world_point)
+	{
+		GridPoint grid_point = world_to_grid(world_point);
+		return getCostVal(grid_point);
+	}
 
 	//Assumes the grid_point lies within the grid
 	bool isFree(GridPoint grid_point)
 	{
-		int val = map.data[get_index(grid_point)];
+		int val = getCostVal(grid_point);
 		return (val != -1 && val < thresh);
 	}
 

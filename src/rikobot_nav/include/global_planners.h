@@ -259,6 +259,7 @@ public:
 
 		//Get path
 		ros::Time start_time = ros::Time::now();
+		Costmap::thresh = map.getCostVal(src)+5;
 		bool can = solve(map, path);
 		if(can)
 		{

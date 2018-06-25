@@ -23,6 +23,9 @@ public:
 	ros::NodeHandle nh;
 	ros::Publisher cmd_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 20);
 	ros::Publisher goal_pub = nh.advertise<geometry_msgs::PointStamped>("/local_goal", 5);
+	ros::Publisher icc_pub = nh.advertise<geometry_msgs::PointStamped>("/icc", 5);
+	ros::Publisher trajectory_pub = nh.advertise<nav_msgs::Path>("/my_nav/trajectory", 3);
+
 	geometry_msgs::Twist cmd;
 
 	TFWrapper tf_wrapper;
@@ -37,7 +40,7 @@ public:
 
 	void follow_cricle(double radius_of_curvature, int sign)
 	{
-		double v = 0.9*MotorMax*2*R/(2+L/radius_of_curvature);
+		double v = MotorMax*2*R/(2+L/radius_of_curvature);
 		double w = sign*v/radius_of_curvature;
 		publish_command(v,w);
 	}
@@ -82,18 +85,32 @@ public:
 
 	bool execute_path(GlobalCostmap &global_map, const Path &path)
 	{
+		Costmap::thresh = 30;
+		
 		int path_length = sz(path);
 		WorldPoint goal_point = path[path_length-1];
 
-		rmin = 1.1*(L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.1 factor is for the safty margin.
+		vector<WorldPoint> trajectory;
+		WorldPoint last_position;		//Used for trajectory visualization
+		last_position.x = last_position.y = last_position.z = -1;
+
+		rmin = 1.2*(L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.2 factor is for the safty margin.
 
 		ros::Rate rate(frequency);
 		while(1)	
 		{
 			Pose current_pose = tf_wrapper.getCurrentPose();
+			WorldPoint current_position = current_pose.position;
+			double theta_heading = tf::getYaw(current_pose.orientation);
+
+			if(EuclideanDistance(current_position, last_position) > 0.15)
+			{
+				trajectory.push_back(current_position);
+				last_position = current_position;
+			}
 
 			//Goal reached
-			if(EuclideanDistance(current_pose.position, goal_point) <= goal_tolerance)	break;				
+			if(EuclideanDistance(current_position, goal_point) <= goal_tolerance)	break;				
 
 
 			//Iterate over path points
@@ -102,9 +119,18 @@ public:
 			{
 				WorldPoint local_goal = path[i];
 
-				if(lineOfSight(current_pose.position, local_goal, global_map))
+				if(lineOfSight(current_position, local_goal, global_map))
 				{
-					if(onSight(current_pose, local_goal, angle_tolerance))
+
+					//Visualization
+					geometry_msgs::PointStamped pt;
+					pt.header.frame_id = "/map";
+					pt.point = local_goal;
+					goal_pub.publish(pt);
+
+					WorldPoint ICC = current_position;
+
+					if(onSight(current_pose, local_goal, angle_tolerance))	//Default: 10 degrees tolerance
 						move_forward();
 
 					else if(shouldRotate(current_pose, local_goal)) 
@@ -113,8 +139,6 @@ public:
 
 					else
 					{
-						WorldPoint current_position = current_pose.position;
-						double theta_heading = tf::getYaw(current_pose.orientation);
 						double theta_goal = getAngle(current_position, local_goal);
 
 						double yg = perpindicularDistance(local_goal, current_position, theta_heading);
@@ -125,13 +149,10 @@ public:
 						if(yg < 0)	sign = -1, yg = -yg;
 
 						double radius_of_curvature = -1;
-						if(xg < yg)
-						{
-							if(xg > rmin)	follow_cricle(rmin, sign);
-							else 			rotate_inplace(local_goal);
-						}
 
-						else
+						double difference = theta_heading - theta_goal;
+						difference = atan2(sin(difference), cos(difference));
+						if(abs(difference) < 0.35)	//20 degrees
 						{
 							WorldPoint p1 = current_position;
 							WorldPoint p2 = getAnotherPointOnline(p1, theta_heading+M_PI/2);
@@ -139,18 +160,67 @@ public:
 							WorldPoint p3 = midPoint(current_position, local_goal);
 							WorldPoint p4 = getAnotherPointOnline(p3, theta_goal+M_PI/2);
 
-							WorldPoint ICC = getLineIntersection(p1,p2,p3,p4);
-							double radius_of_curvature = EuclideanDistance(current_position, ICC);
+							ICC = getLineIntersection(p1,p2,p3,p4);
 
-							follow_cricle(radius_of_curvature, sign);
+							//pt.point = ICC;
+							//icc_pub.publish(pt);
+
+							cout << "Checking 1" << endl;
+							//if(safeCurve(current_position, local_goal, ICC, sign, global_map))
+							if(true)
+							{
+								radius_of_curvature = EuclideanDistance(current_position, ICC);
+								cout << "Safe" << endl;
+							}
+
+							else cout << "Not safe" << endl;
 						}
+
+						if(radius_of_curvature != -1 && xg > rmin)
+						{
+							ICC = getAnotherPointOnline(current_position, theta_heading+sign*M_PI/2, rmin);
+							
+							//Get the point of tangency
+							double length = EuclideanDistance(ICC, local_goal);
+							double D = sqrt(length*length - rmin*rmin);
+
+							double x = local_goal.x - ICC.x;
+							double y = local_goal.y - ICC.y;
+							double alpha = atan2(y,x);
+							double beta = atan2(D,rmin);
+
+							double theta1 = -(beta-alpha);
+							double theta2 = 2*beta + theta1;
+							WorldPoint p1 = getAnotherPointOnline(ICC, theta1, rmin);
+							WorldPoint p2 = getAnotherPointOnline(ICC, theta2, rmin);
+							WorldPoint pointOfTangancy;
+							if(EuclideanDistance(current_position, p1) < EuclideanDistance(current_position, p2))
+								pointOfTangancy = p1;
+							else
+								pointOfTangancy = p2;
+
+							
+							bool safe = safeCurve(current_position, pointOfTangancy, ICC, sign, global_map);
+							cout << "Checking 2" << endl;
+							safe &= lineOfSight(pointOfTangancy, local_goal, global_map);
+
+							if(safe)	
+							{
+								radius_of_curvature = rmin;
+								cout << "Safe" << endl;
+							}
+
+							else	cout << "Not safe" << endl;
+						}
+
+						if(radius_of_curvature != -1)	follow_cricle(radius_of_curvature, sign);
+						else	rotate_inplace(local_goal);
 					}
 
-					geometry_msgs::PointStamped pt;
-					pt.header.frame_id = "/map";
-					pt.point = local_goal;
-					goal_pub.publish(pt);
-
+					//Visualization
+					pt.point = ICC;
+					icc_pub.publish(pt);	
+								
 					done = true;
 					break;
 				}
@@ -159,6 +229,7 @@ public:
 			if(!done)
 			{
 				cout << "Goal unreachable!" << endl;
+				publish_command(0,0);
 				cout << "Replanning ..." << endl << endl;
 				return false;
 			}
@@ -168,6 +239,19 @@ public:
 
 		cout << "Goal reached!" << endl;
 		publish_command(0,0);
+
+		//Publish the trajectory
+		nav_msgs::Path msgOut;
+		msgOut.header.frame_id = "map";
+		int sz = trajectory.size();
+		msgOut.poses.resize(sz);
+		for(int i = 0; i < sz; i++)
+		{
+			msgOut.poses[i].header.frame_id = "map";
+			msgOut.poses[i].pose.position = trajectory[i];
+		}
+		trajectory_pub.publish(msgOut);
+
 		return true;
 	}
 };
