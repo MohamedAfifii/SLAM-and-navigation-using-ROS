@@ -7,9 +7,6 @@
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find mybot_description)/urdf/mybot.xacro'"/>
 
   <!-- Transforms -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-  	<param name="use_gui" value="False"/>
-  </node>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
   <node pkg="tf" type="static_transform_publisher" name="basefootprint_to_chassis" args="0 0 0.065 0 0 0 1 base_footprint chassis 100" />
   
@@ -22,6 +19,10 @@
 	  <arg name="gui" default="true"/>
 	  <arg name="headless" default="false"/>
 	  <arg name="debug" default="false"/>
+	  
+	  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+	  	<param name="use_gui" value="False"/>
+	  </node>
 	  
 	  <include file="$(find gazebo_ros)/launch/empty_world.launch">
 		<arg name="world_name" value="$(find mybot_gazebo)/worlds/emptyRoom.world"/>

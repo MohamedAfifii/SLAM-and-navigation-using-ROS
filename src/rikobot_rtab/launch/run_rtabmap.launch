@@ -1,20 +1,15 @@
 <launch>
-
-  <arg name="localization"      default="false"/>
-  <arg     if="$(arg localization)" name="args"  default=""/>
-  <arg unless="$(arg localization)" name="args"  default="--delete_db_on_start"/>
-
   <!-- Kinect cloud to laser scan -->
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
-      <remap from="image"     to="/camera/depth/image_raw"/>
-      <remap from="camera_info" to="/camera/depth/camera_info"/>
+      <remap from="image"     to="/camera/depth_registered/image_raw"/>
+      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
       <remap from="scan" to="/kinect_scan"/>
       <param name="range_max" type="double" value="4"/>
     </node>
 
   <!-- SLAM -->
   <group ns="rtabmap">
-    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg args)">
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
           <param name="frame_id" type="string" value="base_footprint"/>
 
           <param name="subscribe_depth" type="bool" value="true"/>
@@ -23,8 +18,8 @@
           <remap from="odom" to="/filtered_odom"/>
           <remap from="scan" to="/kinect_scan"/>
 
-          <remap from="rgb/image" to="/camera/rgb/image_raw"/>
-          <remap from="depth/image" to="/camera/depth/image_raw"/>
+          <remap from="rgb/image" to="/camera/rgb/image_rect_color"/>
+          <remap from="depth/image" to="/camera/depth_registered/image_raw"/>
           <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
 
           <param name="queue_size" type="int" value="1000"/>
@@ -43,15 +38,9 @@
           <param name="Rtabmap/TimeThr"           type="string" value="700"/>
           <param name="Mem/RehearsalSimilarity"   type="string" value="0.45"/>
           <param name="Icp/CorrespondenceRatio"   type="string" value="0.5"/>
-          
-          <!-- localization mode -->
-		  <param if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>
-		  <param unless="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="true"/>
-		  <param name="Mem/InitWMWithAllNodes" type="string" value="$(arg localization)"/> 
-		  
     </node>
   </group>
   
-  <!--node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.13 0 0 0 1 base_footprint camera_depth_frame 100" /-->
-
-</launch>			
+  <!--node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.13 0 0 0 1 base_footprint camera_link 100" /-->
+  
+</launch> 

@@ -1,18 +1,23 @@
 <launch>
 
-	<arg name="localization"      default="false"/>
-	<node if="$(arg localization)" name="map_server" pkg="map_server" type="map_server" args="~/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_nav/maps/mymap.yaml">
-		<remap from="map" to="/rtabmap/grid_map"/>
-	</node>
+	<arg name="simulation"      default="false"/>
 
+	<include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/>
 	<include file = "$(find rikobot_filters)/launch/run_filters.launch"/>
-	<node pkg = "rikobot_arduino" type = "pose_to_odom" name = "pose_to_odom" />
 	
+	<node if="$(arg simulation)" pkg = "rikobot_arduino" type = "pose_to_odom" name = "pose_to_odom" />
 	
-	<include file = "$(find rikobot_rtab)/launch/run_rtabmap.launch">
-		<arg name="localization"      value="$(arg localization)"/>
+	<include file = "$(find mybot_gazebo)/launch/mybot_world.launch">
+		<arg name="simulation"      value="$(arg simulation)"/>
 	</include>
 	
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_rtab)/rviz/my_conf.rviz"/>
+	
+	<include unless="$(arg simulation)" file = "$(find openni_launch)/launch/openni.launch">
+		<arg name = "depth_registration" value = "true"/>
+	</include>
+	
+	<include file = "$(find rikobot_rtab)/launch/run_rtabmap.launch"/>
+	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/my_conf.rviz"/>
 </launch>
 
