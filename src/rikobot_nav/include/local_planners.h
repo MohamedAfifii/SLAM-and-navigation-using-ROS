@@ -81,7 +81,7 @@ public:
 	}
 
 
-	bool execute_path(GlobalCostmap &global_map, const Path &path)
+	bool execute_path(GlobalCostmap &global_map, GlobalCostmap &active_map, const Path &path)
 	{
 		Costmap::thresh = thresh;
 		
@@ -121,10 +121,17 @@ public:
 				
 				int old_thresh = Costmap::thresh;
 				if(EuclideanDistance(current_position, local_goal) < 1.5 && absNormalizedDiff(theta_goal, theta_heading) < no_rot_angle)
-					Costmap::thresh += 15;
+					Costmap::thresh += 10;
 
 				if(i == last_goal || lineOfSight(current_position, local_goal, global_map))
 				{
+					if(lineOfSight(current_position, local_goal, global_map) && !lineOfSight(current_position, local_goal, active_map))
+					{
+						cout << "Mismatch between local and global costmaps!" << endl;
+						cout << "Replanning ..." << endl << endl;
+						return false;
+					}
+
 					//Visualization
 					geometry_msgs::PointStamped pt;
 					pt.header.frame_id = "/map";
@@ -235,12 +242,13 @@ public:
 
 			if(!done)
 			{
-				cout << "Goal unreachable!" << endl;
+				cout << "Cannot generate a valid velocity command!" << endl;
 				publish_command(0,0);
 				cout << "Replanning ..." << endl << endl;
 				return false;
 			}
 
+			ros::spinOnce();
 			rate.sleep();
 		}
 

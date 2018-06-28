@@ -113,20 +113,13 @@ double perpindicularDistance(WorldPoint C, WorldPoint A, double angle)
 
 bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 {
-	int old_thresh = Costmap::thresh;
-	//Costmap::thresh = max({old_thresh, map.getCostVal(a), map.getCostVal(b)});
-
 	GridPoint mn = min(a, b), mx = max(a, b);
 	line l = {point(mn.first, mn.second), point(mx.first, mx.second)};
 
-	bool free = true;
 	while(mn != mx)
 	{
-		if(map.isOccupied(mn))
-		{
-			free = false;
-			break;
-		}
+		//if(map.outside_grid(mn))	return true;
+		if(map.isOccupied(mn))		return false;
 
 		point upper_corner(mn.first+0.5, mn.second+0.5);
 		point lower_corner(mn.first+0.5, mn.second-0.5);
@@ -139,8 +132,7 @@ bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 		else									mn.first++;
 	}
 
-	Costmap::thresh = old_thresh;
-	return free;
+	return true;
 }
 
 bool lineOfSight(WorldPoint a, WorldPoint b, Costmap& map)

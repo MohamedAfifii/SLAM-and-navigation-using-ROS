@@ -16,6 +16,10 @@ void call_back(const Goal& goal_point)
 	cout << endl << "New goal received!" << endl;
 
 	GlobalCostmap map;
+	GlobalCostmap ActiveMap;
+	ActiveMap.get_map();
+	ActiveMap.subscribe_updates();
+
 	GlobalPlanner global_planner;
 	LocalPlanner local_planner;
 
@@ -43,13 +47,11 @@ void call_back(const Goal& goal_point)
 	while(!status)
 	{
 		Path path;
+		map = ActiveMap;
 		status = global_planner.plan(goal_point, map, path, "Dijkstra");
 
 		if(status == 1)
-		{
-			//pubPtr->publish(path);
-			status = local_planner.execute_path(map, path);
-		}	
+			status = local_planner.execute_path(map, ActiveMap, path);
 	}
 }
 
@@ -60,6 +62,7 @@ int main(int argc , char** argv)
 	ros::NodeHandle nh;
 
 	ros::Subscriber sub = nh.subscribe("/move_base_simple/goal" , 3 ,&call_back);
+	GlobalCostmap map;
 	ros::spin();
 }
 

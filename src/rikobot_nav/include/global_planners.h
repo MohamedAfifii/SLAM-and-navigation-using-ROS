@@ -216,8 +216,6 @@ public:
 	*/
 	int plan(Goal goal, GlobalCostmap &map, Path &path, string algorithm)
 	{
-		//Get the global costmap
-		map.get_map();
 
 		//Get source
 		TFWrapper tf_wrapper;

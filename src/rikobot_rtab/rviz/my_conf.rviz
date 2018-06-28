@@ -106,19 +106,67 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: false
+        base_link:
+          Value: false
+        camera_depth_frame:
+          Value: false
+        camera_depth_optical_frame:
+          Value: false
+        camera_link:
+          Value: false
+        camera_rgb_frame:
+          Value: false
+        camera_rgb_optical_frame:
+          Value: false
+        chassis:
+          Value: false
+        imu_link:
+          Value: false
+        left_wheel:
+          Value: false
+        map:
+          Value: true
+        odom:
+          Value: false
+        raw_base_footprint:
+          Value: false
+        right_wheel:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        map:
+          odom:
+            base_footprint:
+              base_link:
+                {}
+              chassis:
+                camera_link:
+                  camera_rgb_frame:
+                    camera_depth_frame:
+                      camera_depth_optical_frame:
+                        {}
+                    camera_rgb_optical_frame:
+                      {}
+                imu_link:
+                  {}
+                left_wheel:
+                  {}
+                right_wheel:
+                  {}
+            raw_base_footprint:
+              {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: map
@@ -230,7 +278,7 @@ Visualization Manager:
       Marker Topic: visualization_marker
       Name: Marker
       Namespaces:
-        points_and_lines: true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -276,16 +324,6 @@ Visualization Manager:
       Topic: /my_nav/trajectory
       Unreliable: false
       Value: true
-    - Alpha: 1
-      Class: rviz/PointStamped
-      Color: 255; 255; 0
-      Enabled: true
-      History Length: 1
-      Name: PointStamped
-      Radius: 0.100000001
-      Topic: /check_point
-      Unreliable: false
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -310,7 +348,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rtabmap_ros/OrbitOriented
-      Distance: 3.74078941
+      Distance: 5.22714329
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -325,10 +363,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.56979632
+      Pitch: 1.41979551
       Target Frame: <Fixed Frame>
       Value: OrbitOriented (rtabmap_ros)
-      Yaw: 4.71222639
+      Yaw: 4.66222334
     Saved: ~
 Window Geometry:
   Displays:
