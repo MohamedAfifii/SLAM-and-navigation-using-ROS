@@ -26,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -106,67 +106,19 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
-          Value: false
-        base_link:
-          Value: true
-        camera_depth_frame:
-          Value: false
-        camera_depth_optical_frame:
-          Value: false
-        camera_link:
-          Value: false
-        camera_rgb_frame:
-          Value: false
-        camera_rgb_optical_frame:
-          Value: false
-        chassis:
-          Value: false
-        imu_link:
-          Value: false
-        left_wheel:
-          Value: false
-        map:
-          Value: true
-        odom:
-          Value: false
-        raw_base_footprint:
-          Value: false
-        right_wheel:
-          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          odom:
-            base_footprint:
-              base_link:
-                {}
-              chassis:
-                camera_link:
-                  camera_rgb_frame:
-                    camera_depth_frame:
-                      camera_depth_optical_frame:
-                        {}
-                    camera_rgb_optical_frame:
-                      {}
-                imu_link:
-                  {}
-                left_wheel:
-                  {}
-                right_wheel:
-                  {}
-            raw_base_footprint:
-              {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: map
@@ -189,7 +141,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 4096
@@ -206,12 +158,12 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
       Color: 255; 255; 0
-      Enabled: true
+      Enabled: false
       Head Diameter: 0.300000012
       Head Length: 0.200000003
       Length: 0.300000012
@@ -229,7 +181,7 @@ Visualization Manager:
       Shaft Length: 0.100000001
       Topic: /my_nav/path
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -257,12 +209,12 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Global costmap
       Topic: /global_costmap/costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: false
+      Value: true
     - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: costmap
@@ -278,7 +230,7 @@ Visualization Manager:
       Marker Topic: visualization_marker
       Name: Marker
       Namespaces:
-        {}
+        points_and_lines: true
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -286,7 +238,7 @@ Visualization Manager:
       Color: 204; 41; 204
       Enabled: true
       History Length: 1
-      Name: PointStamped
+      Name: Local goal
       Radius: 0.200000003
       Topic: /local_goal
       Unreliable: false
@@ -296,9 +248,42 @@ Visualization Manager:
       Color: 255; 0; 0
       Enabled: true
       History Length: 1
-      Name: PointStamped
+      Name: ICC
       Radius: 0.100000001
       Topic: /icc
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 255; 0; 0
+      Enabled: true
+      Head Diameter: 0.300000012
+      Head Length: 0.200000003
+      Length: 0.300000012
+      Line Style: Billboards
+      Line Width: 0.0799999982
+      Name: Trajectory
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.0299999993
+      Shaft Diameter: 0.100000001
+      Shaft Length: 0.100000001
+      Topic: /my_nav/trajectory
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/PointStamped
+      Color: 255; 255; 0
+      Enabled: true
+      History Length: 1
+      Name: PointStamped
+      Radius: 0.100000001
+      Topic: /check_point
       Unreliable: false
       Value: true
   Enabled: true
@@ -325,16 +310,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rtabmap_ros/OrbitOriented
-      Distance: 5.64542294
+      Distance: 3.74078941
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.846261144
-        Y: -0.33071202
-        Z: 2.46919537
+        X: 0.736455083
+        Y: -0.565448344
+        Z: 2.47051311
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
@@ -343,7 +328,7 @@ Visualization Manager:
       Pitch: 1.56979632
       Target Frame: <Fixed Frame>
       Value: OrbitOriented (rtabmap_ros)
-      Yaw: 4.74222898
+      Yaw: 4.71222639
     Saved: ~
 Window Geometry:
   Displays:

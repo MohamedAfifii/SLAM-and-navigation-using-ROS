@@ -1,6 +1,6 @@
 image: /home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src/rikobot_nav/maps/map.pgm
 resolution: 0.050000
-origin: [-2.420035, -3.411903, 0.000000]
+origin: [-2.384231, -3.450399, 0.000000]
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196

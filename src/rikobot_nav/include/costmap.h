@@ -87,8 +87,8 @@ public:
 	{
 		WorldPoint world_point;
 
-		world_point.x = origin.x + grid_point.first*resolution;
-		world_point.y = origin.y + grid_point.second*resolution;
+		world_point.x = origin.x + (grid_point.first + 0.5)*resolution;
+		world_point.y = origin.y + (grid_point.second + 0.5)*resolution;
 		world_point.z = 0;
 
 		return world_point;
