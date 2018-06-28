@@ -93,7 +93,7 @@ public:
 		last_position.x = last_position.y = last_position.z = -1;
 		int last_goal = -1;
 
-		rmin = (L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.2 factor is for the safty margin.
+		rmin = 1.1*(L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.1 factor is for the safty margin.
 
 		ros::Rate rate(frequency);
 		while(1)	
@@ -120,7 +120,7 @@ public:
 				double theta_goal = getAngle(current_position, local_goal);
 				
 				int old_thresh = Costmap::thresh;
-				if(EuclideanDistance(current_position, local_goal) < 1 && absNormalizedDiff(theta_goal, theta_heading) < no_rot_angle)
+				if(EuclideanDistance(current_position, local_goal) < 1.5 && absNormalizedDiff(theta_goal, theta_heading) < no_rot_angle)
 					Costmap::thresh += 15;
 
 				if(i == last_goal || lineOfSight(current_position, local_goal, global_map))
@@ -167,8 +167,7 @@ public:
 							//icc_pub.publish(pt);
 
 							//cout << "Checking 1" << endl;
-							//if(i == last_goal || safeCurve(current_position, local_goal, ICC, sign, global_map))
-							if(true)
+							if(i == last_goal || safeCurve(current_position, local_goal, ICC, sign, global_map))
 							{
 								radius_of_curvature = EuclideanDistance(current_position, ICC);
 								//cout << "Safe" << endl;
