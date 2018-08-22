@@ -83,6 +83,7 @@ public:
 
 	bool execute_path(GlobalCostmap &global_map, GlobalCostmap &active_map, const Path &path)
 	{
+		return true;
 		Costmap::thresh = thresh;
 		
 		int path_length = sz(path);

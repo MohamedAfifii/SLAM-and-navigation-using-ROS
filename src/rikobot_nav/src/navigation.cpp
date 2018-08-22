@@ -48,7 +48,7 @@ void call_back(const Goal& goal_point)
 	{
 		Path path;
 		map = ActiveMap;
-		status = global_planner.plan(goal_point, map, path, "Dijkstra");
+		status = global_planner.plan(goal_point, map, path, "A_star");
 
 		if(status == 1)
 			status = local_planner.execute_path(map, ActiveMap, path);

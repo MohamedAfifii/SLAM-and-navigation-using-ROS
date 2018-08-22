@@ -184,7 +184,7 @@ public:
 			points.points.push_back(p);
 			line_strip.points.push_back(p);
 	    }
-	    marker_pub.publish(points);
+	    //marker_pub.publish(points);
 	    marker_pub.publish(line_strip);
 
 
