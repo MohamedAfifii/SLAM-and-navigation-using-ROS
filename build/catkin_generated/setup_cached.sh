@@ -7,4 +7,7 @@
 # new environment variables
 
 # modified environment variables
+export CMAKE_PREFIX_PATH="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel:$CMAKE_PREFIX_PATH"
 export PWD="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/src:$ROS_PACKAGE_PATH"

@@ -4,7 +4,7 @@
 
 	<include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/>
 	<include file = "$(find rikobot_filters)/launch/run_filters.launch"/>
-	
+
 	<node if="$(arg simulation)" pkg = "rikobot_arduino" type = "pose_to_odom" name = "pose_to_odom" />
 	
 	<include file = "$(find mybot_gazebo)/launch/mybot_world.launch">
@@ -17,7 +17,7 @@
 	</include>
 	
 	<include file = "$(find rikobot_rtab)/launch/run_rtabmap.launch"/>
-	
+
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/my_conf.rviz"/>
 </launch>
 

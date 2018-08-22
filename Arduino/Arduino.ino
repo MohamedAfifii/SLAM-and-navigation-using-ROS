@@ -15,7 +15,8 @@ void setup()
     nh.subscribe(sub);
     nh.advertise(odom_pub);
     nh.advertise(imu_pub);  
-
+    nh.advertise(reading_pub);
+    
     imu.init();
     
     oldt = millis();

@@ -13,6 +13,5 @@
   	<node pkg = "rikobot_arduino" type = "teleop_to_cmd" name = "teleop_to_cmd" />
 	<node pkg = "rikobot_arduino" type = "odom_translator1" name = "odom_translator" />
 	<node pkg = "rikobot_arduino" type = "imu_translator" name = "imu_translator" />
-  	<node pkg = "rikobot_arduino" type = "pose_to_odom" name = "pose_to_odom" />
 </launch>
 

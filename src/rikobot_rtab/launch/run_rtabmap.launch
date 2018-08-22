@@ -1,11 +1,24 @@
 <launch>
+
+  <!-- Receive the data from kinect -->
+  <node name="republish_rgb" type="republish" pkg="image_transport" args="theora in:=/camera/data_throttled_image raw out:=/camera/data_throttled_image_relay" />
+  
+  <node name="republish_depth" type="republish" pkg="image_transport" args="compressedDepth in:=/camera/data_throttled_image_depth raw out:=/camera/data_throttled_image_depth_relay" />
+
+  <node name="camera_info_relay" type="relay" pkg="topic_tools" args="/camera/data_throttled_camera_info /camera/data_throttled_camera_info_relay" />
+  
+
   <!-- Kinect cloud to laser scan -->
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
-      <remap from="image"     to="/camera/depth_registered/image_raw"/>
-      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+      <remap from="image"     	to="/camera/data_throttled_image_depth_relay"/>
+      <remap from="camera_info" to="/camera/data_throttled_depth_info"/>
       <remap from="scan" to="/kinect_scan"/>
+      
+      <param name="scan_time" type="double" value="0.1"/>	<!-- 1/frame_rate-->
+      <param name="range_min" type="double" value="0.1"/>
       <param name="range_max" type="double" value="4"/>
     </node>
+
 
   <!-- SLAM -->
   <group ns="rtabmap">
@@ -18,9 +31,9 @@
           <remap from="odom" to="/filtered_odom"/>
           <remap from="scan" to="/kinect_scan"/>
 
-          <remap from="rgb/image" to="/camera/rgb/image_rect_color"/>
-          <remap from="depth/image" to="/camera/depth_registered/image_raw"/>
-          <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+          <remap from="rgb/image" to="/camera/data_throttled_image_relay"/>
+          <remap from="depth/image" to="/camera/data_throttled_image_depth_relay"/>
+          <remap from="rgb/camera_info" to="/camera/data_throttled_camera_info_relay"/>
 
           <param name="queue_size" type="int" value="1000"/>
 
@@ -41,6 +54,7 @@
     </node>
   </group>
   
+
   <!--node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.13 0 0 0 1 base_footprint camera_link 100" /-->
   
 </launch> 

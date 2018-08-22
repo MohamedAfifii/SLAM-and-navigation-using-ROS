@@ -1,0 +1,59 @@
+<launch>
+
+  <!-- Receive the data from kinect -->
+  <node name="republish_rgb" type="republish" pkg="image_transport" args="theora in:=/camera/rgb/image_rect_color raw out:=/camera/data_throttled_image_relay" />
+  
+  <node name="republish_depth" type="republish" pkg="image_transport" args="compressed in:=/camera/depth_registered/image_raw raw out:=/camera/data_throttled_image_depth_relay" />
+
+  <node name="camera_info_relay" type="relay" pkg="topic_tools" args="/camera/rgb/camera_info /camera/data_throttled_camera_info_relay" />
+  
+
+  <!-- Kinect cloud to laser scan -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <remap from="image"     	to="/camera/depth_registered/image_raw"/>	<!--TODO-->
+      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+      <remap from="scan" to="/kinect_scan"/>
+      
+      <!--param name="scan_time" type="double" value="0.1"/-->	<!-- 1/frame_rate-->
+      <!--param name="range_min" type="double" value="0.1"/-->
+      <param name="range_max" type="double" value="4"/>
+    </node>
+
+
+  <!-- SLAM -->
+  <group ns="rtabmap">
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
+          <param name="frame_id" type="string" value="base_footprint"/>
+
+          <param name="subscribe_depth" type="bool" value="true"/>
+          <param name="subscribe_scan" type="bool" value="true"/>
+
+          <remap from="odom" to="/filtered_odom"/>
+          <remap from="scan" to="/kinect_scan"/>
+
+          <remap from="rgb/image" to="/camera/data_throttled_image_relay"/>
+          <remap from="depth/image" to="/camera/depth_registered/image_raw"/>	<!--TODO-->
+          <remap from="rgb/camera_info" to="/camera/data_throttled_camera_info_relay"/>
+
+          <param name="queue_size" type="int" value="1000"/>
+
+          <!-- RTAB-Map's parameters -->
+          <param name="RGBD/ProximityBySpace"     type="string" value="false"/>
+          <param name="RGBD/AngularUpdate"        type="string" value="0.01"/>
+          <param name="RGBD/LinearUpdate"         type="string" value="0.01"/>
+          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+          <param name="Optimizer/Slam2D"          type="string" value="true"/>
+          <param name="Reg/Strategy"              type="string" value="1"/> <!-- 1=ICP -->
+          <param name="Reg/Force3DoF"             type="string" value="true"/>
+          <param name="Vis/MaxDepth"              type="string" value="4.0"/>
+          <param name="Vis/MinInliers"            type="string" value="5"/>
+          <param name="Vis/InlierDistance"        type="string" value="0.05"/>
+          <param name="Rtabmap/TimeThr"           type="string" value="700"/>
+          <param name="Mem/RehearsalSimilarity"   type="string" value="0.45"/>
+          <param name="Icp/CorrespondenceRatio"   type="string" value="0.5"/>
+    </node>
+  </group>
+  
+  <node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.1 0 0 0 1 base_footprint camera_link 100" />
+  
+</launch>			

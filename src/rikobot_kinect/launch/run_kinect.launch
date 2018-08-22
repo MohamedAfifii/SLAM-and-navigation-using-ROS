@@ -1,0 +1,49 @@
+<launch>
+	
+	<!-- Openni -->
+	<param name="/camera/driver/data_skip" value="2" />
+	<include file = "$(find openni_launch)/launch/openni.launch">
+		<arg name = "depth_registration" value = "true"/>
+	</include>
+
+	<node name="republish_depth" type="republish" pkg="image_transport" args="compressedDepth in:=/camera/depth_registered/image_raw raw out:=/camera/data_throttled_image_depth_relay" />
+
+
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <remap from="image"     	to="/camera/data_throttled_image_depth_relay"/>
+      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+      <remap from="scan" to="/kinect_scan"/>
+      
+      <!--param name="scan_time" type="double" value="0.1"/-->	<!-- 1/frame_rate-->
+      <param name="range_min" type="double" value="0.1"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+	
+	<!-- Throttling messages -->
+	<!--group ns="camera">
+		<node pkg="nodelet" type="nodelet" name="data_throttle" args="load rtabmap_ros/data_throttle camera_nodelet_manager" output="screen">
+		
+			<param name="rate" type="double" value="10.0"/>
+
+			<remap from="rgb/image_in"       to="rgb/image_rect_color"/>
+			<remap from="depth/image_in"     to="depth_registered/image_raw"/>
+			<remap from="rgb/camera_info_in" to="rgb/camera_info"/>
+
+			<remap from="rgb/image_out"       to="data_throttled_image"/>
+			<remap from="depth/image_out"     to="data_throttled_image_depth"/>
+			<remap from="rgb/camera_info_out" to="data_throttled_camera_info"/>
+		</node>
+		
+		<node pkg="topic_tools" type="throttle" name="rgb_throttle" args="messages rgb/image_rect_color/theora 10.0 data_throttled_image/theora"/>
+		
+		<node pkg="topic_tools" type="throttle" name="depth_throttle" args="messages depth_registered/image_raw/compressed 10.0 data_throttled_image_depth/compressed"/>
+		
+		<node pkg="topic_tools" type="throttle" name="camera_info_throttle" args="messages rgb/camera_info 10.0 data_throttled_camera_info"/>
+		
+		<node pkg="topic_tools" type="throttle" name="depth_info_throttle" args="messages depth_registered/camera_info 10.0 data_throttled_depth_info"/>
+		
+	</group-->
+	
+	
+
+</launch>

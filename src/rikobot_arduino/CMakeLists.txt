@@ -30,5 +30,3 @@ target_link_libraries(imu_translator ${catkin_LIBRARIES})
 add_executable(teleop_to_cmd src/teleop_to_cmdvel.cpp)
 target_link_libraries(teleop_to_cmd ${catkin_LIBRARIES})
 
-add_executable(pose_to_odom src/pose_to_odom.cpp)
-target_link_libraries(pose_to_odom ${catkin_LIBRARIES})

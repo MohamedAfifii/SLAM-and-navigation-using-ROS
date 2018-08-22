@@ -12,13 +12,10 @@
 		<param name="publish_tf" value="false"/>
 		<param name="fixed_frame" value="odom"/>
 	</node>
-  
 	
-	<!--robot_localization -->
-	<!--node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
-		<rosparam command="load" file="$(find filters)/params/ekf_params.yaml" />
-	</node-->
 
+	<!-- This node will publish the pose to /robot_pose_ekf/odom_combined, which will be translated into odometry message by pose_to_odom. -->
+	<!-- It also broadcasts the odom → base_footprint transform -->
 	<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
 		<param name="output_frame" value="odom"/>
 		<param name="freq" value="20.0"/>
@@ -30,8 +27,9 @@
 		<param name="self_diagnose" value="false"/>
 		
 		<remap from="imu_data" to="/imu/data"/>
-		<remap from="base_footprint" to="base_link"/>
+		<!--remap from="base_footprint" to="base_link"/-->
 		<remap from="vo" to="/rtabmap/odom"/>
 	</node>
 	
+	<node pkg = "rikobot_filters" type = "pose_to_odom" name = "pose_to_odom" />
 </launch>

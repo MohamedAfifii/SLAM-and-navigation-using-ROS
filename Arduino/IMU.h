@@ -7,8 +7,8 @@ const int MPU_addr=0x68;
 const double Rad_to_Deg = 180.0 / 3.141 ;
 const double Deg_to_Rad = 3.141 / 180.0 ;
 
-#define N 100.0  //Number of calibration samples 
-#define D 10  //Delay between calibration samples
+#define N 100.0   //Number of calibration samples 
+#define D 10      //Delay between calibration samples
 
 struct IMU
 {
@@ -104,7 +104,7 @@ struct IMU
         gy_reg = Wire.read()<<8|Wire.read();
         gz_reg = Wire.read()<<8|Wire.read();
 
-        //Calibrate the register readings then convert them to (degree/s)
+        //Calibrate the register readings then convert them to (rad/s)
         gx = ((gx_reg - gx_calibration) / 65.5) * Deg_to_Rad ;
         gy = ((gy_reg - gy_calibration) / 65.5) * Deg_to_Rad ;
         gz = ((gz_reg - gz_calibration) / 65.5) * Deg_to_Rad ;  
