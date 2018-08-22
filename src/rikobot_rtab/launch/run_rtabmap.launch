@@ -54,7 +54,11 @@
     </node>
   </group>
   
+<<<<<<< HEAD
 
   <!--node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.13 0 0 0 1 base_footprint camera_link 100" /-->
+=======
+  <node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0 0 0.1 0 0 0 1 base_footprint camera_link 100" />
+>>>>>>> kalman_filter
   
 </launch> 

@@ -1,8 +1,0 @@
-prefix=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel
-
-Name: my_robot_name_2dnav
-Description: Description of my_robot_name_2dnav
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib 
-Requires: 

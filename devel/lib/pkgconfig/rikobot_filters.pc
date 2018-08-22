@@ -1,8 +1,0 @@
-prefix=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel
-
-Name: rikobot_filters
-Description: Description of rikobot_filters
-Version: 0.0.0
-Cflags: -I/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/include
-Libs: -L/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/devel/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/install
-
-Name: mybot_navigation
-Description: Description of mybot_navigation
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/afifi/Graduation_project/SLAM_and_navigation_using_ROS/install/lib 
-Requires: 

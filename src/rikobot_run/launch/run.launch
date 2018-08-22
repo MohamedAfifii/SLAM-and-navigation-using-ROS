@@ -4,6 +4,7 @@
 
 	<include file = "$(find rikobot_arduino)/launch/run_arduino.launch"/>
 	<include file = "$(find rikobot_filters)/launch/run_filters.launch"/>
+<<<<<<< HEAD
 
 	<node if="$(arg simulation)" pkg = "rikobot_arduino" type = "pose_to_odom" name = "pose_to_odom" />
 	
@@ -19,5 +20,11 @@
 	<include file = "$(find rikobot_rtab)/launch/run_rtabmap.launch"/>
 
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/my_conf.rviz"/>
+=======
+	<include file = "$(find rikobot_kinect)/launch/run_kinect.launch"/>
+	<include file = "$(find rikobot_rtab)/launch/run_rtabmap2.launch"/>
+	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rikobot_run)/rviz/config.rviz"/>
+>>>>>>> kalman_filter
 </launch>
 
