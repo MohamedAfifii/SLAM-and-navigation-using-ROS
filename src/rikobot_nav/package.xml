@@ -73,6 +73,10 @@
   <build_depend>move_base_msgs</build_depend>
   <build_export_depend>move_base_msgs</build_export_depend>
   <exec_depend>move_base_msgs</exec_depend>
+  
+  <build_depend>map_msgs</build_depend>
+  <build_export_depend>map_msgs</build_export_depend>
+  <exec_depend>map_msgs</exec_depend>
 
   <build_depend>tf</build_depend>
   <build_export_depend>tf</build_export_depend>

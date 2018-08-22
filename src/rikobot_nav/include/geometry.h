@@ -61,6 +61,13 @@ double EuclideanDistance(GridPoint a, GridPoint b)
 	return hypot(dx, dy);
 }
 
+double absNormalizedDiff(double theta1, double theta2)
+{
+	double difference = theta1 - theta2;
+	difference = atan2(sin(difference), cos(difference));
+	return abs(difference);
+}
+
 double getAngle(WorldPoint p1, WorldPoint p2)
 {
 	vec u = vec(point(p1.x, p1.y), point(p2.x, p2.y));
@@ -106,24 +113,13 @@ double perpindicularDistance(WorldPoint C, WorldPoint A, double angle)
 
 bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 {
-	int old_thresh = Costmap::thresh;
-	
-	if(old_thresh < 10)
-		Costmap::thresh = max({old_thresh, map.getCostVal(a), map.getCostVal(b)});
-	else 
-		Costmap::thresh = max({old_thresh, map.getCostVal(a)+10, map.getCostVal(b)+10});
-
 	GridPoint mn = min(a, b), mx = max(a, b);
 	line l = {point(mn.first, mn.second), point(mx.first, mx.second)};
 
-	bool free = true;
 	while(mn != mx)
 	{
-		if(map.isOccupied(mn))
-		{
-			free = false;
-			break;
-		}
+		//if(map.outside_grid(mn))	return true;
+		if(map.isOccupied(mn))		return false;
 
 		point upper_corner(mn.first+0.5, mn.second+0.5);
 		point lower_corner(mn.first+0.5, mn.second-0.5);
@@ -136,8 +132,7 @@ bool lineOfSight(GridPoint a, GridPoint b, Costmap& map)
 		else									mn.first++;
 	}
 
-	Costmap::thresh = old_thresh;
-	return free;
+	return true;
 }
 
 bool lineOfSight(WorldPoint a, WorldPoint b, Costmap& map)
@@ -158,7 +153,7 @@ bool onSight(Pose pose, WorldPoint local_goal, double angle_tolerance)
 bool safeCurve(WorldPoint start, WorldPoint end, WorldPoint center, int sign, Costmap& map)
 {
 	int old_thresh = Costmap::thresh;
-	Costmap::thresh = max({old_thresh, map.getCostVal(start), map.getCostVal(end)});
+	//Costmap::thresh = max({old_thresh, map.getCostVal(start), map.getCostVal(end)});
 	bool free = true;
 
 	start = map.grid_to_world(map.world_to_grid(start));
@@ -167,7 +162,7 @@ bool safeCurve(WorldPoint start, WorldPoint end, WorldPoint center, int sign, Co
 
 	double radius = EuclideanDistance(start, center);
 	WorldPoint p = start;
-	while(EuclideanDistance(p, end) > 0.2)
+	while(EuclideanDistance(p, end) > 0.1)
 	{
 		if(map.isOccupied(p))
 		{
@@ -248,6 +243,7 @@ WorldPoint getLineIntersection(WorldPoint p1, WorldPoint p2, WorldPoint p3, Worl
 	ret.z = 0;
 	return ret;
 }
+
 
 struct Window
 {

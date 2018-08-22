@@ -10,7 +10,7 @@ Robot robot;
 long oldt;
 double targetV = 0, targetW = 0;
 
-void setup() 
+void setup()
 {
     Serial.begin(9600);
     oldt = millis();
@@ -34,7 +34,8 @@ void loop()
     oldt = millis();
     
     robot.update();
-    
+
+
     Serial.print(robot.x);
     Serial.print(" ");
     Serial.print(robot.y);
@@ -45,4 +46,11 @@ void loop()
     Serial.print(robot.left.targetSpeed);
     Serial.print(" ");
     Serial.println(robot.right.targetSpeed);
+    */
+
+    long left = left.encoder.read();
+    long right = right.encoder.read();
+    Serial.print(robot.left.oldPos);
+    Serial.print("   ");
+    Serial.println(robot.right.oldPos);
 }

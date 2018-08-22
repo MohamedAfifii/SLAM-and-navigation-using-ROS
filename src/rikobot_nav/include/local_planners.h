@@ -19,6 +19,8 @@ public:
 	double MotorMin, MotorMax;	//Min and max angular velocities in rad/sec
 	double angle_tolerance;
 	double rmin;				//Minimum radius of curvature
+	int thresh;
+	double no_rot_angle;
 
 	ros::NodeHandle nh;
 	ros::Publisher cmd_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 20);
@@ -78,14 +80,11 @@ public:
 		publish_command(v, 0);
 	}
 
-	bool collision_free_path(Pose current_pose, WorldPoint local_goal, double radius, GlobalCostmap &global_map)
+
+	bool execute_path(GlobalCostmap &global_map, GlobalCostmap &active_map, const Path &path)
 	{
 		return true;
-	}
-
-	bool execute_path(GlobalCostmap &global_map, const Path &path)
-	{
-		Costmap::thresh = 30;
+		Costmap::thresh = thresh;
 		
 		int path_length = sz(path);
 		WorldPoint goal_point = path[path_length-1];
@@ -93,8 +92,9 @@ public:
 		vector<WorldPoint> trajectory;
 		WorldPoint last_position;		//Used for trajectory visualization
 		last_position.x = last_position.y = last_position.z = -1;
+		int last_goal = -1;
 
-		rmin = 1.2*(L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.2 factor is for the safty margin.
+		rmin = 1.1*(L/2.0)*((MotorMax+MotorMin)/(MotorMax-MotorMin));	//The 1.1 factor is for the safty margin.
 
 		ros::Rate rate(frequency);
 		while(1)	
@@ -118,9 +118,20 @@ public:
 			for(int i = path_length-1; i >= 0; i--)
 			{
 				WorldPoint local_goal = path[i];
+				double theta_goal = getAngle(current_position, local_goal);
+				
+				int old_thresh = Costmap::thresh;
+				if(EuclideanDistance(current_position, local_goal) < 1.5 && absNormalizedDiff(theta_goal, theta_heading) < no_rot_angle)
+					Costmap::thresh += 10;
 
-				if(lineOfSight(current_position, local_goal, global_map))
+				if(i == last_goal || lineOfSight(current_position, local_goal, global_map))
 				{
+					if(lineOfSight(current_position, local_goal, global_map) && !lineOfSight(current_position, local_goal, active_map))
+					{
+						cout << "Mismatch between local and global costmaps!" << endl;
+						cout << "Replanning ..." << endl << endl;
+						return false;
+					}
 
 					//Visualization
 					geometry_msgs::PointStamped pt;
@@ -133,14 +144,12 @@ public:
 					if(onSight(current_pose, local_goal, angle_tolerance))	//Default: 10 degrees tolerance
 						move_forward();
 
-					else if(shouldRotate(current_pose, local_goal)) 
+					else if(last_goal == -1 || shouldRotate(current_pose, local_goal)) 
 						rotate_inplace(local_goal);
 						
 
 					else
 					{
-						double theta_goal = getAngle(current_position, local_goal);
-
 						double yg = perpindicularDistance(local_goal, current_position, theta_heading);
 						double xg = abs(perpindicularDistance(local_goal, current_position, theta_heading+M_PI/2));
 		
@@ -150,9 +159,9 @@ public:
 
 						double radius_of_curvature = -1;
 
-						double difference = theta_heading - theta_goal;
-						difference = atan2(sin(difference), cos(difference));
-						if(abs(difference) < 0.35)	//20 degrees
+						double difference = absNormalizedDiff(theta_heading, theta_goal);
+						if(difference < 0.35)
+						if(false)
 						{
 							WorldPoint p1 = current_position;
 							WorldPoint p2 = getAnotherPointOnline(p1, theta_heading+M_PI/2);
@@ -165,18 +174,17 @@ public:
 							//pt.point = ICC;
 							//icc_pub.publish(pt);
 
-							cout << "Checking 1" << endl;
-							//if(safeCurve(current_position, local_goal, ICC, sign, global_map))
-							if(true)
+							//cout << "Checking 1" << endl;
+							if(i == last_goal || safeCurve(current_position, local_goal, ICC, sign, global_map))
 							{
 								radius_of_curvature = EuclideanDistance(current_position, ICC);
-								cout << "Safe" << endl;
+								//cout << "Safe" << endl;
 							}
 
-							else cout << "Not safe" << endl;
+							//else cout << "Not safe" << endl;
 						}
 
-						if(radius_of_curvature != -1 && xg > rmin)
+						if(radius_of_curvature == -1 && xg > rmin)
 						{
 							ICC = getAnotherPointOnline(current_position, theta_heading+sign*M_PI/2, rmin);
 							
@@ -199,18 +207,21 @@ public:
 							else
 								pointOfTangancy = p2;
 
-							
+							//pt.point = ICC;
+							//icc_pub.publish(pt);
+
+							//cout << "Checking 2" << endl;
 							bool safe = safeCurve(current_position, pointOfTangancy, ICC, sign, global_map);
-							cout << "Checking 2" << endl;
 							safe &= lineOfSight(pointOfTangancy, local_goal, global_map);
+							safe |= (i == last_goal);
 
 							if(safe)	
 							{
 								radius_of_curvature = rmin;
-								cout << "Safe" << endl;
+								//cout << "Safe" << endl;
 							}
 
-							else	cout << "Not safe" << endl;
+							//else	cout << "Not safe" << endl;
 						}
 
 						if(radius_of_curvature != -1)	follow_cricle(radius_of_curvature, sign);
@@ -221,19 +232,24 @@ public:
 					pt.point = ICC;
 					icc_pub.publish(pt);	
 								
+					Costmap::thresh = old_thresh;
+					last_goal = i;
 					done = true;
 					break;
 				}
+
+				else Costmap::thresh = old_thresh;
 			}
 
 			if(!done)
 			{
-				cout << "Goal unreachable!" << endl;
+				cout << "Cannot generate a valid velocity command!" << endl;
 				publish_command(0,0);
 				cout << "Replanning ..." << endl << endl;
 				return false;
 			}
 
+			ros::spinOnce();
 			rate.sleep();
 		}
 

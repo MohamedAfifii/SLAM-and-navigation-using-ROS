@@ -15,15 +15,12 @@ public:
 	WorldPoint origin;
 	bool flag = false;
 
-	//int thresh = 20;
 	static int thresh;
 
 	ros::NodeHandle nh;
-	ros::Subscriber sub;
-	string costmap_topic;
+	ros::Subscriber sub_updates;
 
-	//Update the local version of the map when receiving a message on the costmap_topic
-	void call_back(const Grid& map)
+	void call_back_full(const Grid& map)
 	{
 		this->map = map;
 
@@ -35,24 +32,45 @@ public:
 		flag = true;
 	}
 
-	//Subsrcribe the to costmap_topic
-	//The node will keep subscribed to that topic until the costmap object goes out of scope
-	void subscribe()
+	/*void call_back_update(const map_msgs::OccupancyGridUpdate& update)
 	{
-		sub = nh.subscribe(costmap_topic, 2, &Costmap::call_back, this);
+		return;
+		int x = update.x, y = update.y;
+		int width = update.width, height = update.height;
+
+		int idx = 0;
+		for(int h = 0; h < height; h++)
+		{
+			int i = (y+h)*width+x;
+
+			for(int w = 0; w < width; w++)	map.data[i++] = update.data[idx++];
+		}
+	}*/
+
+	void call_back_update(const map_msgs::OccupancyGridUpdate& update)
+	{
+		int idx = 0;
+		for(int i = 0; i < update.height; i++)	for(int j = 0; j < update.width; j++)
+		{
+			int y = update.y + i, x = update.x + j;
+			map.data[y*width+x] = update.data[idx++];
+		}
 	}
 
-	//Temporarily subscribe to the costmap_topic, receive the latest version of the map,
-	//then the subscriber object will go out of scope.
 	void get_map()
 	{
 		cout << "Waiting for the costmap ..." << endl;
 
 		flag = false;
-		ros::Subscriber temp_sub = nh.subscribe(costmap_topic, 2, &Costmap::call_back, this);
+		ros::Subscriber sub = nh.subscribe("/global_costmap/costmap/costmap", 2, &Costmap::call_back_full, this);
 		while(!flag){ros::spinOnce();}
 
 		cout << "Costmap received!" << endl;
+	}
+
+	void subscribe_updates()
+	{
+		sub_updates = nh.subscribe("/global_costmap/costmap/costmap_updates", 2, &Costmap::call_back_update, this);
 	}
 
 	bool outside_grid(WorldPoint p)
@@ -87,8 +105,8 @@ public:
 	{
 		WorldPoint world_point;
 
-		world_point.x = origin.x + grid_point.first*resolution;
-		world_point.y = origin.y + grid_point.second*resolution;
+		world_point.x = origin.x + (grid_point.first + 0.5)*resolution;
+		world_point.y = origin.y + (grid_point.second + 0.5)*resolution;
 		world_point.z = 0;
 
 		return world_point;
@@ -145,27 +163,22 @@ public:
 	{
 		return !isFree(world_point);
 	}
+
+	void operator=(const Costmap &other)
+	{
+		cout << "operator=" << endl;
+		map = other.map;
+		width = other.width;
+		height = other.height;
+		resolution = other.resolution;
+		origin = other.origin;
+	}
 };
 
 int Costmap::thresh = 20;	//Default value, updated from the parameter server
 
 class GlobalCostmap:public Costmap
-{
-public:
-	GlobalCostmap()
-	{
-		costmap_topic = "/global_costmap/costmap/costmap";
-		//get_map();
-	}
-};
+{};
 
-class LocalCostmap:public Costmap
-{
-public:
-	LocalCostmap()
-	{
-		costmap_topic = "/local_costmap/costmap/costmap";
-		subscribe();
-	}
-};
+
 #endif

@@ -19,6 +19,7 @@ public:
 	GridPoint src, dest;		
 	double max_segment_length;
 	bool publish_path;
+	int thresh;
 
 	ros::NodeHandle nh;
 	ros::Publisher path_pub = ros::Publisher(nh.advertise<nav_msgs::Path>("/my_nav/path", 3));
@@ -60,6 +61,8 @@ public:
 	//Return false otherwise
 	bool solve(GlobalCostmap& map, Path& path)
 	{
+		Costmap::thresh = max(thresh, map.getCostVal(src)+5);
+
 		vector<double> backward_cost(map.width*map.height+9, -1);
 		vector<GridPoint> parent(map.width*map.height+9);
 		vector<bool> expanded(map.width*map.height+9, false);
@@ -171,9 +174,9 @@ public:
 	    points.scale.x = 0.07;
 	    points.scale.y = 0.07;
 	    line_strip.scale.x = 0.05;
-	    points.color.g = 1.0f;
+	    points.color.b = 1.0f;
 	    points.color.a = 1.0;
-	    line_strip.color.b = 1.0;
+	    line_strip.color.g = 1.0;
 	    line_strip.color.a = 1.0;
 
 	    for(WorldPoint p: path)	
@@ -181,7 +184,7 @@ public:
 			points.points.push_back(p);
 			line_strip.points.push_back(p);
 	    }
-	    marker_pub.publish(points);
+	    //marker_pub.publish(points);
 	    marker_pub.publish(line_strip);
 
 
@@ -213,8 +216,6 @@ public:
 	*/
 	int plan(Goal goal, GlobalCostmap &map, Path &path, string algorithm)
 	{
-		//Get the global costmap
-		map.get_map();
 
 		//Get source
 		TFWrapper tf_wrapper;
@@ -259,7 +260,6 @@ public:
 
 		//Get path
 		ros::Time start_time = ros::Time::now();
-		Costmap::thresh = map.getCostVal(src)+5;
 		bool can = solve(map, path);
 		if(can)
 		{

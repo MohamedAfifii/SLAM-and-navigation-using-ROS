@@ -8,8 +8,8 @@
 struct Robot
 {
     double x = 0, y = 0, theta = 0;
-    Motor left = Motor(8, 7, 2, 3);
-    Motor right = Motor(4, 5, 18, 19);
+    Motor left = Motor(6, 7, 3, 2);
+    Motor right = Motor(5, 4, 19, 18);
 
     // vc: Target linear velocity of the robot (cm/sec)
     // wc: Target angular velocity of the robot (rad/sec)

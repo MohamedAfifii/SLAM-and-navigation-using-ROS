@@ -1,12 +1,14 @@
 
 <launch>
 
-	<param name="/costmap/threshold_cost" value="20"/>
-	<param name="/global_planner/max_segment_length" value="0.5"/>
-	<param name="/global_planner/publish_path" value="false"/>
+	<param name="/global_planner/max_segment_length" value="0.1"/>
+	<param name="/global_planner/publish_path" value="true"/>
+	<param name="/global_planner/threshold_cost" value="5"/>
 	
 	<param name="/local_planner/goal_tolerance" value="0.2"/>
 	<param name="/local_planner/frequency" value="4"/>
+	<param name="/local_planner/threshold_cost" value="20"/>
+	<param name="/local_planner/no_rot_angle" value="0.6"/>
 	
 	<param name="/local_planner/vmin" value="0"/>
 	<param name="/local_planner/vmax" value="0.25"/>
